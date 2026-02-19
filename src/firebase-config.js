@@ -8,13 +8,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyABnMaVGyIqY-DsFu387jfwW2jsE-00L8Y",
+  authDomain: "lifedesigncourse.firebaseapp.com",
+  projectId: "lifedesigncourse",
+  storageBucket: "lifedesigncourse.firebasestorage.app",
+  messagingSenderId: "635795442202",
+  appId: "1:635795442202:web:d76d23400f680cc1d4dfa3",
+  measurementId: "G-0WLJ5EMY0Y"
 };
 
 const app = initializeApp(firebaseConfig);
