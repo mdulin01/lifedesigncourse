@@ -21,19 +21,8 @@ export default function CourseContent({ user }) {
   return (
     <div className="space-y-6 pb-20 md:pb-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Course Progress</h1>
-        <p className="text-white/40 text-sm mt-1">Track your journey through all 8 modules</p>
-      </div>
-
-      {/* Progress bar */}
-      <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-white">Overall Progress</span>
-          <span className="text-sm text-emerald-400 font-bold">0%</span>
-        </div>
-        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style={{ width: '0%' }} />
-        </div>
+        <h1 className="text-2xl font-bold text-white">Course Modules</h1>
+        <p className="text-white/40 text-sm mt-1">8 modules to design your life with intention</p>
       </div>
 
       {/* Module list */}

@@ -44,14 +44,18 @@ export default function ModuleProjects({ module, onBack, user }) {
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
-      {/* Header */}
-      <div>
+      {/* Sticky breadcrumb */}
+      <div className="sticky top-0 md:top-0 z-10 -mx-4 px-4 py-3 bg-slate-950/90 backdrop-blur-lg border-b border-white/5">
         <button
           onClick={onBack}
-          className="flex items-center gap-1.5 text-sm text-emerald-400/70 hover:text-emerald-400 transition mb-3"
+          className="flex items-center gap-1.5 text-sm text-emerald-400/70 hover:text-emerald-400 transition"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Modules
         </button>
+      </div>
+
+      {/* Header */}
+      <div>
         <div className="flex items-center gap-3 mb-1">
           <span className="text-3xl">{module.icon}</span>
           <div>

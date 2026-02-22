@@ -505,6 +505,595 @@ export const moduleProjects = {
       },
     },
   ],
+  4: [
+    {
+      number: '00',
+      title: 'Your Current Path',
+      description: 'Map out what your life looks like in 5 years if you keep doing what you\'re doing.',
+      artifact: 'A written 5-year Odyssey Plan for your current trajectory.',
+      details: 'Odyssey Plan #1 is your "keep going" plan. Project forward 5 years on your current path. Where do you live? What work are you doing? What does a typical week look like? Who\'s in your life? How do you feel? This isn\'t about whether you like the plan — it\'s about seeing it clearly. Many people have never actually spelled out where their default path leads.',
+      tips: [
+        'Be concrete. "Doing well" isn\'t a plan. "Running a 10-person team at a mid-size tech company in Portland" is.',
+        'Include personal life: relationships, hobbies, health, where you live, daily routines.',
+        'Rate this plan on four dimensions: Resources (do you have what you need?), Likability (do you want this?), Confidence (can you pull it off?), Coherence (does it fit your values?).',
+        'Don\'t judge it yet. Just describe it honestly.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Odyssey Planning', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 20,
+        fields: [
+          { id: 'plan1Title', label: 'Plan Title', prompt: 'Give this life path a short, descriptive title (e.g., "The Steady Climb" or "Corporate Track").' },
+          { id: 'plan1Description', label: '5-Year Vision', prompt: 'Describe your life 5 years from now on your current path. Work, location, relationships, daily life, finances, health. Be specific.' },
+          { id: 'plan1Ratings', label: 'Plan Ratings', prompt: 'Rate 1-10: Resources (do you have what you need?), Likability (do you want this?), Confidence (can you pull it off?), Coherence (does it fit your values?). Explain each.' },
+        ],
+      },
+    },
+    {
+      number: '01',
+      title: 'The Alternate Path',
+      description: 'What would you do if your current path suddenly disappeared?',
+      artifact: 'A written 5-year Odyssey Plan for an alternate trajectory.',
+      details: 'Odyssey Plan #2 is your "pivot" plan. Imagine your current job, industry, or life situation vanishes tomorrow. Not fired — the whole field disappears. What would you do instead? This forces creative thinking beyond your comfort zone. Many people discover that their Plan B is actually more exciting than their Plan A. The constraint of "you can\'t do what you\'re doing now" unlocks ideas you\'ve been suppressing.',
+      tips: [
+        'Don\'t just pick the next closest thing. Go sideways. What skills transfer to a completely different field?',
+        'Think about what you\'d do if nobody was watching and nobody would judge you.',
+        'This plan can be wildly different from Plan 1. That\'s the point.',
+        'Rate it on the same four dimensions: Resources, Likability, Confidence, Coherence.',
+      ],
+      resources: [
+        { label: 'Odyssey Plan Template', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 20,
+        fields: [
+          { id: 'plan2Title', label: 'Plan Title', prompt: 'Title for this alternate path (e.g., "The Creative Leap" or "Teaching Abroad").' },
+          { id: 'plan2Description', label: '5-Year Vision', prompt: 'If your current path disappeared, what would you do instead? Describe 5 years out in detail.' },
+          { id: 'plan2Ratings', label: 'Plan Ratings', prompt: 'Rate 1-10: Resources, Likability, Confidence, Coherence. Explain each rating.' },
+        ],
+      },
+    },
+    {
+      number: '02',
+      title: 'The Wild Card',
+      description: 'What would you do if money and reputation didn\'t matter?',
+      artifact: 'A written 5-year Odyssey Plan for your "no limits" path.',
+      details: 'Odyssey Plan #3 removes the constraints. If money wasn\'t an issue and nobody would laugh at you, what would you do? Open a surf school? Write novels? Run a nonprofit? Build robots? This plan reveals your deepest desires — the ones you\'ve dismissed as "unrealistic." Some version of this plan might be more achievable than you think, and elements of it can often be woven into Plans 1 or 2.',
+      tips: [
+        'Go big. This is your permission to dream without the inner critic.',
+        'Include the details: where, with whom, what your days look like, what you contribute.',
+        'After writing it, circle the elements that excite you most — those are data points, even if the whole plan isn\'t practical.',
+        'Rate it: Resources, Likability, Confidence, Coherence. Notice which scores surprise you.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Chapter on Odyssey Plans', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 20,
+        fields: [
+          { id: 'plan3Title', label: 'Plan Title', prompt: 'Title for your wild card path (e.g., "The Dream Life" or "Surf & Teach").' },
+          { id: 'plan3Description', label: '5-Year Vision', prompt: 'No limits — money and reputation don\'t matter. What does your life look like in 5 years?' },
+          { id: 'plan3Ratings', label: 'Plan Ratings', prompt: 'Rate 1-10: Resources, Likability, Confidence, Coherence. What surprises you about these scores?' },
+        ],
+      },
+    },
+    {
+      number: '03',
+      title: 'Compare & Decide',
+      description: 'Lay your three plans side by side and see what the comparison reveals.',
+      artifact: 'A comparison analysis of your three Odyssey Plans with a synthesis of what matters most.',
+      details: 'Line up all three plans. Look at the ratings. Which plan scores highest on Likability? Confidence? Coherence? Often the "best" plan isn\'t one of the three — it\'s a hybrid that borrows the best elements from each. Also look at what\'s consistent across all three: those elements are probably non-negotiable for you regardless of the path you choose.',
+      tips: [
+        'Create a simple table: Plan 1 vs Plan 2 vs Plan 3, rated on all four dimensions.',
+        'Highlight elements that appear in 2 or 3 plans — those are your "must-haves."',
+        'Ask: "What would a Plan 4 look like that combines the best of all three?"',
+        'Share your plans with a trusted friend or mentor. Fresh eyes catch things you miss.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'comparison', label: 'Plan Comparison', prompt: 'Compare your 3 plans. Which scores highest on Likability? Confidence? Coherence? What patterns do you see across all three?' },
+          { id: 'mustHaves', label: 'Non-Negotiables', prompt: 'What elements appear in 2 or 3 plans? These are likely your non-negotiables regardless of path.' },
+          { id: 'hybridPlan', label: 'The Hybrid (Plan 4)', prompt: 'If you could combine the best elements from all three plans, what would that look like?' },
+        ],
+      },
+    },
+    {
+      number: '04',
+      title: 'Pick Your Prototype',
+      description: 'Choose one element from your plans to test in real life this week.',
+      artifact: 'A specific prototype plan — one small experiment to test an element of your odyssey plans.',
+      details: 'Life design isn\'t about finding the perfect plan and executing it. It\'s about running small experiments. Pick one element from any of your plans that you can test this week. If Plan 3 involves teaching, volunteer for one session. If Plan 2 involves a career switch, have a coffee chat with someone in that field. Prototypes are low-risk, high-learning experiments.',
+      tips: [
+        'The best prototypes are conversations. Talk to someone living a version of the life you\'re considering.',
+        'Keep it small: one afternoon, not one year. You\'re testing, not committing.',
+        'Ask yourself: "What would I need to believe for this plan to work?" Then test that belief.',
+        'Document what you learn. This feeds directly into Module 8 (Prototype & Iterate).',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'elementToTest', label: 'Element to Test', prompt: 'Which specific element from which plan are you going to test? Why this one?' },
+          { id: 'prototype', label: 'Prototype Plan', prompt: 'How will you test it? Be specific: what, when, where, who, how long. Keep it to one week or less.' },
+          { id: 'successCriteria', label: 'Success Criteria', prompt: 'How will you know if this prototype was informative? What questions will it answer?' },
+        ],
+      },
+    },
+  ],
+  5: [
+    {
+      number: '00',
+      title: 'Your Identity Statement',
+      description: 'Define who you want to become, not just what you want to achieve.',
+      artifact: 'A written identity statement: "I am the type of person who..."',
+      details: 'James Clear\'s central insight: lasting change comes from changing your identity, not your outcomes. Instead of "I want to lose weight" (outcome), think "I am a healthy person" (identity). Instead of "I want to write a book" think "I am a writer." This shift changes how you make daily decisions. Your identity statement becomes the filter for every habit you build in this module.',
+      tips: [
+        'Start with: "I am the type of person who..." and write 3-5 completions.',
+        'Ground each statement in your values from Module 2. Your identity should reflect what matters to you.',
+        'Don\'t pick aspirational identities that don\'t connect to real desire. Pick ones that feel true or almost-true.',
+        'Every action is a vote for the person you want to become. The goal is to cast more votes for the right identity.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Identity-Based Habits', url: 'https://jamesclear.com/identity-based-habits' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'identityStatements', label: 'Identity Statements', prompt: 'Write 3-5 "I am the type of person who..." statements. Ground them in your values from Module 2.' },
+          { id: 'currentEvidence', label: 'Current Evidence', prompt: 'For each identity statement, what existing behaviors already support it? Even small ones count.' },
+          { id: 'gapAnalysis', label: 'The Gaps', prompt: 'Where is the biggest gap between your stated identity and your current behavior? No judgment — just awareness.' },
+        ],
+      },
+    },
+    {
+      number: '01',
+      title: 'The Four Laws Audit',
+      description: 'Evaluate your current habits against the Four Laws of Behavior Change.',
+      artifact: 'An audit of 3-5 current habits scored against Obvious, Attractive, Easy, Satisfying.',
+      details: 'Pick 3-5 habits you either want to build or break. For each one, score it against the Four Laws: Is the cue Obvious? Is it Attractive? Is the behavior Easy? Is the reward Satisfying? Good habits should score high on all four. Bad habits you want to break — apply the inversions: make them Invisible, Unattractive, Difficult, and Unsatisfying.',
+      tips: [
+        'Include at least one habit you want to build and one you want to break.',
+        'For habits to build: find where the weakest law is. That\'s where to focus.',
+        'For habits to break: find where it\'s strongest. That\'s what\'s keeping it alive.',
+        'Use your Energy Audit (Module 3) — high-energy activities make great habit foundations.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — The Four Laws', url: 'https://jamesclear.com/three-steps-habit-change' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'habitsToAudit', label: 'Habits to Audit', prompt: 'List 3-5 habits (mix of ones to build and break). For each, briefly describe the habit.' },
+          { id: 'fourLawsScores', label: 'Four Laws Scores', prompt: 'For each habit, rate 1-5 on: Obvious (cue visible?), Attractive (want to do it?), Easy (low friction?), Satisfying (reward?). Note the weakest law for each.' },
+          { id: 'breakdowns', label: 'Biggest Insight', prompt: 'What\'s the biggest pattern you see? Which law is consistently weakest in the habits you want to build?' },
+        ],
+      },
+    },
+    {
+      number: '02',
+      title: 'Design Your Cues',
+      description: 'Apply the 1st Law: make good habit cues obvious and bad habit cues invisible.',
+      artifact: 'An environment design plan that makes your desired cues impossible to miss.',
+      details: 'The 1st Law says behavior change starts with awareness. Use implementation intentions ("I will [BEHAVIOR] at [TIME] in [LOCATION]") and environment design to make cues for good habits impossible to miss. For bad habits, make cues invisible — move the phone out of the bedroom, hide the snacks, close the browser tabs.',
+      tips: [
+        'Write implementation intentions for each habit: "I will meditate for 2 minutes at 7am in the living room."',
+        'Redesign your physical space: put your running shoes by the door, leave a book on your pillow.',
+        'For digital habits, use app blockers, remove shortcuts, or change default screens.',
+        'Habit stacking: "After I [CURRENT HABIT], I will [NEW HABIT]." Attach new habits to existing ones.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Implementation Intentions', url: 'https://jamesclear.com/implementation-intentions' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'implementations', label: 'Implementation Intentions', prompt: 'For each habit to build, write: "I will [BEHAVIOR] at [TIME] in [LOCATION]."' },
+          { id: 'environmentDesign', label: 'Environment Changes', prompt: 'What physical or digital changes will you make to your environment to make cues obvious (good habits) or invisible (bad habits)?' },
+          { id: 'habitStacks', label: 'Habit Stacks', prompt: 'What existing habits can you attach new ones to? Write your chains: "After I [CURRENT], I will [NEW]."' },
+        ],
+      },
+    },
+    {
+      number: '03',
+      title: 'The Two-Minute Rule',
+      description: 'Apply the 3rd Law: make every new habit so easy it takes less than two minutes.',
+      artifact: 'Each target habit scaled down to a two-minute starter version.',
+      details: 'The 3rd Law is about reducing friction. Every habit should have a "gateway" version that takes less than two minutes. "Read 30 pages" becomes "read one page." "Run 3 miles" becomes "put on running shoes." The point isn\'t to stay at two minutes forever — it\'s to master the art of showing up. Once you start, momentum usually carries you further.',
+      tips: [
+        'Scale down ruthlessly. "Study Japanese for 30 minutes" → "Open the textbook."',
+        'The goal is to become the type of person who shows up consistently, not to have a perfect session.',
+        'Use the "just show up" rule for the first 2 weeks. Literally just do the 2-minute version.',
+        'Once showing up is automatic, gradually increase. But never skip the showing up part.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — The Two-Minute Rule', url: 'https://jamesclear.com/how-to-stop-procrastinating' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'twoMinuteVersions', label: 'Two-Minute Versions', prompt: 'For each habit, write the two-minute gateway version. Make it embarrassingly easy to start.' },
+          { id: 'frictionReduction', label: 'Friction Reduction', prompt: 'What friction points exist for each habit? How can you reduce the number of steps between you and starting?' },
+          { id: 'commitPlan', label: 'The Showing Up Commitment', prompt: 'Commit to doing ONLY the two-minute version for the next 7 days. No more, no less. What will you track?' },
+        ],
+      },
+    },
+    {
+      number: '04',
+      title: 'Reward & Track',
+      description: 'Apply the 4th Law: make habits satisfying with immediate rewards and tracking.',
+      artifact: 'A habit tracking plan with specific rewards and the "never miss twice" rule.',
+      details: 'The 4th Law: what gets rewarded gets repeated. Add an immediate reward after each habit (not one that contradicts the habit — don\'t eat cake after exercising). Then track it. Habit tracking itself is satisfying — seeing a streak grow becomes its own reward. The cardinal rule: never miss twice. Missing once is an accident. Missing twice is the start of a new habit.',
+      tips: [
+        'Match rewards to the habit. After a run, enjoy a nice shower. After studying, watch one episode.',
+        'Use a simple tracker: a calendar with X marks, a habit app, or the portal\'s journal.',
+        'The "never miss twice" rule is your safety net. Life happens — but always get back on track the next day.',
+        'Celebrate small wins. The feeling of satisfaction cements the habit loop.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Habit Tracking', url: 'https://jamesclear.com/habit-tracker' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'rewards', label: 'Reward System', prompt: 'For each habit, what immediate reward will you give yourself? Make sure it aligns with your identity.' },
+          { id: 'trackingMethod', label: 'Tracking Method', prompt: 'How will you track each habit? What tool or system? How will you make the tracking itself visible and satisfying?' },
+          { id: 'neverMissTwice', label: 'Recovery Plan', prompt: 'When (not if) you miss a day, what\'s your plan to get back on track immediately? Write a specific "if-then" plan.' },
+        ],
+      },
+    },
+  ],
+  6: [
+    {
+      number: '00',
+      title: 'The HWPL Assessment',
+      description: 'Rate your current Health, Work, Play, and Love balance on a scale of 1-10.',
+      artifact: 'A scored self-assessment across all four life areas with written reflections.',
+      details: 'The DYL dashboard starts with an honest snapshot. Rate yourself 1-10 in four areas: Health (physical, mental, spiritual well-being), Work (career, projects, purpose), Play (fun, creativity, recreation), and Love (relationships, community, belonging). Be honest — this is a diagnostic, not a report card. Most people have at least one area that\'s significantly lower than the others.',
+      tips: [
+        'Don\'t overthink the scores. Your gut reaction is usually accurate.',
+        'A "full" life isn\'t all 10s. It\'s about being intentional about the balance YOU want.',
+        'Write 2-3 sentences for each area explaining why you gave that score.',
+        'Use your Energy Audit (Module 3) to inform your ratings — energy patterns reveal a lot about HWPL.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'scored-assessment',
+        fields: [
+          { id: 'scores', label: 'HWPL Scores', prompt: 'Rate each area 1-10: Health, Work, Play, Love. Add a brief note explaining each score.' },
+        ],
+      },
+    },
+    {
+      number: '01',
+      title: 'Deep Dive: Your Lowest Score',
+      description: 'Analyze the area that scored lowest and understand why.',
+      artifact: 'A root cause analysis of your lowest-scoring life area.',
+      details: 'Take whichever HWPL area scored lowest and dig deeper. What specifically is contributing to the low score? Is it a recent change or a long-standing issue? What have you tried? What would a +2 improvement look like? The goal is to move from a vague "this area is bad" to specific, addressable factors.',
+      tips: [
+        'Use the "5 Whys" technique: keep asking "why?" to get past surface answers.',
+        'Look at this area through the lens of your values (Module 2) and energy patterns (Module 3).',
+        'A low score doesn\'t mean failure. Some areas might be deliberately lower because you\'re investing elsewhere.',
+        'Define what a +2 improvement would concretely look like. Not a 10 — just better than now.',
+      ],
+      resources: [
+        { label: 'The 5 Whys Technique', url: 'https://en.wikipedia.org/wiki/Five_whys' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'lowestArea', label: 'Lowest Area', prompt: 'Which area scored lowest? What specifically is contributing to this score? Use "5 Whys" to dig deeper.' },
+          { id: 'rootCauses', label: 'Root Causes', prompt: 'What are the 2-3 root causes? Is this a recent change or long-standing? What have you tried already?' },
+          { id: 'plusTwo', label: 'The +2 Vision', prompt: 'What would a +2 improvement look like concretely? What would be different in your daily life?' },
+        ],
+      },
+    },
+    {
+      number: '02',
+      title: 'Design Your Rebalance',
+      description: 'Create specific actions to improve your lowest area without tanking the others.',
+      artifact: 'A 30-day rebalance plan with weekly check-ins.',
+      details: 'Design a 30-day experiment to improve your lowest-scoring area. The key constraint: it can\'t come at the expense of an area that\'s already working. Use your habit design skills from Module 5 — implementation intentions, two-minute rule, environment design. Break the 30 days into weekly milestones so you can track progress.',
+      tips: [
+        'Start with one change per week, not five. Build momentum, not overwhelm.',
+        'Use habit stacking: attach new behaviors to existing routines.',
+        'Schedule weekly check-ins with yourself (or use the portal\'s Check In feature).',
+        'Tell someone about your plan. Accountability dramatically increases follow-through.',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Check In', url: '/portal' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'weeklyPlan', label: '4-Week Plan', prompt: 'Week 1-4: What specific change will you make each week? Be concrete with times, places, and actions.' },
+          { id: 'protections', label: 'Protecting What Works', prompt: 'Which HWPL areas are strong right now? How will you make sure your rebalance plan doesn\'t undermine them?' },
+          { id: 'checkInPlan', label: 'Check-In Schedule', prompt: 'When will you review progress? Who will hold you accountable? What metrics will you track?' },
+        ],
+      },
+    },
+    {
+      number: '03',
+      title: 'Build Your Dashboard',
+      description: 'Create a personal life dashboard that you\'ll actually check regularly.',
+      artifact: 'A configured life dashboard with your HWPL scores, tracking metrics, and review schedule.',
+      details: 'Turn your HWPL assessment into a living dashboard. This can be in the portal, a spreadsheet, a journal, or whatever format you\'ll actually use. The key is that it\'s easy to update and visible. Set a recurring review — weekly or monthly — to re-score your HWPL and track trends over time. The dashboard is your early warning system for life getting out of balance.',
+      tips: [
+        'The best dashboard is the one you\'ll actually look at. Don\'t over-engineer it.',
+        'Include your HWPL scores, your active habits from Module 5, and your current focus area.',
+        'Set a calendar reminder for your review cycle. Monthly is a good starting frequency.',
+        'The portal\'s Resources section has a sample HWPL dashboard you can reference.',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Resources', url: '/portal' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'dashboardFormat', label: 'Dashboard Format', prompt: 'Where will your dashboard live? Portal, spreadsheet, notebook? What will it include beyond HWPL scores?' },
+          { id: 'reviewCycle', label: 'Review Cycle', prompt: 'How often will you review? Weekly? Monthly? What day/time? Put it on your calendar.' },
+          { id: 'keyMetrics', label: 'Key Metrics', prompt: 'Beyond HWPL, what 2-3 other metrics matter to you right now? (e.g., exercise days, social events, creative sessions)' },
+        ],
+      },
+    },
+  ],
+  7: [
+    {
+      number: '00',
+      title: 'Your Habit Inventory',
+      description: 'List every habit — good and bad — that\'s currently running in your life.',
+      artifact: 'A complete habit inventory: all current daily and weekly behaviors categorized by impact.',
+      details: 'Before you can design a system, you need to see what\'s already running. List every repeated behavior in your life: morning coffee, phone checking, exercise, snacking, reading, scrolling, cleaning, etc. Then mark each one: (+) serves your identity, (-) works against it, (=) neutral. This is your "habits scorecard" from Atomic Habits — awareness before action.',
+      tips: [
+        'Walk through your typical day hour by hour. What do you do on autopilot?',
+        'Include weekly habits too: meal prep, laundry, date night, etc.',
+        'Don\'t rush the +/-/= ratings. Some habits feel productive but don\'t serve your identity.',
+        'Be honest about time spent on phone, social media, and passive entertainment.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Habits Scorecard', url: 'https://jamesclear.com/habits-scorecard' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'positiveHabits', label: 'Positive Habits (+)', prompt: 'List all current habits that serve your identity and values. Include frequency and timing.' },
+          { id: 'negativeHabits', label: 'Negative Habits (-)', prompt: 'List habits that work against your desired identity. Be honest — awareness is the first step.' },
+          { id: 'neutralHabits', label: 'Neutral Habits (=)', prompt: 'List habits that are neither helpful nor harmful. Could any of these become anchors for habit stacking?' },
+        ],
+      },
+    },
+    {
+      number: '01',
+      title: 'Build Your Stacks',
+      description: 'Design habit stacks that chain new behaviors to existing ones.',
+      artifact: 'A set of habit stacks linking new desired habits to established routines.',
+      details: 'Habit stacking is the most reliable way to build new habits. The formula: "After I [CURRENT HABIT], I will [NEW HABIT]." Chain multiple habits together to build routines. Your morning might become: After I pour coffee, I will write 3 gratitude items. After I write gratitude items, I will review today\'s priorities. After I review priorities, I will start my first deep work block.',
+      tips: [
+        'Start with your most reliable existing habits as anchors.',
+        'Keep new additions to the 2-minute rule at first. The chain matters more than the length of each link.',
+        'Write your stacks out and post them where you\'ll see them (bathroom mirror, desk, fridge).',
+        'Test one stack at a time. Don\'t build a 10-habit morning routine on day one.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Habit Stacking', url: 'https://jamesclear.com/habit-stacking' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'morningStack', label: 'Morning Stack', prompt: 'Design a morning habit stack. "After I [wake up/pour coffee/etc], I will..." Chain 2-4 habits.' },
+          { id: 'workStack', label: 'Work/Productivity Stack', prompt: 'Design a work habit stack. "After I [sit at desk/open laptop/etc], I will..."' },
+          { id: 'eveningStack', label: 'Evening Stack', prompt: 'Design an evening habit stack. "After I [eat dinner/finish work/etc], I will..."' },
+        ],
+      },
+    },
+    {
+      number: '02',
+      title: 'Environment Audit',
+      description: 'Redesign your physical and digital spaces to support your habit systems.',
+      artifact: 'A before/after environment design plan for your key spaces.',
+      details: 'Your environment is the invisible hand that shapes your behavior. Audit your key spaces: bedroom, kitchen, workspace, phone. For each space, ask: what behaviors does this environment encourage? What would I change to make good habits the default and bad habits harder? This is about designing choice architecture — making the right thing the easiest thing.',
+      tips: [
+        'One space, one purpose. If your bedroom has a TV and a desk, both sleep and work suffer.',
+        'For digital spaces: curate your phone home screen, unsubscribe from triggers, use app limits.',
+        'Make good choices visible: put fruit on the counter, leave the guitar out, keep the journal open on the desk.',
+        'Make bad choices invisible: put snacks in hard-to-reach places, charge the phone outside the bedroom.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — Environment Design', url: 'https://jamesclear.com/choice-architecture' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'physicalSpaces', label: 'Physical Spaces', prompt: 'Audit your key spaces (bedroom, kitchen, workspace). What does each environment currently encourage? What will you change?' },
+          { id: 'digitalSpaces', label: 'Digital Spaces', prompt: 'Audit your phone, computer, and apps. What do your defaults encourage? What will you change?' },
+          { id: 'changeList', label: 'Top 5 Changes', prompt: 'List the 5 most impactful environment changes you\'ll make this week. Be specific.' },
+        ],
+      },
+    },
+    {
+      number: '03',
+      title: 'Streak System',
+      description: 'Set up a habit tracking system with streaks and the "never miss twice" rule.',
+      artifact: 'A configured tracking system for your top 3-5 habits with streak goals.',
+      details: 'Tracking is the 4th Law in action: making habits satisfying through visible progress. Choose your top 3-5 habits and set up a tracking system. This could be a paper calendar, a habit app, a spreadsheet, or the portal\'s Journal. The key metric is your streak — but remember the golden rule: never miss twice. A single miss is normal. Two in a row is the enemy.',
+      tips: [
+        'Track at the same time every day — right before bed works well for most people.',
+        'Start with just 3 habits to track. You can add more once tracking itself becomes automatic.',
+        'Use visual tracking: crossing off days on a calendar is more satisfying than tapping a phone.',
+        'Celebrate milestones: 7-day streak, 30-day streak, 100-day streak. Tell someone about it.',
+      ],
+      resources: [
+        { label: 'Atomic Habits — How to Track Habits', url: 'https://jamesclear.com/habit-tracker' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'habitsToTrack', label: 'Habits to Track', prompt: 'Which 3-5 habits will you track daily? For each: the habit, the two-minute version, and your tracking method.' },
+          { id: 'streakGoals', label: 'Streak Goals', prompt: 'What are your streak milestones? (7 days, 30 days, etc.) How will you celebrate each one?' },
+          { id: 'recoveryPlan', label: 'Recovery Protocol', prompt: 'When you miss a day (you will), what\'s your exact recovery plan? Write an "if-then" for each habit.' },
+        ],
+      },
+    },
+    {
+      number: '04',
+      title: 'The Weekly Review',
+      description: 'Design your weekly habit review ritual.',
+      artifact: 'A weekly review template and schedule for your habit systems.',
+      details: 'Systems only work if you maintain them. Design a weekly review ritual: a specific time each week when you review your streaks, assess what\'s working, adjust what isn\'t, and recommit for the next week. This is where you integrate everything: HWPL dashboard, habit tracking, energy patterns, and journal reflections. The review is the habit that maintains all other habits.',
+      tips: [
+        'Sunday evening or Monday morning works well for most people. Pick one and protect it.',
+        'Keep it to 15-20 minutes. Review your trackers, note wins and misses, plan next week.',
+        'Use the Check In feature in the portal as part of your weekly review.',
+        'Ask three questions: What went well? What didn\'t? What will I change next week?',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Check In', url: '/portal' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'reviewSchedule', label: 'Review Schedule', prompt: 'When is your weekly review? Day, time, location. Put it on your calendar right now.' },
+          { id: 'reviewTemplate', label: 'Review Template', prompt: 'What will you review each week? List the specific things you\'ll check: streaks, HWPL, journal, etc.' },
+          { id: 'adjustmentProcess', label: 'Adjustment Process', prompt: 'How will you decide what to change? What criteria will you use to drop a habit, modify one, or add a new one?' },
+        ],
+      },
+    },
+  ],
+  8: [
+    {
+      number: '00',
+      title: 'The Review',
+      description: 'Look back at everything you\'ve built across all 7 modules.',
+      artifact: 'A comprehensive review of your course journey: values, energy, plans, habits, and dashboard.',
+      details: 'Before you iterate, take stock. Review everything you\'ve created: your Workview and Lifeview (Module 2), your Energy Audit (Module 3), your Odyssey Plans (Module 4), your Identity and Habits (Module 5), your HWPL Dashboard (Module 6), and your Habit Systems (Module 7). What has changed since you started? What surprised you most? What has already shifted in your daily life?',
+      tips: [
+        'Use your Workbook to review all exercise responses chronologically.',
+        'Look for evolution: have your values shifted? Has your energy map changed?',
+        'Note which tools you\'re actually using vs. which ones you abandoned. That\'s data.',
+        'Ask Claude to analyze your workbook: "Here are my responses from 8 modules. What themes and growth do you see?"',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Workbook', url: '/portal' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'biggestShifts', label: 'Biggest Shifts', prompt: 'What has changed most since you started this course? In your thinking? Your daily life? Your self-understanding?' },
+          { id: 'toolsUsed', label: 'Tools That Stuck', prompt: 'Which tools and frameworks are you still using? Which did you abandon? What does that tell you?' },
+          { id: 'surprises', label: 'Surprises', prompt: 'What surprised you most about yourself through this process? What did you learn that you didn\'t expect?' },
+        ],
+      },
+    },
+    {
+      number: '01',
+      title: 'The Experiment Log',
+      description: 'Document the results of any prototypes you\'ve already run.',
+      artifact: 'A log of experiments tried, results observed, and lessons learned.',
+      details: 'If you ran a prototype from Module 4 or made changes from Module 3\'s redesign, document the results. What happened? Did reality match your expectations? What would you do differently? Even if you haven\'t run formal experiments, you\'ve been making changes throughout this course — those count. Log every change you made and what you learned.',
+      tips: [
+        'Include both "successful" and "failed" experiments. Failed experiments often teach more.',
+        'For each experiment, note: what you tested, what happened, what you learned, what\'s next.',
+        'Connect back to your values and energy data. Did the results align with your predictions?',
+        'If you haven\'t run any prototypes yet, this is your prompt to design one for this week.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'experiments', label: 'Experiments Run', prompt: 'List every change or experiment you\'ve made during this course. For each: what you tested and what happened.' },
+          { id: 'lessons', label: 'Lessons Learned', prompt: 'What patterns do you see across your experiments? What worked? What consistently didn\'t?' },
+          { id: 'nextExperiment', label: 'Next Experiment', prompt: 'Based on everything you\'ve learned, what\'s the most important experiment to run next?' },
+        ],
+      },
+    },
+    {
+      number: '02',
+      title: 'The Iteration Plan',
+      description: 'Revise your Odyssey Plans and habits based on everything you\'ve learned.',
+      artifact: 'Updated Odyssey Plan and habit system incorporating all your learnings.',
+      details: 'With 7 modules of data, revisit your Odyssey Plans. Do they still feel right? Update them with what you\'ve learned about your energy, values, and habits. Also update your habit systems — drop what\'s not working, double down on what is, and add new experiments. Life design is iterative: the plans you made in Module 4 should evolve based on what you\'ve discovered.',
+      tips: [
+        'Re-score your Odyssey Plans: Resources, Likability, Confidence, Coherence. Have the scores changed?',
+        'Look at your habit tracking data. Which habits stuck? Which faded? Why?',
+        'Consider creating a Plan 5: an updated version of your hybrid plan from Module 4.',
+        'Your values might have shifted. That\'s growth, not failure.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Iterate', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 25,
+        fields: [
+          { id: 'updatedPlan', label: 'Updated Life Plan', prompt: 'Write your updated Odyssey Plan incorporating everything you\'ve learned. What stays? What changes? What\'s new?' },
+          { id: 'updatedHabits', label: 'Updated Habit System', prompt: 'Which habits will you keep, drop, or modify? What new habits will you add? Write your updated system.' },
+          { id: 'nextQuarter', label: 'Next 90 Days', prompt: 'What are your top 3 priorities for the next 90 days? How will you prototype and iterate on them?' },
+        ],
+      },
+    },
+    {
+      number: '03',
+      title: 'The Showcase',
+      description: 'Prepare to share your journey with your cohort.',
+      artifact: 'A showcase presentation: your personal website, your journey, and your next steps.',
+      details: 'You\'ve built a personal website, defined your values, mapped your energy, designed three life plans, built habit systems, and created a life dashboard. Now share what you\'ve learned with your cohort. Prepare a brief showcase: share your website, one key insight, and your next steps. The act of sharing crystallizes your learning and inspires others.',
+      tips: [
+        'Keep it short: 5 minutes max. Focus on your biggest insight and one concrete change you\'ve made.',
+        'Show your website and explain one design decision that reflects your values.',
+        'Share one "before and after" — something that shifted significantly during the course.',
+        'Be vulnerable. The most impactful shares are honest, not polished.',
+      ],
+      resources: [
+        { label: 'Your Personal Website', url: '/' },
+      ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'keyInsight', label: 'Key Insight', prompt: 'What is the single biggest thing you learned about yourself through this course?' },
+          { id: 'concreteChange', label: 'Concrete Change', prompt: 'What is one specific, observable change you\'ve made in your life as a result of this course?' },
+          { id: 'nextSteps', label: 'Next Steps', prompt: 'What are you going to do next? How will you continue the life design process after this course ends?' },
+        ],
+      },
+    },
+    {
+      number: '04',
+      title: 'The Commitment',
+      description: 'Write your forward-looking commitment to continued life design.',
+      artifact: 'A written commitment document: your ongoing life design practice.',
+      details: 'The course ends, but life design doesn\'t. Write a commitment to yourself about how you\'ll continue. What tools will you keep using? How often will you review your dashboard? When will you update your Odyssey Plans? What habit will you never miss twice? This document is your contract with future-you — a promise to stay intentional about the life you\'re building.',
+      tips: [
+        'Be specific. "I\'ll keep going" isn\'t a commitment. "I\'ll review my HWPL every first Sunday" is.',
+        'Include your non-negotiable habits: the ones that keep everything else on track.',
+        'Set a 6-month check-in date. Put it on your calendar. Review this commitment then.',
+        'Share it with your cohort or an accountability partner. Public commitments stick better.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — A Lifelong Practice', url: 'https://designingyour.life' },
+      ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 15,
+        fields: [
+          { id: 'commitment', label: 'My Commitment', prompt: 'Write your commitment to continued life design. What will you keep doing? How often? What are your non-negotiables?' },
+          { id: 'sixMonthDate', label: '6-Month Check-In', prompt: 'When is your 6-month check-in? What will you review? Who will hold you accountable?' },
+          { id: 'letterToSelf', label: 'Letter to Future You', prompt: 'Write a short letter to yourself 6 months from now. What do you hope will be different? What advice do you have for that person?' },
+        ],
+      },
+    },
+  ],
 };
 
 // Milestone banners that appear between module steps (Claw Camp-style)
@@ -517,6 +1106,21 @@ export const moduleMilestones = {
   ],
   3: [
     { afterStep: '04', title: 'ENERGY MAPPED', message: 'You see what fuels you and what drains you. Time to explore alternatives.' },
+  ],
+  4: [
+    { afterStep: '04', title: 'PATHS EXPLORED', message: 'Three possible lives mapped. Time to build the habits that get you there.' },
+  ],
+  5: [
+    { afterStep: '04', title: 'IDENTITY CLAIMED', message: 'You know who you\'re becoming and have the habits to prove it.' },
+  ],
+  6: [
+    { afterStep: '03', title: 'DASHBOARD LIVE', message: 'Your life balance is visible and trackable. Now systematize your habits.' },
+  ],
+  7: [
+    { afterStep: '04', title: 'SYSTEMS RUNNING', message: 'Your habit systems are designed, tracked, and reviewed. Time to iterate.' },
+  ],
+  8: [
+    { afterStep: '04', title: 'COURSE COMPLETE', message: 'You\'ve designed your life. Now keep iterating. This is just the beginning.' },
   ],
 };
 
