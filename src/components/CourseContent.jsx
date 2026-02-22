@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GraduationCap, Lock, CheckCircle, ChevronRight } from 'lucide-react';
-import { courseModules } from '../constants';
+import { courseModules, moduleProjects } from '../constants';
+import ModuleProjects from './ModuleProjects';
 
 export default function CourseContent() {
+  const [activeModule, setActiveModule] = useState(null);
   const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
+
+  // If a module is selected, show its project steps
+  if (activeModule) {
+    return (
+      <ModuleProjects
+        module={activeModule}
+        onBack={() => setActiveModule(null)}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
@@ -27,18 +39,21 @@ export default function CourseContent() {
       <div className="space-y-2">
         {courseModules.map((mod, idx) => {
           const isComplete = false;
-          const isActive = idx === 0;
-          const isLocked = idx > 0;
+          const hasProjects = !!moduleProjects[mod.id];
+          const isActive = hasProjects;
+          const isLocked = !hasProjects;
 
           return (
-            <div
+            <button
               key={mod.id}
-              className={`flex items-center gap-4 p-4 rounded-2xl border transition ${
+              onClick={() => hasProjects && setActiveModule(mod)}
+              disabled={!hasProjects}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition text-left ${
                 isActive
-                  ? 'bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/15'
+                  ? 'bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/15 cursor-pointer'
                   : isComplete
                     ? 'bg-white/[0.02] border-white/10'
-                    : 'bg-white/[0.01] border-white/5 opacity-60'
+                    : 'bg-white/[0.01] border-white/5 opacity-60 cursor-default'
               }`}
             >
               {/* Status icon */}
@@ -63,10 +78,13 @@ export default function CourseContent() {
                   </span>
                 </div>
                 <h3 className="text-sm font-semibold text-white truncate">{mod.title}</h3>
+                {isLocked && (
+                  <span className="text-[10px] text-white/20">Coming soon</span>
+                )}
               </div>
 
               {isActive && <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0" />}
-            </div>
+            </button>
           );
         })}
       </div>
