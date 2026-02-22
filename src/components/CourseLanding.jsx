@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Compass, BarChart3, Target, Zap, Brain, Sparkles, Eye, EyeOff, LogIn, LogOut, ChevronRight } from 'lucide-react';
 import { courseModules, btsEntries } from '../constants';
 import { useBTS } from '../contexts/BTSContext';
 import BTSCard from './BTSCard';
 
+const HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1698440881207-091797fa03f5?w=1920&q=80&fit=crop',
+  'https://images.unsplash.com/photo-1669820509964-79e93a47ee3d?w=1920&q=80&fit=crop',
+  'https://images.unsplash.com/photo-1606189079330-3dd6b8e20602?w=1920&q=80&fit=crop',
+  'https://images.unsplash.com/photo-1635521451272-93c54a8224c1?w=1920&q=80&fit=crop',
+];
+
 export default function CourseLanding({ onSignIn, user, onSignOut }) {
   const navigate = useNavigate();
   const { showBTS, toggleBTS } = useBTS();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage(prev => (prev + 1) % HERO_IMAGES.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   const frameworkIcons = { dyl: '🧭', ah: '🔄', ai: '🤖', both: '🧪' };
   const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
@@ -57,12 +72,20 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {/* Background gradient mesh */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px]" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/15 rounded-full blur-[128px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[200px]" />
+        {/* Photo carousel background */}
+        <div className="absolute inset-0">
+          {HERO_IMAGES.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out"
+              style={{ opacity: currentImage === i ? 1 : 0 }}
+            />
+          ))}
         </div>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs text-emerald-400 font-medium mb-6">
