@@ -246,6 +246,14 @@ export const moduleProjects = {
         { label: 'Designing Your Life — Burnett & Evans (Book)', url: 'https://designingyour.life' },
         { label: 'Workview & Lifeview Explained (Stanford Life Design Lab)', url: 'https://lifedesignlab.stanford.edu' },
       ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 15,
+        fields: [
+          { id: 'workview', label: 'Your Workview', prompt: 'Why do you work? What does work mean to you? What makes work worthwhile or "good"? Write freely — this is just for you.' },
+          { id: 'lifeview', label: 'Your Lifeview', prompt: 'Why are you alive? What is the meaning or purpose of life? What is your relationship to others and the world? Write from the heart.' },
+        ],
+      },
     },
     {
       number: '01',
@@ -262,6 +270,14 @@ export const moduleProjects = {
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'alignment', label: 'Where They Align', prompt: 'Where do your Workview and Lifeview complement each other? What themes appear in both?' },
+          { id: 'tension', label: 'Where They Clash', prompt: 'Where do they contradict? What tensions do you notice between what you believe about work and life?' },
+          { id: 'insights', label: 'Key Insights', prompt: 'What surprised you? What gaps or disconnects feel most important to explore?' },
+        ],
+      },
     },
     {
       number: '02',
@@ -279,6 +295,13 @@ export const moduleProjects = {
         { label: 'Brené Brown — List of Values', url: 'https://brenebrown.com/resources/dare-to-lead-list-of-values/' },
         { label: 'Personal Values Card Sort (PDF)', url: 'https://motivationalinterviewing.org/sites/default/files/valuescardsort_0.pdf' },
       ],
+      exercise: {
+        type: 'values-ranking',
+        maxValues: 7,
+        fields: [
+          { id: 'values', label: 'Your Core Values', prompt: 'Add your top 5-7 values. For each, write a one-sentence definition of what it means to YOU.' },
+        ],
+      },
     },
     {
       number: '03',
@@ -295,6 +318,13 @@ export const moduleProjects = {
       resources: [
         { label: 'Life Design Portal — Values Section', url: '/portal' },
       ],
+      exercise: {
+        type: 'values-ranking',
+        maxValues: 7,
+        fields: [
+          { id: 'values', label: 'Your Values Compass', prompt: 'Enter your ranked values with definitions. Drag to reorder. These become your decision-making compass.' },
+        ],
+      },
     },
     {
       number: '04',
@@ -311,6 +341,12 @@ export const moduleProjects = {
       resources: [
         { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
       ],
+      exercise: {
+        type: 'scored-assessment',
+        fields: [
+          { id: 'scores', label: 'Value Coherence Scores', prompt: 'Rate how well your current life reflects each of your values (1-10). Add a note for any score below 5 or above 7.' },
+        ],
+      },
     },
   ],
   3: [
@@ -329,6 +365,18 @@ export const moduleProjects = {
       resources: [
         { label: 'Designing Your Life — Good Time Journal', url: 'https://designingyour.life' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'day1', label: 'Day 1', prompt: 'Log your activities today. For each: what did you do, when, how long, and who were you with?' },
+          { id: 'day2', label: 'Day 2', prompt: 'Log your activities today.' },
+          { id: 'day3', label: 'Day 3', prompt: 'Log your activities today.' },
+          { id: 'day4', label: 'Day 4', prompt: 'Log your activities today.' },
+          { id: 'day5', label: 'Day 5', prompt: 'Log your activities today.' },
+          { id: 'day6', label: 'Day 6', prompt: 'Log your activities today.' },
+          { id: 'day7', label: 'Day 7', prompt: 'Log your activities today.' },
+        ],
+      },
     },
     {
       number: '01',
@@ -345,6 +393,14 @@ export const moduleProjects = {
       resources: [
         { label: 'Life Design Portal — Journal Section', url: '/portal' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'energizers', label: 'Energy Boosters', prompt: 'Which activities gave you the most energy (+1, +2)? What was your engagement level for each?' },
+          { id: 'drains', label: 'Energy Drains', prompt: 'Which activities drained you (-1, -2)? What was your engagement level for each?' },
+          { id: 'surprises', label: 'Surprises', prompt: 'What surprised you about your energy ratings? Any activities you expected to feel differently about?' },
+        ],
+      },
     },
     {
       number: '02',
@@ -362,6 +418,17 @@ export const moduleProjects = {
         { label: 'AEIOU Framework Explained', url: 'https://designingyour.life' },
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'high1', label: 'High-Energy Activity #1 — AEIOU', prompt: 'Break down your top energizing activity: Activities (what exactly?), Environments (where?), Interactions (who?), Objects (what tools?), Users (who benefited?)' },
+          { id: 'high2', label: 'High-Energy Activity #2 — AEIOU', prompt: 'Break down your second energizing activity using AEIOU.' },
+          { id: 'high3', label: 'High-Energy Activity #3 — AEIOU', prompt: 'Break down your third energizing activity using AEIOU.' },
+          { id: 'low1', label: 'Low-Energy Activity #1 — AEIOU', prompt: 'Break down your most draining activity using AEIOU.' },
+          { id: 'low2', label: 'Low-Energy Activity #2 — AEIOU', prompt: 'Break down your second draining activity using AEIOU.' },
+          { id: 'low3', label: 'Low-Energy Activity #3 — AEIOU', prompt: 'Break down your third draining activity using AEIOU.' },
+        ],
+      },
     },
     {
       number: '03',
@@ -378,6 +445,15 @@ export const moduleProjects = {
       resources: [
         { label: 'Life Design Portal — Journal Section', url: '/portal' },
       ],
+      exercise: {
+        type: 'timed-writing',
+        timer: 20,
+        fields: [
+          { id: 'energizers', label: 'What Energizes Me', prompt: 'What conditions (not just activities) consistently give you energy? Think about environment, people, type of work, time of day.' },
+          { id: 'drains', label: 'What Drains Me', prompt: 'What conditions consistently drain you? Again, focus on the underlying factors, not just the activity name.' },
+          { id: 'surprises', label: 'Three Things I Didn\'t Expect', prompt: 'What surprised you most in this audit? What blind spots did you uncover about yourself?' },
+        ],
+      },
     },
     {
       number: '04',
@@ -394,6 +470,14 @@ export const moduleProjects = {
       resources: [
         { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'addActivity', label: 'Energizer to Add', prompt: 'What high-energy activity will you add to your week? When exactly will you do it? Be specific — day, time, duration.' },
+          { id: 'changeActivity', label: 'Drain to Redesign', prompt: 'What draining activity will you change? Will you eliminate it, delegate it, or redesign it? What specifically will be different?' },
+          { id: 'accountability', label: 'Accountability Plan', prompt: 'Who will you tell about this plan? How will you track whether the change sticks?' },
+        ],
+      },
     },
   ],
 };

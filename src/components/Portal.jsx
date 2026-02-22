@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LayoutDashboard, Compass, BookOpen, Map, BarChart3, GraduationCap, LogOut, Menu, X, Eye, EyeOff } from 'lucide-react';
+import { LayoutDashboard, Compass, BookOpen, Map, BarChart3, GraduationCap, ClipboardList, LogOut, Menu, X, Eye, EyeOff } from 'lucide-react';
 import { useBTS } from '../contexts/BTSContext';
 import Dashboard from './Dashboard';
 import ValuesEditor from './ValuesEditor';
@@ -7,6 +7,7 @@ import Journal from './Journal';
 import OdysseyPlanner from './OdysseyPlanner';
 import HabitTracker from './HabitTracker';
 import CourseContent from './CourseContent';
+import Workbook from './Workbook';
 
 const sections = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -15,6 +16,7 @@ const sections = [
   { id: 'odyssey', label: 'Odyssey', icon: Map },
   { id: 'habits', label: 'Habits', icon: BarChart3 },
   { id: 'course', label: 'Course', icon: GraduationCap },
+  { id: 'workbook', label: 'Workbook', icon: ClipboardList },
 ];
 
 export default function Portal({ user, onSignOut }) {
@@ -29,7 +31,8 @@ export default function Portal({ user, onSignOut }) {
       case 'journal': return <Journal />;
       case 'odyssey': return <OdysseyPlanner />;
       case 'habits': return <HabitTracker />;
-      case 'course': return <CourseContent />;
+      case 'course': return <CourseContent user={user} />;
+      case 'workbook': return <Workbook user={user} />;
       default: return <Dashboard user={user} />;
     }
   };
@@ -123,7 +126,7 @@ export default function Portal({ user, onSignOut }) {
 
       {/* Mobile bottom nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-xl border-t border-white/10 px-2 py-1.5 flex justify-around safe-bottom">
-        {sections.slice(0, 5).map(s => {
+        {sections.map(s => {
           const Icon = s.icon;
           return (
             <button

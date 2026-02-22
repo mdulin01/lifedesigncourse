@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ChevronDown, ChevronUp, CheckCircle, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronUp, CheckCircle, ExternalLink, PenLine } from 'lucide-react';
 import { moduleProjects } from '../constants';
+import { useWorkbook } from '../hooks/useWorkbook';
+import WorkbookExercise from './WorkbookExercise';
 
-export default function ModuleProjects({ module, onBack }) {
+export default function ModuleProjects({ module, onBack, user }) {
   const projects = moduleProjects[module.id] || [];
   const [expandedStep, setExpandedStep] = useState(null);
   const [showDetails, setShowDetails] = useState({});
   const [completedSteps, setCompletedSteps] = useState(new Set());
+  const [activeExercise, setActiveExercise] = useState(null); // step object
+
+  const { saveExercise, getStepData, loading } = useWorkbook(user);
 
   const toggleStep = (number) => {
     setExpandedStep(expandedStep === number ? null : number);
@@ -26,6 +31,11 @@ export default function ModuleProjects({ module, onBack }) {
       }
       return next;
     });
+  };
+
+  const handleSaveExercise = async (data) => {
+    if (!activeExercise) return;
+    await saveExercise(module.id, activeExercise.number, data);
   };
 
   const completedCount = completedSteps.size;
@@ -72,6 +82,9 @@ export default function ModuleProjects({ module, onBack }) {
           const isExpanded = expandedStep === step.number;
           const isComplete = completedSteps.has(step.number);
           const isDetailsOpen = showDetails[step.number];
+          const hasExercise = !!step.exercise;
+          const exerciseData = hasExercise ? getStepData(module.id, step.number) : null;
+          const exerciseDone = !!exerciseData;
 
           return (
             <div
@@ -103,6 +116,13 @@ export default function ModuleProjects({ module, onBack }) {
                   {step.title}
                 </span>
 
+                {/* Exercise indicator */}
+                {hasExercise && exerciseDone && (
+                  <span className="text-[9px] font-bold text-emerald-400/60 bg-emerald-500/10 px-1.5 py-0.5 rounded shrink-0">
+                    DONE
+                  </span>
+                )}
+
                 {/* Complete check */}
                 {isComplete && (
                   <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
@@ -126,6 +146,21 @@ export default function ModuleProjects({ module, onBack }) {
                     <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">The Artifact</span>
                     <p className="text-sm text-white/70 mt-1">{step.artifact}</p>
                   </div>
+
+                  {/* Start Exercise button */}
+                  {hasExercise && (
+                    <button
+                      onClick={() => setActiveExercise(step)}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition ${
+                        exerciseDone
+                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20'
+                          : 'bg-emerald-500 text-white hover:bg-emerald-600'
+                      }`}
+                    >
+                      <PenLine className="w-4 h-4" />
+                      {exerciseDone ? 'Edit Exercise' : 'Start Exercise'}
+                    </button>
+                  )}
 
                   {/* More Info toggle */}
                   <button
@@ -202,6 +237,17 @@ export default function ModuleProjects({ module, onBack }) {
           );
         })}
       </div>
+
+      {/* Exercise Modal */}
+      {activeExercise && (
+        <WorkbookExercise
+          exercise={activeExercise.exercise}
+          stepTitle={activeExercise.title}
+          existing={getStepData(module.id, activeExercise.number)}
+          onSave={handleSaveExercise}
+          onClose={() => setActiveExercise(null)}
+        />
+      )}
     </div>
   );
 }

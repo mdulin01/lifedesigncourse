@@ -3,7 +3,7 @@ import { GraduationCap, Lock, CheckCircle, ChevronRight } from 'lucide-react';
 import { courseModules, moduleProjects } from '../constants';
 import ModuleProjects from './ModuleProjects';
 
-export default function CourseContent() {
+export default function CourseContent({ user }) {
   const [activeModule, setActiveModule] = useState(null);
   const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
 
@@ -13,6 +13,7 @@ export default function CourseContent() {
       <ModuleProjects
         module={activeModule}
         onBack={() => setActiveModule(null)}
+        user={user}
       />
     );
   }
