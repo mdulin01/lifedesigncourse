@@ -2,6 +2,7 @@
 export const allowedEmails = [
   'mdulin@gmail.com',
   'jdulin07@gmail.com',
+  'adamjosephbritten@gmail.com',
 ];
 
 // Course module definitions
