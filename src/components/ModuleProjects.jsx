@@ -102,33 +102,48 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
           return (
             <div
               key={step.number}
-              className={`rounded-2xl border transition-all relative overflow-hidden ${
+              className={`rounded-2xl border-2 transition-all duration-300 relative overflow-hidden ${
                 isComplete
-                  ? 'bg-emerald-500/[0.04] border-emerald-500/20'
-                  : 'bg-white/[0.02] border-white/10 hover:border-white/20'
+                  ? 'bg-emerald-500/[0.04] border-emerald-500/25 opacity-75'
+                  : isExpanded
+                    ? 'bg-emerald-500/[0.06] border-emerald-400/50 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-400/20'
+                    : 'bg-white/[0.02] border-white/10 hover:border-white/20'
               }`}
             >
-              {/* Dark left bar for completed steps */}
+              {/* Left accent bar */}
               {isComplete && (
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600/50 rounded-l-2xl" />
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500/60 rounded-l-2xl" />
+              )}
+              {isExpanded && !isComplete && (
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 rounded-l-2xl" />
               )}
               {/* Step header */}
               <button
                 onClick={() => toggleStep(step.number)}
                 className="w-full flex items-center gap-3 px-4 py-3.5 text-left"
               >
-                {/* Number badge */}
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-md shrink-0 ${
-                  isComplete
-                    ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'bg-white/10 text-white/40'
-                }`}>
-                  {step.number}
-                </span>
+                {/* Number badge / check icon for completed */}
+                {isComplete ? (
+                  <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <CheckCircle className="w-4.5 h-4.5 text-emerald-400" style={{ width: '18px', height: '18px' }} />
+                  </div>
+                ) : (
+                  <span className={`text-xs font-bold px-2 py-0.5 rounded-md shrink-0 ${
+                    isExpanded
+                      ? 'bg-emerald-500/25 text-emerald-300'
+                      : 'bg-white/10 text-white/40'
+                  }`}>
+                    {step.number}
+                  </span>
+                )}
 
-                {/* Title — strikethrough when complete */}
-                <span className={`flex-1 text-sm font-semibold uppercase tracking-wide ${
-                  isComplete ? 'text-white/40 line-through decoration-white/30' : 'text-white'
+                {/* Title — strikethrough when complete, highlighted when active */}
+                <span className={`flex-1 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                  isComplete
+                    ? 'text-white/35 line-through decoration-emerald-500/40 decoration-2'
+                    : isExpanded
+                      ? 'text-emerald-200'
+                      : 'text-white'
                 }`}>
                   {step.title}
                 </span>
@@ -140,14 +155,16 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
                   </span>
                 )}
 
-                {/* Complete check */}
-                {isComplete && (
-                  <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
+                {/* Active indicator */}
+                {isExpanded && !isComplete && (
+                  <span className="text-[9px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full shrink-0 uppercase tracking-wider">
+                    Active
+                  </span>
                 )}
 
                 {/* Chevron */}
                 {isExpanded
-                  ? <ChevronUp className="w-4 h-4 text-white/30 shrink-0" />
+                  ? <ChevronUp className="w-4 h-4 text-emerald-400/50 shrink-0" />
                   : <ChevronDown className="w-4 h-4 text-white/30 shrink-0" />
                 }
               </button>
