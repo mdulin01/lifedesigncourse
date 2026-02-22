@@ -141,7 +141,7 @@ export const moduleProjects = {
         { label: 'Coolors — Color Palette Generator', url: 'https://coolors.co' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'audience', label: 'Who Is It For?', prompt: 'Who will visit your site? Potential employers, clients, collaborators, friends? What do they need to see?' },
           { id: 'aboutYou', label: 'What It Says About You', prompt: 'What impression should someone have after 10 seconds on your site? What story does it tell about who you are?' },
@@ -186,7 +186,7 @@ export const moduleProjects = {
         { label: 'React Docs — Your First Component', url: 'https://react.dev/learn/your-first-component' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'layoutDescription', label: 'Layout Description', prompt: 'Describe the layout you want in plain English. What goes where? What\'s the first thing people see? How does it flow as they scroll?' },
           { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you\'ll give Claude to generate your layout. Include your site brief, sections, and vibe from step 00.' },
@@ -210,7 +210,7 @@ export const moduleProjects = {
         { label: 'How to Write a Great Bio', url: 'https://www.grammarly.com/blog/professional-bio/' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'bio', label: 'Your Bio', prompt: 'Write your bio — 3-5 sentences about who you are, what you do, and what you care about. Write it like you\'d say it, not like a resume.' },
           { id: 'projects', label: 'Projects / Work', prompt: 'List 2-4 projects, interests, or pieces of work you want to feature. For each: title, one-sentence description, and why it matters to you.' },
@@ -296,7 +296,7 @@ export const moduleProjects = {
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'alignment', label: 'Where They Align', prompt: 'Where do your Workview and Lifeview complement each other? What themes appear in both?' },
           { id: 'tension', label: 'Where They Clash', prompt: 'Where do they contradict? What tensions do you notice between what you believe about work and life?' },
@@ -391,7 +391,7 @@ export const moduleProjects = {
         { label: 'Designing Your Life — Good Time Journal', url: 'https://designingyour.life' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'day1', label: 'Day 1', prompt: 'Log your activities today. For each: what did you do, when, how long, and who were you with?' },
           { id: 'day2', label: 'Day 2', prompt: 'Log your activities today.' },
@@ -419,7 +419,7 @@ export const moduleProjects = {
         { label: 'Life Design Portal — Journal Section', url: '/portal' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'energizers', label: 'Energy Boosters', prompt: 'Which activities gave you the most energy (+1, +2)? What was your engagement level for each?' },
           { id: 'drains', label: 'Energy Drains', prompt: 'Which activities drained you (-1, -2)? What was your engagement level for each?' },
@@ -444,7 +444,7 @@ export const moduleProjects = {
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'high1', label: 'High-Energy Activity #1 — AEIOU', prompt: 'Break down your top energizing activity: Activities (what exactly?), Environments (where?), Interactions (who?), Objects (what tools?), Users (who benefited?)' },
           { id: 'high2', label: 'High-Energy Activity #2 — AEIOU', prompt: 'Break down your second energizing activity using AEIOU.' },
@@ -496,7 +496,7 @@ export const moduleProjects = {
         { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'addActivity', label: 'Energizer to Add', prompt: 'What high-energy activity will you add to your week? When exactly will you do it? Be specific — day, time, duration.' },
           { id: 'changeActivity', label: 'Drain to Redesign', prompt: 'What draining activity will you change? Will you eliminate it, delegate it, or redesign it? What specifically will be different?' },
@@ -597,7 +597,7 @@ export const moduleProjects = {
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'comparison', label: 'Plan Comparison', prompt: 'Compare your 3 plans. Which scores highest on Likability? Confidence? Coherence? What patterns do you see across all three?' },
           { id: 'mustHaves', label: 'Non-Negotiables', prompt: 'What elements appear in 2 or 3 plans? These are likely your non-negotiables regardless of path.' },
@@ -621,7 +621,7 @@ export const moduleProjects = {
         { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'elementToTest', label: 'Element to Test', prompt: 'Which specific element from which plan are you going to test? Why this one?' },
           { id: 'prototype', label: 'Prototype Plan', prompt: 'How will you test it? Be specific: what, when, where, who, how long. Keep it to one week or less.' },
@@ -647,7 +647,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Identity-Based Habits', url: 'https://jamesclear.com/identity-based-habits' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'identityStatements', label: 'Identity Statements', prompt: 'Write 3-5 "I am the type of person who..." statements. Ground them in your values from Module 2.' },
           { id: 'currentEvidence', label: 'Current Evidence', prompt: 'For each identity statement, what existing behaviors already support it? Even small ones count.' },
@@ -671,7 +671,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — The Four Laws', url: 'https://jamesclear.com/three-steps-habit-change' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'habitsToAudit', label: 'Habits to Audit', prompt: 'List 3-5 habits (mix of ones to build and break). For each, briefly describe the habit.' },
           { id: 'fourLawsScores', label: 'Four Laws Scores', prompt: 'For each habit, rate 1-5 on: Obvious (cue visible?), Attractive (want to do it?), Easy (low friction?), Satisfying (reward?). Note the weakest law for each.' },
@@ -695,7 +695,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Implementation Intentions', url: 'https://jamesclear.com/implementation-intentions' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'implementations', label: 'Implementation Intentions', prompt: 'For each habit to build, write: "I will [BEHAVIOR] at [TIME] in [LOCATION]."' },
           { id: 'environmentDesign', label: 'Environment Changes', prompt: 'What physical or digital changes will you make to your environment to make cues obvious (good habits) or invisible (bad habits)?' },
@@ -719,7 +719,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — The Two-Minute Rule', url: 'https://jamesclear.com/how-to-stop-procrastinating' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'twoMinuteVersions', label: 'Two-Minute Versions', prompt: 'For each habit, write the two-minute gateway version. Make it embarrassingly easy to start.' },
           { id: 'frictionReduction', label: 'Friction Reduction', prompt: 'What friction points exist for each habit? How can you reduce the number of steps between you and starting?' },
@@ -743,7 +743,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Habit Tracking', url: 'https://jamesclear.com/habit-tracker' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'rewards', label: 'Reward System', prompt: 'For each habit, what immediate reward will you give yourself? Make sure it aligns with your identity.' },
           { id: 'trackingMethod', label: 'Tracking Method', prompt: 'How will you track each habit? What tool or system? How will you make the tracking itself visible and satisfying?' },
@@ -865,7 +865,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Habits Scorecard', url: 'https://jamesclear.com/habits-scorecard' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'positiveHabits', label: 'Positive Habits (+)', prompt: 'List all current habits that serve your identity and values. Include frequency and timing.' },
           { id: 'negativeHabits', label: 'Negative Habits (-)', prompt: 'List habits that work against your desired identity. Be honest — awareness is the first step.' },
@@ -889,7 +889,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Habit Stacking', url: 'https://jamesclear.com/habit-stacking' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'morningStack', label: 'Morning Stack', prompt: 'Design a morning habit stack. "After I [wake up/pour coffee/etc], I will..." Chain 2-4 habits.' },
           { id: 'workStack', label: 'Work/Productivity Stack', prompt: 'Design a work habit stack. "After I [sit at desk/open laptop/etc], I will..."' },
@@ -913,7 +913,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — Environment Design', url: 'https://jamesclear.com/choice-architecture' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'physicalSpaces', label: 'Physical Spaces', prompt: 'Audit your key spaces (bedroom, kitchen, workspace). What does each environment currently encourage? What will you change?' },
           { id: 'digitalSpaces', label: 'Digital Spaces', prompt: 'Audit your phone, computer, and apps. What do your defaults encourage? What will you change?' },
@@ -937,7 +937,7 @@ export const moduleProjects = {
         { label: 'Atomic Habits — How to Track Habits', url: 'https://jamesclear.com/habit-tracker' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'habitsToTrack', label: 'Habits to Track', prompt: 'Which 3-5 habits will you track daily? For each: the habit, the two-minute version, and your tracking method.' },
           { id: 'streakGoals', label: 'Streak Goals', prompt: 'What are your streak milestones? (7 days, 30 days, etc.) How will you celebrate each one?' },
@@ -961,7 +961,7 @@ export const moduleProjects = {
         { label: 'Life Design Portal — Check In', url: '/portal' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'reviewSchedule', label: 'Review Schedule', prompt: 'When is your weekly review? Day, time, location. Put it on your calendar right now.' },
           { id: 'reviewTemplate', label: 'Review Template', prompt: 'What will you review each week? List the specific things you\'ll check: streaks, HWPL, journal, etc.' },
@@ -987,7 +987,7 @@ export const moduleProjects = {
         { label: 'Life Design Portal — Workbook', url: '/portal' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'biggestShifts', label: 'Biggest Shifts', prompt: 'What has changed most since you started this course? In your thinking? Your daily life? Your self-understanding?' },
           { id: 'toolsUsed', label: 'Tools That Stuck', prompt: 'Which tools and frameworks are you still using? Which did you abandon? What does that tell you?' },
@@ -1011,7 +1011,7 @@ export const moduleProjects = {
         { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'experiments', label: 'Experiments Run', prompt: 'List every change or experiment you\'ve made during this course. For each: what you tested and what happened.' },
           { id: 'lessons', label: 'Lessons Learned', prompt: 'What patterns do you see across your experiments? What worked? What consistently didn\'t?' },
@@ -1036,7 +1036,7 @@ export const moduleProjects = {
       ],
       exercise: {
         type: 'timed-writing',
-        timer: 25,
+        timer: 15,
         fields: [
           { id: 'updatedPlan', label: 'Updated Life Plan', prompt: 'Write your updated Odyssey Plan incorporating everything you\'ve learned. What stays? What changes? What\'s new?' },
           { id: 'updatedHabits', label: 'Updated Habit System', prompt: 'Which habits will you keep, drop, or modify? What new habits will you add? Write your updated system.' },
@@ -1060,7 +1060,7 @@ export const moduleProjects = {
         { label: 'Your Personal Website', url: '/' },
       ],
       exercise: {
-        type: 'reflection',
+        type: 'timed-writing', timer: 15,
         fields: [
           { id: 'keyInsight', label: 'Key Insight', prompt: 'What is the single biggest thing you learned about yourself through this course?' },
           { id: 'concreteChange', label: 'Concrete Change', prompt: 'What is one specific, observable change you\'ve made in your life as a result of this course?' },
