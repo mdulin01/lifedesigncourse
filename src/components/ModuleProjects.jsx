@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ChevronDown, ChevronUp, CheckCircle, ExternalLink, PenLine } from 'lucide-react';
-import { moduleProjects } from '../constants';
+import { moduleProjects, moduleMilestones } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 import WorkbookExercise from './WorkbookExercise';
 
@@ -85,16 +85,21 @@ export default function ModuleProjects({ module, onBack, user }) {
           const hasExercise = !!step.exercise;
           const exerciseData = hasExercise ? getStepData(module.id, step.number) : null;
           const exerciseDone = !!exerciseData;
+          const milestone = (moduleMilestones[module.id] || []).find(m => m.afterStep === step.number);
 
           return (
+            <React.Fragment key={step.number}>
             <div
-              key={step.number}
-              className={`rounded-2xl border transition-all ${
+              className={`rounded-2xl border transition-all relative overflow-hidden ${
                 isComplete
                   ? 'bg-emerald-500/[0.04] border-emerald-500/20'
                   : 'bg-white/[0.02] border-white/10 hover:border-white/20'
               }`}
             >
+              {/* Dark left bar for completed steps */}
+              {isComplete && (
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600/50 rounded-l-2xl" />
+              )}
               {/* Step header */}
               <button
                 onClick={() => toggleStep(step.number)}
@@ -109,9 +114,9 @@ export default function ModuleProjects({ module, onBack, user }) {
                   {step.number}
                 </span>
 
-                {/* Title */}
-                <span className={`flex-1 text-sm font-semibold ${
-                  isComplete ? 'text-white/60' : 'text-white'
+                {/* Title — strikethrough when complete */}
+                <span className={`flex-1 text-sm font-semibold uppercase tracking-wide ${
+                  isComplete ? 'text-white/40 line-through decoration-white/30' : 'text-white'
                 }`}>
                   {step.title}
                 </span>
@@ -234,6 +239,16 @@ export default function ModuleProjects({ module, onBack, user }) {
                 </div>
               )}
             </div>
+
+              {/* Milestone banner */}
+              {milestone && (
+                <div className="my-4 rounded-2xl bg-gradient-to-r from-teal-900/70 to-emerald-900/50 border border-emerald-500/20 px-6 py-6 text-center">
+                  <p className="text-emerald-400/70 text-[11px] font-bold uppercase tracking-[0.2em] mb-2">— Milestone —</p>
+                  <p className="text-white font-bold text-sm uppercase tracking-wider">{milestone.title}</p>
+                  <p className="text-white/50 text-xs mt-1.5">{milestone.message}</p>
+                </div>
+              )}
+            </React.Fragment>
           );
         })}
       </div>

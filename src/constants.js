@@ -507,6 +507,19 @@ export const moduleProjects = {
   ],
 };
 
+// Milestone banners that appear between module steps (Claw Camp-style)
+export const moduleMilestones = {
+  1: [
+    { afterStep: '05', title: 'FIRST SITE LIVE', message: 'You\'ve deployed your personal website to the internet. Now design your life.' },
+  ],
+  2: [
+    { afterStep: '04', title: 'YOUR COMPASS IS SET', message: 'You know what matters. Time to map your energy.' },
+  ],
+  3: [
+    { afterStep: '04', title: 'ENERGY MAPPED', message: 'You see what fuels you and what drains you. Time to explore alternatives.' },
+  ],
+};
+
 // Behind the Scenes example entries (documenting the build process)
 export const btsEntries = [
   {
