@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, CheckCircle, ExternalLink, PenLine, Trophy } from 'lucide-react';
 import { courseModules, moduleProjects, moduleMilestones } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
+import { useProgress } from '../hooks/useProgress';
 import WorkbookExercise from './WorkbookExercise';
 
 export default function ModuleProjects({ module, onBack, onModuleChange, user }) {
   const projects = moduleProjects[module.id] || [];
   const [expandedStep, setExpandedStep] = useState(null);
   const [showDetails, setShowDetails] = useState({});
-  const [completedSteps, setCompletedSteps] = useState(new Set());
-  const [activeExercise, setActiveExercise] = useState(null); // step object
+  const [activeExercise, setActiveExercise] = useState(null);
 
   const { saveExercise, getStepData, loading } = useWorkbook(user);
+  const { getCompletedSteps, toggleStepComplete } = useProgress(user);
+
+  // Get completed steps for THIS module from Firestore
+  const completedSteps = getCompletedSteps(module.id);
+
+  // Reset expanded/details state when module changes
+  useEffect(() => {
+    setExpandedStep(null);
+    setShowDetails({});
+    setActiveExercise(null);
+  }, [module.id]);
 
   // Find prev/next modules (only ones that have projects)
   const availableModules = courseModules.filter(m => !!moduleProjects[m.id]);
@@ -30,24 +41,23 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
     setShowDetails(prev => ({ ...prev, [number]: !prev[number] }));
   };
 
-  const toggleComplete = (number) => {
-    setCompletedSteps(prev => {
-      const next = new Set(prev);
-      if (next.has(number)) {
-        next.delete(number);
+  const handleToggleComplete = (number) => {
+    const isCurrentlyComplete = completedSteps.has(String(number));
+
+    if (!isCurrentlyComplete) {
+      // Auto-expand next incomplete step
+      const currentStepIdx = projects.findIndex(s => s.number === number);
+      const nextIncomplete = projects.find((s, i) =>
+        i > currentStepIdx && !completedSteps.has(String(s.number)) && s.number !== number
+      );
+      if (nextIncomplete) {
+        setExpandedStep(nextIncomplete.number);
       } else {
-        next.add(number);
-        // Collapse this step and auto-expand the next incomplete step
-        const currentStepIdx = projects.findIndex(s => s.number === number);
-        const nextIncomplete = projects.find((s, i) => i > currentStepIdx && !next.has(s.number));
-        if (nextIncomplete) {
-          setExpandedStep(nextIncomplete.number);
-        } else {
-          setExpandedStep(null);
-        }
+        setExpandedStep(null);
       }
-      return next;
-    });
+    }
+
+    toggleStepComplete(module.id, number);
   };
 
   const handleSaveExercise = async (data) => {
@@ -102,7 +112,7 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
       <div className="space-y-2">
         {projects.map((step) => {
           const isExpanded = expandedStep === step.number;
-          const isComplete = completedSteps.has(step.number);
+          const isComplete = completedSteps.has(String(step.number));
           const isDetailsOpen = showDetails[step.number];
           const hasExercise = !!step.exercise;
           const exerciseData = hasExercise ? getStepData(module.id, step.number) : null;
@@ -266,7 +276,7 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
 
                   {/* Mark Complete button */}
                   <button
-                    onClick={() => toggleComplete(step.number)}
+                    onClick={() => handleToggleComplete(step.number)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium transition ${
                       isComplete
                         ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'

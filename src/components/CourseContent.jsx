@@ -1,10 +1,12 @@
 import React from 'react';
 import { Lock, CheckCircle, ChevronRight } from 'lucide-react';
 import { courseModules, moduleProjects } from '../constants';
+import { useProgress } from '../hooks/useProgress';
 import ModuleProjects from './ModuleProjects';
 
 export default function CourseContent({ user, activeModule, onModuleChange }) {
   const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
+  const { isModuleComplete } = useProgress(user);
 
   // If a module is selected, show its project steps
   if (activeModule) {
@@ -28,9 +30,10 @@ export default function CourseContent({ user, activeModule, onModuleChange }) {
       {/* Module list */}
       <div className="space-y-2">
         {courseModules.map((mod, idx) => {
-          const isComplete = false;
           const hasProjects = !!moduleProjects[mod.id];
-          const isActive = hasProjects;
+          const totalSteps = (moduleProjects[mod.id] || []).length;
+          const isComplete = hasProjects && isModuleComplete(mod.id, totalSteps);
+          const isActive = hasProjects && !isComplete;
           const isLocked = !hasProjects;
 
           return (
@@ -39,10 +42,10 @@ export default function CourseContent({ user, activeModule, onModuleChange }) {
               onClick={() => hasProjects && onModuleChange(mod)}
               disabled={!hasProjects}
               className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition text-left ${
-                isActive
-                  ? 'bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/15 cursor-pointer'
-                  : isComplete
-                    ? 'bg-white/[0.02] border-white/10'
+                isComplete
+                  ? 'bg-emerald-500/[0.04] border-emerald-500/20 hover:bg-emerald-500/[0.08] cursor-pointer'
+                  : isActive
+                    ? 'bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/15 cursor-pointer'
                     : 'bg-white/[0.01] border-white/5 opacity-60 cursor-default'
               }`}
             >
@@ -66,14 +69,29 @@ export default function CourseContent({ user, activeModule, onModuleChange }) {
                   <span className="text-[10px] px-1.5 py-0.5 bg-white/10 rounded text-white/40">
                     {frameworkLabels[mod.framework]}
                   </span>
+                  {isComplete && (
+                    <span className="text-[9px] font-bold text-emerald-400/60 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                      COMPLETE
+                    </span>
+                  )}
                 </div>
-                <h3 className="text-sm font-semibold text-white truncate">{mod.title}</h3>
+                <h3 className={`text-sm font-semibold truncate ${
+                  isComplete
+                    ? 'text-white/40 line-through decoration-emerald-500/30 decoration-1'
+                    : 'text-white'
+                }`}>
+                  {mod.title}
+                </h3>
                 {isLocked && (
                   <span className="text-[10px] text-white/20">Coming soon</span>
                 )}
               </div>
 
-              {isActive && <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0" />}
+              {isComplete ? (
+                <CheckCircle className="w-5 h-5 text-emerald-400/50 shrink-0" />
+              ) : isActive ? (
+                <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0" />
+              ) : null}
             </button>
           );
         })}
