@@ -305,7 +305,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
 
       {/* Footer */}
       <footer className="border-t border-white/5 py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center gap-3">
           <div className="flex items-center gap-2 text-sm text-white/30">
             <span>🤖</span>
             <span>AI Life Design Course</span>
@@ -315,6 +315,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
           <div className="flex items-center gap-4 text-xs text-white/20">
             <span>Designing Your Life + Atomic Habits + AI Tools</span>
           </div>
+          <p className="text-[10px] text-white/10 mt-2">v1.0 · Feb 22, 2026 · Built By Mike Dulin, MD</p>
         </div>
       </footer>
     </div>

@@ -112,6 +112,11 @@ export default function Portal({ user, onSignOut }) {
             {renderSection()}
           </div>
         </main>
+
+        {/* Build footer */}
+        <footer className="py-4 text-center">
+          <p className="text-[10px] text-white/10">v1.0 · Feb 22, 2026 · Built By Mike Dulin, MD</p>
+        </footer>
       </div>
     </div>
   );
