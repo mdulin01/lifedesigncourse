@@ -75,7 +75,7 @@ export default function Sidebar({
 
         {/* Separator */}
         <div className="pt-3 mt-3 border-t border-white/5 space-y-1">
-          {bottomSections.map((s) => renderNavItem(s, s.id === 'team'))}
+          {bottomSections.map((s) => renderNavItem(s))}
         </div>
       </nav>
 
