@@ -140,6 +140,16 @@ export const moduleProjects = {
         { label: 'Personal Site Inspiration — One Page Love', url: 'https://onepagelove.com/inspiration/personal' },
         { label: 'Coolors — Color Palette Generator', url: 'https://coolors.co' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'audience', label: 'Who Is It For?', prompt: 'Who will visit your site? Potential employers, clients, collaborators, friends? What do they need to see?' },
+          { id: 'aboutYou', label: 'What It Says About You', prompt: 'What impression should someone have after 10 seconds on your site? What story does it tell about who you are?' },
+          { id: 'vibe', label: 'The Vibe', prompt: 'What mood or aesthetic do you want? (e.g. clean and minimal, bold and colorful, warm and personal). List 3-5 adjectives.' },
+          { id: 'sections', label: 'Sections & Structure', prompt: 'What sections does your site need? (e.g. hero, about, projects, blog, contact). List them in order.' },
+          { id: 'inspiration', label: 'Inspiration Sites', prompt: 'List 2-3 sites you admire and what you like about each one.' },
+        ],
+      },
     },
     {
       number: '01',
@@ -175,6 +185,13 @@ export const moduleProjects = {
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
         { label: 'React Docs — Your First Component', url: 'https://react.dev/learn/your-first-component' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'layoutDescription', label: 'Layout Description', prompt: 'Describe the layout you want in plain English. What goes where? What\'s the first thing people see? How does it flow as they scroll?' },
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you\'ll give Claude to generate your layout. Include your site brief, sections, and vibe from step 00.' },
+        ],
+      },
     },
     {
       number: '03',
@@ -192,6 +209,14 @@ export const moduleProjects = {
         { label: 'Unsplash — Free Photos', url: 'https://unsplash.com' },
         { label: 'How to Write a Great Bio', url: 'https://www.grammarly.com/blog/professional-bio/' },
       ],
+      exercise: {
+        type: 'reflection',
+        fields: [
+          { id: 'bio', label: 'Your Bio', prompt: 'Write your bio — 3-5 sentences about who you are, what you do, and what you care about. Write it like you\'d say it, not like a resume.' },
+          { id: 'projects', label: 'Projects / Work', prompt: 'List 2-4 projects, interests, or pieces of work you want to feature. For each: title, one-sentence description, and why it matters to you.' },
+          { id: 'contact', label: 'Contact & Links', prompt: 'What contact info and social links will you include? (email, LinkedIn, GitHub, Twitter, etc.)' },
+        ],
+      },
     },
     {
       number: '04',

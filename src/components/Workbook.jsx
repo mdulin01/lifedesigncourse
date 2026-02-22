@@ -54,44 +54,6 @@ export default function Workbook({ user }) {
     return lines.join('\n');
   };
 
-  // Copy entire module
-  const copyModule = (moduleId) => {
-    const steps = moduleProjects[moduleId] || [];
-    const moduleData = workbookData?.moduleData?.[String(moduleId)] || {};
-    const mod = courseModules.find((m) => m.id === moduleId);
-    const lines = [`# Module ${moduleId}: ${mod?.title || ''}\n`];
-
-    steps.forEach((step) => {
-      const stepData = moduleData[step.number];
-      if (stepData) {
-        lines.push(formatExerciseText(stepData, step));
-      }
-    });
-
-    copyToClipboard(lines.join('\n'), `module-${moduleId}`);
-  };
-
-  // Copy everything
-  const copyAll = () => {
-    const lines = ['# My Life Design Workbook\n'];
-    Object.keys(moduleProjects).forEach((moduleId) => {
-      const mod = courseModules.find((m) => m.id === Number(moduleId));
-      const steps = moduleProjects[moduleId];
-      const moduleData = workbookData?.moduleData?.[String(moduleId)] || {};
-      const hasData = steps.some((s) => moduleData[s.number]);
-      if (!hasData) return;
-
-      lines.push(`\n# Module ${moduleId}: ${mod?.title || ''}\n`);
-      steps.forEach((step) => {
-        const stepData = moduleData[step.number];
-        if (stepData) {
-          lines.push(formatExerciseText(stepData, step));
-        }
-      });
-    });
-    copyToClipboard(lines.join('\n'), 'all');
-  };
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-48">
@@ -121,17 +83,9 @@ export default function Workbook({ user }) {
   return (
     <div className="space-y-6 pb-20 md:pb-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-white">My Workbook</h1>
-          <p className="text-white/40 text-sm mt-1">Your accumulated course work in one place</p>
-        </div>
-        <button
-          onClick={copyAll}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition"
-        >
-          {copiedId === 'all' ? <><Check className="w-3.5 h-3.5 text-emerald-400" /> Copied!</> : <><Copy className="w-3.5 h-3.5" /> Copy All for AI</>}
-        </button>
+      <div>
+        <h1 className="text-2xl font-bold text-white">My Workbook</h1>
+        <p className="text-white/40 text-sm mt-1">Your accumulated course work in one place</p>
       </div>
 
       {/* Overall progress */}
@@ -172,16 +126,6 @@ export default function Workbook({ user }) {
                 </div>
                 <h3 className="text-sm font-semibold text-white truncate">{mod?.title}</h3>
               </div>
-
-              {hasAnyData && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); copyModule(Number(modId)); }}
-                  className="text-white/20 hover:text-white/60 transition p-1"
-                  title="Copy module for AI"
-                >
-                  {copiedId === `module-${modId}` ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                </button>
-              )}
 
               {isExpanded ? <ChevronUp className="w-4 h-4 text-white/30" /> : <ChevronDown className="w-4 h-4 text-white/30" />}
             </button>
