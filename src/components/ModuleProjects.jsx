@@ -57,6 +57,7 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
 
   const completedCount = completedSteps.size;
   const totalCount = projects.length;
+  const allComplete = totalCount > 0 && completedCount === totalCount;
   const progressPct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
@@ -287,22 +288,55 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
 
       {/* Combined milestone card at bottom */}
       {milestones.length > 0 && (
-        <div className="rounded-2xl bg-gradient-to-r from-teal-900/70 to-emerald-900/50 border border-emerald-500/20 px-6 py-6">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <Trophy className="w-5 h-5 text-emerald-400/70" />
-            <p className="text-emerald-400/70 text-[11px] font-bold uppercase tracking-[0.2em]">
-              {milestones.length === 1 ? 'Milestone' : 'Milestones'}
-            </p>
+        <>
+          {/* Keyframe for rotating glow border */}
+          {allComplete && (
+            <style>{`
+              @keyframes milestone-glow {
+                0%, 100% { box-shadow: 0 0 15px 2px rgba(234,179,8,0.3), 0 0 30px 4px rgba(234,179,8,0.1); }
+                50% { box-shadow: 0 0 25px 6px rgba(234,179,8,0.5), 0 0 50px 10px rgba(234,179,8,0.15); }
+              }
+              @keyframes trophy-shine {
+                0%, 100% { filter: drop-shadow(0 0 4px rgba(234,179,8,0.6)); }
+                50% { filter: drop-shadow(0 0 12px rgba(234,179,8,0.9)) drop-shadow(0 0 20px rgba(250,204,21,0.4)); }
+              }
+            `}</style>
+          )}
+          <div
+            className={`rounded-2xl px-6 py-6 transition-all duration-700 ${
+              allComplete
+                ? 'bg-gradient-to-r from-yellow-900/60 via-amber-900/50 to-yellow-900/60 border-2 border-yellow-500/50 ring-2 ring-yellow-400/20'
+                : 'bg-gradient-to-r from-teal-900/70 to-emerald-900/50 border border-emerald-500/20'
+            }`}
+            style={allComplete ? { animation: 'milestone-glow 3s ease-in-out infinite' } : {}}
+          >
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Trophy
+                className={`w-6 h-6 transition-all duration-700 ${
+                  allComplete ? 'text-yellow-400' : 'w-5 h-5 text-emerald-400/70'
+                }`}
+                style={allComplete ? { animation: 'trophy-shine 2s ease-in-out infinite' } : {}}
+              />
+              <p className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors duration-700 ${
+                allComplete ? 'text-yellow-400' : 'text-emerald-400/70'
+              }`}>
+                {allComplete ? 'Module Complete!' : milestones.length === 1 ? 'Milestone' : 'Milestones'}
+              </p>
+            </div>
+            <div className={milestones.length > 1 ? 'space-y-3' : ''}>
+              {milestones.map((m, i) => (
+                <div key={i} className="text-center">
+                  <p className={`font-bold text-sm uppercase tracking-wider transition-colors duration-700 ${
+                    allComplete ? 'text-yellow-200' : 'text-white'
+                  }`}>{m.title}</p>
+                  <p className={`text-xs mt-0.5 transition-colors duration-700 ${
+                    allComplete ? 'text-yellow-300/60' : 'text-white/50'
+                  }`}>{m.message}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className={milestones.length > 1 ? 'space-y-3' : ''}>
-            {milestones.map((m, i) => (
-              <div key={i} className={milestones.length > 1 ? 'text-center' : 'text-center'}>
-                <p className="text-white font-bold text-sm uppercase tracking-wider">{m.title}</p>
-                <p className="text-white/50 text-xs mt-0.5">{m.message}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </>
       )}
 
       {/* Bottom module navigation */}
