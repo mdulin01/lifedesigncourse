@@ -373,6 +373,30 @@ export const moduleProjects = {
         ],
       },
     },
+    {
+      number: '05',
+      title: 'AI Build: Your Compass Page',
+      description: 'Use AI to add a values compass component to your personal website.',
+      artifact: 'A working Values Compass page on your personal site that displays your ranked values, workview, and lifeview.',
+      details: 'Take everything you\'ve created in this module — your Workview, Lifeview, ranked values, and coherence scores — and use AI to build a Values Compass page on your personal website. This page becomes a living reference you can check before any big decision. Prompt Claude with your data and ask it to generate a React component that visualizes your values hierarchy, displays your Workview and Lifeview side by side, and shows your coherence scores.',
+      tips: [
+        'Copy your exercise responses from the Workbook using the copy button, then paste them into Claude as context.',
+        'Start simple: "Here are my ranked values with definitions. Create a React component that displays them as a visual compass or ranked list with color-coded bars."',
+        'Ask Claude to add your Workview and Lifeview as collapsible sections below the compass.',
+        'Include your coherence scores as a simple bar chart so you can see gaps at a glance.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave (or will give) Claude to build your compass page. Include your values data and what you want it to look like.' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe what your compass page looks like. What components did AI generate? What did you change or customize?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would you refine next time you update this page? What features would make it more useful for daily decision-making?' },
+        ],
+      },
+    },
   ],
   3: [
     {
@@ -504,6 +528,30 @@ export const moduleProjects = {
         ],
       },
     },
+    {
+      number: '05',
+      title: 'AI Build: Your Energy Tracker',
+      description: 'Use AI to add an energy logging tool to your personal website.',
+      artifact: 'A working energy tracker on your site where you can log activities, rate energy/engagement, and see patterns.',
+      details: 'Your energy audit revealed what fuels and drains you. Now build a tool on your personal site that lets you keep tracking. Prompt AI to create a component where you can log an activity, rate your energy (-2 to +2) and engagement (low/med/high), and see your history. Over time, this becomes your personal energy database — far more useful than a one-time audit.',
+      tips: [
+        'Copy your Energy Audit findings from the Workbook and share them with Claude as context for the design.',
+        'Start with: "Build a React component with a form to log activities with energy ratings (-2 to +2) and engagement (low/med/high). Store entries in localStorage and show a scrollable history list."',
+        'Ask Claude to color-code entries: green for high-energy, red for drains, yellow for neutral.',
+        'Bonus: ask for a simple chart that shows your energy trend over the last 7 days.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave Claude to build your energy tracker. What data does it capture? How does it display history?' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe your energy tracker. What does the form look like? How do you view past entries? Any charts or visualizations?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would make this tracker more useful? Patterns view? Weekly summary? Integration with your AEIOU data?' },
+        ],
+      },
+    },
   ],
   4: [
     {
@@ -629,6 +677,31 @@ export const moduleProjects = {
         ],
       },
     },
+    {
+      number: '05',
+      title: 'AI Build: Your Odyssey Visualizer',
+      description: 'Use AI to add an interactive odyssey plan comparison view to your personal website.',
+      artifact: 'A working Odyssey Plans page on your site with side-by-side plan views and dimension scores.',
+      details: 'You\'ve created three life plans with ratings across four dimensions. Now build a visualizer on your personal site that brings them to life. Prompt AI to create a component that shows all three plans side by side with radar charts or bar charts for Resources, Likability, Confidence, and Coherence. Include your hybrid Plan 4. This becomes a living document you update as your thinking evolves.',
+      tips: [
+        'Copy all three plan descriptions and ratings from your Workbook and paste them into Claude.',
+        'Try: "Create a React component that shows 3 Odyssey Plans side by side. Each plan has a title, description, and 4 scores (1-10). Show the scores as a radar chart or grouped bar chart. Use Recharts for the charts."',
+        'Ask Claude to make the plans editable — so you can update descriptions and re-score as your thinking changes.',
+        'Add your hybrid Plan 4 and highlight which elements came from which original plan.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+        { label: 'Recharts — React Chart Library', url: 'https://recharts.org' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave Claude to build your odyssey visualizer. What visualization style did you choose? What data did you include?' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe your odyssey visualizer. How are plans displayed? What charts or comparisons does it show? Can you edit the plans?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would make this more useful? Timeline view? Milestone tracking? Links to prototypes you\'re running?' },
+        ],
+      },
+    },
   ],
   5: [
     {
@@ -751,6 +824,30 @@ export const moduleProjects = {
         ],
       },
     },
+    {
+      number: '05',
+      title: 'AI Build: Your Habit Engine',
+      description: 'Use AI to add a daily habit checklist with streak tracking to your personal website.',
+      artifact: 'A working habit tracker on your site with checkboxes, streak counters, and the "never miss twice" alert.',
+      details: 'Your identity statements and Four Laws audit defined the habits you want. Now build the engine that runs them. Prompt AI to create a daily habit checklist on your personal site — each habit gets a checkbox, a streak counter, and a visual indicator. Add a "never miss twice" alert that flags any habit where you\'ve missed one day. This is the tool you\'ll check every morning.',
+      tips: [
+        'Copy your habit list, two-minute versions, and reward system from the Workbook.',
+        'Try: "Build a React habit tracker component. I have these 5 habits [list them]. Each needs a daily checkbox, a streak counter, and a \'never miss twice\' warning if I missed yesterday. Store data in localStorage."',
+        'Ask Claude to add your habit stacks as a morning/evening view so you see the chain, not just individual habits.',
+        'Color-code streaks: green for 7+, gold for 30+, red flash when you\'re at risk of missing twice.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave Claude to build your habit engine. What habits are tracked? How does the streak system work?' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe your habit tracker. What does the daily view look like? How do streaks display? What happens when you miss a day?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would make this more useful? Weekly summary? Habit stack visualization? Integration with your identity statements?' },
+        ],
+      },
+    },
   ],
   6: [
     {
@@ -844,6 +941,31 @@ export const moduleProjects = {
           { id: 'dashboardFormat', label: 'Dashboard Format', prompt: 'Where will your dashboard live? Portal, spreadsheet, notebook? What will it include beyond HWPL scores?' },
           { id: 'reviewCycle', label: 'Review Cycle', prompt: 'How often will you review? Weekly? Monthly? What day/time? Put it on your calendar.' },
           { id: 'keyMetrics', label: 'Key Metrics', prompt: 'Beyond HWPL, what 2-3 other metrics matter to you right now? (e.g., exercise days, social events, creative sessions)' },
+        ],
+      },
+    },
+    {
+      number: '04',
+      title: 'AI Build: Your HWPL Dashboard',
+      description: 'Use AI to add interactive Health, Work, Play, Love gauges to your personal website.',
+      artifact: 'A working HWPL dashboard on your site with gauges, score history, and trend visualization.',
+      details: 'Turn your HWPL assessment into a real dashboard on your personal site. Prompt AI to create four visual gauges (one per area), the ability to re-score yourself, and a history view that shows how your scores change over time. This is your early warning system — when any area drops, you\'ll see it immediately instead of waiting until you feel it.',
+      tips: [
+        'Copy your HWPL scores and analysis from the Workbook to give Claude context.',
+        'Try: "Build a React HWPL Dashboard with 4 circular gauges for Health, Work, Play, Love (each 1-10). Include a button to log new scores with a date. Show a line chart of score history over time using Recharts. Store data in localStorage."',
+        'Ask Claude to color the gauges: red below 4, yellow 4-6, green 7+.',
+        'Add your rebalance plan as a pinned note on whichever gauge scored lowest.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+        { label: 'Recharts — React Chart Library', url: 'https://recharts.org' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave Claude to build your HWPL dashboard. What visualization style? What scoring and history features?' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe your dashboard. What do the gauges look like? Can you re-score? Is there a history view?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would make this dashboard part of your actual routine? Notifications? Weekly email? Integration with your habit tracker?' },
         ],
       },
     },
@@ -969,6 +1091,30 @@ export const moduleProjects = {
         ],
       },
     },
+    {
+      number: '05',
+      title: 'AI Build: Your Weekly Review',
+      description: 'Use AI to add a weekly review dashboard that pulls together all your life design tools.',
+      artifact: 'A working weekly review page on your site that shows habit streaks, HWPL snapshot, energy trends, and a journal prompt.',
+      details: 'The weekly review is the habit that maintains all other habits. Build a review page on your personal site that shows everything in one place: this week\'s habit streaks, current HWPL scores, recent energy log patterns, and a journal prompt. This becomes your Sunday evening ritual — open one page, see your whole life at a glance, and plan the week ahead.',
+      tips: [
+        'Copy your review template and schedule from the Workbook exercise.',
+        'Try: "Build a React Weekly Review page that shows: (1) habit streak summary from my tracker, (2) current HWPL gauge snapshot, (3) this week\'s energy log entries, (4) a journal text area for reflections, and (5) three questions: What went well? What didn\'t? What will I change?"',
+        'Ask Claude to pull data from the same localStorage your other components use, so everything stays connected.',
+        'Add a "Week of [date]" header and let it save weekly reviews so you can look back over time.',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+      exercise: {
+        type: 'timed-writing', timer: 15,
+        fields: [
+          { id: 'aiPrompt', label: 'Your AI Prompt', prompt: 'Write the prompt you gave Claude to build your weekly review page. What data sources does it pull from? What sections does it include?' },
+          { id: 'whatYouBuilt', label: 'What You Built', prompt: 'Describe your weekly review page. How does it connect to your other tools? What does the review workflow feel like?' },
+          { id: 'nextIteration', label: 'What You\'d Improve', prompt: 'What would make your weekly review truly indispensable? Auto-generated insights? Comparison to last week? Streaks across weeks?' },
+        ],
+      },
+    },
   ],
   8: [
     {
@@ -1070,26 +1216,29 @@ export const moduleProjects = {
     },
     {
       number: '04',
-      title: 'The Commitment',
-      description: 'Write your forward-looking commitment to continued life design.',
-      artifact: 'A written commitment document: your ongoing life design practice.',
-      details: 'The course ends, but life design doesn\'t. Write a commitment to yourself about how you\'ll continue. What tools will you keep using? How often will you review your dashboard? When will you update your Odyssey Plans? What habit will you never miss twice? This document is your contract with future-you — a promise to stay intentional about the life you\'re building.',
+      title: 'The Build: Your Life Design App',
+      description: 'Wire all your tools together into a single daily-use app you install on your phone.',
+      artifact: 'A complete personal life management web app with a "Today" screen, all your tools connected, and PWA install capability.',
+      details: 'This is the capstone. Throughout Modules 2-7, you built individual components: a values compass, energy tracker, odyssey visualizer, habit engine, HWPL dashboard, and weekly review. Now you\'ll use AI to wire them all together with navigation, a "Today" home screen, and PWA (Progressive Web App) support so you can install it on your phone like a native app. The "Today" screen shows: today\'s habits to check off, your current HWPL snapshot, your active odyssey plan, and a quick journal entry. This is the app you open every morning.',
       tips: [
-        'Be specific. "I\'ll keep going" isn\'t a commitment. "I\'ll review my HWPL every first Sunday" is.',
-        'Include your non-negotiable habits: the ones that keep everything else on track.',
-        'Set a 6-month check-in date. Put it on your calendar. Review this commitment then.',
-        'Share it with your cohort or an accountability partner. Public commitments stick better.',
+        'Start by telling Claude about all the components you\'ve already built and ask it to create a navigation system that connects them.',
+        'The key prompt: "I have these React components: [list them]. Create a main App shell with tab navigation at the bottom (Today, Habits, Dashboard, Plans, Review). Add a PWA manifest and service worker so it can be installed as a phone app."',
+        'For the "Today" screen, ask Claude to pull today\'s habit checklist, show the HWPL gauges in mini form, display your top 3 values, and include a one-line journal input.',
+        'To make it a PWA: ask Claude to add a manifest.json with your app name and icon, and a basic service worker. Then deploy to Vercel. You\'ll be able to "Add to Home Screen" on your phone.',
       ],
       resources: [
-        { label: 'Designing Your Life — A Lifelong Practice', url: 'https://designingyour.life' },
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+        { label: 'PWA Guide — web.dev', url: 'https://web.dev/progressive-web-apps/' },
+        { label: 'Vercel — Deploy', url: 'https://vercel.com/new' },
       ],
       exercise: {
         type: 'timed-writing',
         timer: 15,
         fields: [
-          { id: 'commitment', label: 'My Commitment', prompt: 'Write your commitment to continued life design. What will you keep doing? How often? What are your non-negotiables?' },
-          { id: 'sixMonthDate', label: '6-Month Check-In', prompt: 'When is your 6-month check-in? What will you review? Who will hold you accountable?' },
-          { id: 'letterToSelf', label: 'Letter to Future You', prompt: 'Write a short letter to yourself 6 months from now. What do you hope will be different? What advice do you have for that person?' },
+          { id: 'appArchitecture', label: 'App Architecture', prompt: 'Describe your final app. What screens does it have? How do they connect? What does the "Today" home screen show?' },
+          { id: 'buildProcess', label: 'The Build Process', prompt: 'Walk through how you built it with AI. What prompts worked best? What did you have to iterate on? What was hardest to get right?' },
+          { id: 'dailyUse', label: 'Your Daily Routine', prompt: 'How will you use this app every day? What\'s your morning check-in look like? When do you do your weekly review? What makes this app worth opening daily?' },
+          { id: 'liveUrl', label: 'Live URL', prompt: 'Paste the deployed URL of your life design app. If not deployed yet, describe your deployment plan.' },
         ],
       },
     },
@@ -1102,25 +1251,31 @@ export const moduleMilestones = {
     { afterStep: '05', title: 'FIRST SITE LIVE', message: 'You\'ve deployed your personal website to the internet. Now design your life.' },
   ],
   2: [
-    { afterStep: '04', title: 'YOUR COMPASS IS SET', message: 'You know what matters. Time to map your energy.' },
+    { afterStep: '04', title: 'VALUES DEFINED', message: 'You know what matters. Now build the compass into your site.' },
+    { afterStep: '05', title: 'COMPASS BUILT', message: 'Your values compass is live on your site. Time to map your energy.' },
   ],
   3: [
-    { afterStep: '04', title: 'ENERGY MAPPED', message: 'You see what fuels you and what drains you. Time to explore alternatives.' },
+    { afterStep: '04', title: 'ENERGY MAPPED', message: 'You see what fuels and drains you. Now build the tracker into your site.' },
+    { afterStep: '05', title: 'TRACKER BUILT', message: 'Your energy tracker is live. Time to explore alternate life paths.' },
   ],
   4: [
-    { afterStep: '04', title: 'PATHS EXPLORED', message: 'Three possible lives mapped. Time to build the habits that get you there.' },
+    { afterStep: '04', title: 'PATHS EXPLORED', message: 'Three possible lives mapped. Now build the visualizer into your site.' },
+    { afterStep: '05', title: 'VISUALIZER BUILT', message: 'Your odyssey plans are live and visual. Time to build the habits that get you there.' },
   ],
   5: [
-    { afterStep: '04', title: 'IDENTITY CLAIMED', message: 'You know who you\'re becoming and have the habits to prove it.' },
+    { afterStep: '04', title: 'IDENTITY CLAIMED', message: 'You know who you\'re becoming. Now build the habit engine into your site.' },
+    { afterStep: '05', title: 'HABIT ENGINE BUILT', message: 'Your daily habit tracker is live. Time to build your life dashboard.' },
   ],
   6: [
-    { afterStep: '03', title: 'DASHBOARD LIVE', message: 'Your life balance is visible and trackable. Now systematize your habits.' },
+    { afterStep: '03', title: 'LIFE ASSESSED', message: 'Your HWPL scores are set. Now build the dashboard into your site.' },
+    { afterStep: '04', title: 'DASHBOARD BUILT', message: 'Your HWPL dashboard is live. Time to systematize your habits.' },
   ],
   7: [
-    { afterStep: '04', title: 'SYSTEMS RUNNING', message: 'Your habit systems are designed, tracked, and reviewed. Time to iterate.' },
+    { afterStep: '04', title: 'SYSTEMS DESIGNED', message: 'Your habit systems are planned. Now build the weekly review into your site.' },
+    { afterStep: '05', title: 'REVIEW BUILT', message: 'Your weekly review page is live. Time to bring it all together.' },
   ],
   8: [
-    { afterStep: '04', title: 'COURSE COMPLETE', message: 'You\'ve designed your life. Now keep iterating. This is just the beginning.' },
+    { afterStep: '04', title: 'APP COMPLETE', message: 'Your personal life design app is built and deployed. Open it every morning. This is just the beginning.' },
   ],
 };
 
