@@ -12,6 +12,7 @@ export default function CourseContent({ user, activeModule, onModuleChange }) {
       <ModuleProjects
         module={activeModule}
         onBack={() => onModuleChange(null)}
+        onModuleChange={onModuleChange}
         user={user}
       />
     );

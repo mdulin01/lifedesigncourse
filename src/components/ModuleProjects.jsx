@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, CheckCircle, ExternalLink, PenLine } from 'lucide-react';
-import { moduleProjects, moduleMilestones } from '../constants';
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, CheckCircle, ExternalLink, PenLine, Trophy } from 'lucide-react';
+import { courseModules, moduleProjects, moduleMilestones } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 import WorkbookExercise from './WorkbookExercise';
 
-export default function ModuleProjects({ module, onBack, user }) {
+export default function ModuleProjects({ module, onBack, onModuleChange, user }) {
   const projects = moduleProjects[module.id] || [];
   const [expandedStep, setExpandedStep] = useState(null);
   const [showDetails, setShowDetails] = useState({});
@@ -12,6 +12,15 @@ export default function ModuleProjects({ module, onBack, user }) {
   const [activeExercise, setActiveExercise] = useState(null); // step object
 
   const { saveExercise, getStepData, loading } = useWorkbook(user);
+
+  // Find prev/next modules (only ones that have projects)
+  const availableModules = courseModules.filter(m => !!moduleProjects[m.id]);
+  const currentIdx = availableModules.findIndex(m => m.id === module.id);
+  const prevModule = currentIdx > 0 ? availableModules[currentIdx - 1] : null;
+  const nextModule = currentIdx < availableModules.length - 1 ? availableModules[currentIdx + 1] : null;
+
+  // Combine all milestones for this module into one card
+  const milestones = moduleMilestones[module.id] || [];
 
   const toggleStep = (number) => {
     setExpandedStep(expandedStep === number ? null : number);
@@ -44,6 +53,37 @@ export default function ModuleProjects({ module, onBack, user }) {
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
+      {/* Module navigation bar */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => prevModule ? onModuleChange(prevModule) : onBack()}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          {prevModule ? (
+            <span className="hidden sm:inline">Module {prevModule.id}</span>
+          ) : (
+            <span className="hidden sm:inline">All Modules</span>
+          )}
+        </button>
+
+        <span className="text-[10px] text-white/25 uppercase tracking-wider">
+          Module {module.id} of {courseModules.length}
+        </span>
+
+        {nextModule ? (
+          <button
+            onClick={() => onModuleChange(nextModule)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-emerald-400/70 hover:text-emerald-300 hover:bg-emerald-500/10 transition"
+          >
+            <span className="hidden sm:inline">Module {nextModule.id}</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        ) : (
+          <div className="w-20" />
+        )}
+      </div>
+
       {/* Module description */}
       <div>
         <p className="text-white/40 text-sm">{module.description}</p>
@@ -58,11 +98,10 @@ export default function ModuleProjects({ module, onBack, user }) {
           const hasExercise = !!step.exercise;
           const exerciseData = hasExercise ? getStepData(module.id, step.number) : null;
           const exerciseDone = !!exerciseData;
-          const milestone = (moduleMilestones[module.id] || []).find(m => m.afterStep === step.number);
 
           return (
-            <React.Fragment key={step.number}>
             <div
+              key={step.number}
               className={`rounded-2xl border transition-all relative overflow-hidden ${
                 isComplete
                   ? 'bg-emerald-500/[0.04] border-emerald-500/20'
@@ -212,18 +251,49 @@ export default function ModuleProjects({ module, onBack, user }) {
                 </div>
               )}
             </div>
-
-              {/* Milestone banner */}
-              {milestone && (
-                <div className="my-4 rounded-2xl bg-gradient-to-r from-teal-900/70 to-emerald-900/50 border border-emerald-500/20 px-6 py-6 text-center">
-                  <p className="text-emerald-400/70 text-[11px] font-bold uppercase tracking-[0.2em] mb-2">— Milestone —</p>
-                  <p className="text-white font-bold text-sm uppercase tracking-wider">{milestone.title}</p>
-                  <p className="text-white/50 text-xs mt-1.5">{milestone.message}</p>
-                </div>
-              )}
-            </React.Fragment>
           );
         })}
+      </div>
+
+      {/* Combined milestone card at bottom */}
+      {milestones.length > 0 && (
+        <div className="rounded-2xl bg-gradient-to-r from-teal-900/70 to-emerald-900/50 border border-emerald-500/20 px-6 py-6">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Trophy className="w-5 h-5 text-emerald-400/70" />
+            <p className="text-emerald-400/70 text-[11px] font-bold uppercase tracking-[0.2em]">
+              {milestones.length === 1 ? 'Milestone' : 'Milestones'}
+            </p>
+          </div>
+          <div className={milestones.length > 1 ? 'space-y-3' : ''}>
+            {milestones.map((m, i) => (
+              <div key={i} className={milestones.length > 1 ? 'text-center' : 'text-center'}>
+                <p className="text-white font-bold text-sm uppercase tracking-wider">{m.title}</p>
+                <p className="text-white/50 text-xs mt-0.5">{m.message}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Bottom module navigation */}
+      <div className="flex items-center justify-between pt-2">
+        <button
+          onClick={() => prevModule ? onModuleChange(prevModule) : onBack()}
+          className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-medium text-white/40 hover:text-white hover:bg-white/5 border border-white/5 hover:border-white/10 transition"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          {prevModule ? `Module ${prevModule.id}` : 'All Modules'}
+        </button>
+
+        {nextModule && (
+          <button
+            onClick={() => onModuleChange(nextModule)}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-medium text-emerald-400/70 hover:text-emerald-300 bg-emerald-500/5 hover:bg-emerald-500/10 border border-emerald-500/15 hover:border-emerald-500/25 transition"
+          >
+            Module {nextModule.id}: {nextModule.title}
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       {/* Exercise Modal */}
