@@ -313,6 +313,89 @@ export const moduleProjects = {
       ],
     },
   ],
+  3: [
+    {
+      number: '00',
+      title: 'The Log',
+      description: 'Track your daily activities for one week using the Good Time Journal.',
+      artifact: 'A week of daily activity logs — what you did, when, and for how long.',
+      details: 'For one week, keep a simple log of how you spend your time. Every few hours, jot down what you were doing. Don\'t change your behavior — just observe it. The goal is raw data about your actual life, not your idealized version of it. You can use a notebook, a notes app, or the Journal section in the portal. The key is consistency: capture every day, even the boring ones.',
+      tips: [
+        'Set 3 phone alarms (morning, afternoon, evening) to remind you to log.',
+        'Keep it simple: activity, duration, who you were with. One line per entry.',
+        'Include everything — work tasks, meals, commuting, scrolling, exercising, conversations.',
+        'Don\'t judge your entries. "Watched TV for 2 hours" is valid data, not a failure.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Good Time Journal', url: 'https://designingyour.life' },
+      ],
+    },
+    {
+      number: '01',
+      title: 'The Energy Map',
+      description: 'Rate each logged activity for energy and engagement.',
+      artifact: 'Your activity log annotated with energy ratings (-2 to +2) and engagement ratings (low/medium/high).',
+      details: 'Go back through your week of logs and add two ratings to each activity. Energy: did it drain you (-2, -1) or charge you (+1, +2)? Engagement: were you bored (low), going through the motions (medium), or in flow (high)? This is the core of the DYL energy audit — you\'re mapping what fuels you and what depletes you. Patterns will start to emerge.',
+      tips: [
+        'Rate on feel, not on what you think "should" energize you. Data beats expectations.',
+        'Pay special attention to activities that are high-energy AND high-engagement — those are gold.',
+        'Also note the low-energy, low-engagement activities. They\'re candidates for redesign or elimination.',
+        'Time of day matters. The same activity might rate differently at 9am vs 9pm.',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Journal Section', url: '/portal' },
+      ],
+    },
+    {
+      number: '02',
+      title: 'The AEIOU Breakdown',
+      description: 'Analyze your peak and valley moments using the AEIOU framework.',
+      artifact: 'AEIOU analysis of your top 3 high-energy and top 3 low-energy activities.',
+      details: 'Pick your 3 highest-rated and 3 lowest-rated activities. For each one, break it down using AEIOU: Activities (what exactly were you doing?), Environments (where were you? what was the space like?), Interactions (who were you with? what was the dynamic?), Objects (what tools or things were you using?), Users (who benefited from what you were doing?). This reveals the specific ingredients that make something energizing or draining.',
+      tips: [
+        'Be specific. "Working" isn\'t helpful. "Writing a proposal alone in a quiet room" reveals what actually matters.',
+        'Compare AEIOU across your highs — you\'ll likely find common threads (e.g., always solo, always creative, always with a specific person).',
+        'Do the same for your lows. The draining pattern might be about the environment, not the task itself.',
+        'Ask Claude to help: "Here are my AEIOU breakdowns. What patterns do you see across my high-energy activities?"',
+      ],
+      resources: [
+        { label: 'AEIOU Framework Explained', url: 'https://designingyour.life' },
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+    },
+    {
+      number: '03',
+      title: 'The Pattern Report',
+      description: 'Synthesize your findings into clear energy patterns and insights.',
+      artifact: 'A written summary: your top energy sources, top drains, and 3 key insights about yourself.',
+      details: 'Step back and look at the big picture. What themes keep appearing in your high-energy activities? What\'s consistently present in your drains? Write a short report with three sections: "What energizes me" (the conditions, not just activities), "What drains me" (same), and "Three things I didn\'t expect." The surprises are often the most valuable — they reveal blind spots in your self-knowledge.',
+      tips: [
+        'Focus on conditions, not just activities. "Being creative with no deadline" is more useful than "painting."',
+        'Look for contradictions. Maybe meetings drain you but one specific type of meeting doesn\'t — why?',
+        'Share your findings with someone who knows you well. See if they\'re surprised or if it confirms what they already see.',
+        'This report feeds directly into your Odyssey Plans (Module 4) — save it.',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Journal Section', url: '/portal' },
+      ],
+    },
+    {
+      number: '04',
+      title: 'The Redesign',
+      description: 'Make one concrete change to your week based on your energy data.',
+      artifact: 'A specific plan to add one energizing activity and reduce or redesign one draining activity.',
+      details: 'Knowledge without action is just trivia. Pick one high-energy activity you want more of and one low-energy activity you want to change. For the energizer, schedule it — put it on your calendar this week. For the drain, you have three options: eliminate it, delegate it, or redesign it (change the environment, interaction, or timing). Start small. One change, one week. This is prototyping your life — the DYL way.',
+      tips: [
+        'Make the energizing addition easy. Block 30 minutes, not 3 hours. You can always expand later.',
+        'For the drain, redesign is often better than elimination. Can you do the same task in a different place, at a different time, or with different people?',
+        'Tell someone about your plan — accountability helps.',
+        'Track the results next week. Did the change stick? Did it affect your energy as expected?',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+      ],
+    },
+  ],
 };
 
 // Behind the Scenes example entries (documenting the build process)
