@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, ArrowLeft } from 'lucide-react';
+import { Menu, ArrowLeft, Home, BookOpen, PenLine, GraduationCap, ClipboardList, Users } from 'lucide-react';
 import { useBTS } from '../contexts/BTSContext';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
@@ -9,6 +9,15 @@ import CourseContent from './CourseContent';
 import Workbook from './Workbook';
 import Resources from './Resources';
 import MyTeam from './MyTeam';
+
+const mobileNav = [
+  { id: 'dashboard', label: 'Home', icon: Home },
+  { id: 'checkin', label: 'Check In', icon: BookOpen },
+  { id: 'journal', label: 'Journal', icon: PenLine },
+  { id: 'course', label: 'Course', icon: GraduationCap },
+  { id: 'workbook', label: 'Workbook', icon: ClipboardList },
+  { id: 'team', label: 'Team', icon: Users },
+];
 
 export default function Portal({ user, onSignOut }) {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -50,7 +59,7 @@ export default function Portal({ user, onSignOut }) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      {/* Sidebar */}
+      {/* Sidebar — desktop only */}
       <Sidebar
         activeSection={activeSection}
         onNavigate={handleNavigate}
@@ -82,22 +91,10 @@ export default function Portal({ user, onSignOut }) {
                 <span className="text-[10px] font-bold text-emerald-400/60 uppercase tracking-wider">Module {activeModule.id}</span>
                 <h2 className="text-sm font-semibold text-white truncate">{activeModule.title}</h2>
               </div>
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="md:hidden p-1.5 text-white/40 hover:text-white transition shrink-0"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
             </div>
           ) : (
-            /* Default bar — section name + hamburger on mobile */
+            /* Default bar — section name only */
             <div className="flex items-center gap-3 px-4 py-3">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="md:hidden p-1.5 text-white/60 hover:text-white transition"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
               <span className="font-semibold text-white text-sm">{sectionLabels[activeSection] || activeSection}</span>
             </div>
           )}
@@ -106,18 +103,41 @@ export default function Portal({ user, onSignOut }) {
         {/* Spacer for fixed header */}
         <div className="h-[53px]" />
 
-        {/* Content */}
+        {/* Content — extra bottom padding on mobile for bottom nav */}
         <main className="flex-1">
-          <div className="max-w-4xl mx-auto px-4 py-6">
+          <div className="max-w-4xl mx-auto px-4 py-6 pb-24 md:pb-6">
             {renderSection()}
           </div>
         </main>
 
         {/* Build footer */}
-        <footer className="py-4 text-center">
+        <footer className="py-4 text-center hidden md:block">
           <p className="text-[10px] text-white/10">v1.0 · Feb 22, 2026 · Built By Mike Dulin, MD</p>
         </footer>
       </div>
+
+      {/* Mobile bottom nav */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-slate-900/95 backdrop-blur-xl border-t border-white/10">
+        <div className="flex items-stretch justify-around">
+          {mobileNav.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavigate(item.id)}
+                className={`flex flex-col items-center gap-0.5 py-2 px-1 flex-1 transition-colors ${
+                  isActive ? 'text-emerald-400' : 'text-white/30'
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                <span className="text-[9px] font-medium leading-tight">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="pb-[env(safe-area-inset-bottom)]" />
+      </nav>
     </div>
   );
 }
