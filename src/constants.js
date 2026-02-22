@@ -229,6 +229,90 @@ export const moduleProjects = {
       ],
     },
   ],
+  2: [
+    {
+      number: '00',
+      title: 'The Mirror',
+      description: 'Reflect on what work and life mean to you right now — before trying to change anything.',
+      artifact: 'Two short written pieces: your Workview (1 paragraph) and your Lifeview (1 paragraph).',
+      details: 'The Designing Your Life framework starts with two foundational questions: Why do you work? And why are you alive? Your Workview covers what work means to you, why you do it, and what makes it worthwhile. Your Lifeview covers your beliefs about life, purpose, meaning, and how the world works. These don\'t need to be perfect — they\'re a snapshot of where you are today. Write honestly, not aspirationally.',
+      tips: [
+        'Set a timer for 15 minutes per piece. Don\'t overthink — write what comes naturally.',
+        'Your Workview should answer: Why do I work? What does work mean to me? What makes work "good" or "worthwhile"?',
+        'Your Lifeview should answer: Why am I here? What is the meaning or purpose of life? What is my relationship to others?',
+        'These are private. Nobody else needs to see them. Honesty matters more than eloquence.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — Burnett & Evans (Book)', url: 'https://designingyour.life' },
+        { label: 'Workview & Lifeview Explained (Stanford Life Design Lab)', url: 'https://lifedesignlab.stanford.edu' },
+      ],
+    },
+    {
+      number: '01',
+      title: 'The Compass Check',
+      description: 'Compare your Workview and Lifeview to see where they align — and where they clash.',
+      artifact: 'A written reflection on the coherence (or tension) between your Workview and Lifeview.',
+      details: 'Read your Workview and Lifeview side by side. Where do they complement each other? Where do they contradict? If your Lifeview says relationships matter most but your Workview is all about achievement, that tension is worth noticing. This isn\'t about fixing anything — it\'s about awareness. The gaps between these two views often point to where you feel stuck or unfulfilled.',
+      tips: [
+        'Ask yourself: Does my work support my view of a life well-lived? If not, where\'s the disconnect?',
+        'Look for words or themes that appear in both pieces — those are your core values.',
+        'Contradictions aren\'t bad. They\'re data. Note them without judgment.',
+        'Try asking Claude to analyze both pieces: "Here are my Workview and Lifeview. What themes and tensions do you see?"',
+      ],
+      resources: [
+        { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      ],
+    },
+    {
+      number: '02',
+      title: 'Values Extraction',
+      description: 'Pull out your core values from your Workview, Lifeview, and reflection.',
+      artifact: 'A ranked list of your top 5-7 personal values with one-sentence definitions.',
+      details: 'Your Workview, Lifeview, and compass check are full of implicit values. Now make them explicit. Go through everything you\'ve written and highlight the values that keep showing up: freedom, creativity, connection, security, growth, impact, adventure, family, etc. Then rank them. This ranked list becomes your decision-making filter — when you\'re stuck on a choice, check it against your values.',
+      tips: [
+        'Start by circling every value-loaded word in your Workview and Lifeview.',
+        'If you get stuck, use a values card sort — look at a list of 50+ values and pick your top 10, then narrow to 5-7.',
+        'Write a one-sentence definition for each value. "Freedom" means different things to different people.',
+        'Ask Claude: "Help me extract values from this text" and paste your Workview/Lifeview.',
+      ],
+      resources: [
+        { label: 'Brené Brown — List of Values', url: 'https://brenebrown.com/resources/dare-to-lead-list-of-values/' },
+        { label: 'Personal Values Card Sort (PDF)', url: 'https://motivationalinterviewing.org/sites/default/files/valuescardsort_0.pdf' },
+      ],
+    },
+    {
+      number: '03',
+      title: 'Build the Compass',
+      description: 'Create a digital values compass that you can reference anytime.',
+      artifact: 'A working Values Compass page in your Life Design portal.',
+      details: 'Now turn your values into a tool you\'ll actually use. In the portal\'s Values section, enter your ranked values with definitions. The compass visualization shows your values at a glance. Over time, you\'ll reference this when making decisions: Does this opportunity align with my top values? Does this habit serve who I want to be? The digital format means it\'s always accessible and easy to update as you evolve.',
+      tips: [
+        'Enter your values in rank order — the top ones should be your non-negotiables.',
+        'Write definitions that are specific to you, not dictionary definitions.',
+        'Revisit this quarterly. Values shift as your life changes, and that\'s normal.',
+        'Try using your compass for a real decision this week: a job choice, a commitment, how you spend your weekend.',
+      ],
+      resources: [
+        { label: 'Life Design Portal — Values Section', url: '/portal' },
+      ],
+    },
+    {
+      number: '04',
+      title: 'The Coherence Score',
+      description: 'Rate how well your current life aligns with your stated values.',
+      artifact: 'A scored assessment of each value (1-10) with notes on what\'s aligned and what\'s not.',
+      details: 'For each of your top values, rate on a scale of 1-10 how well your current life reflects that value. If "creativity" is your #1 value but you score it a 3, that\'s a signal. If "security" ranks high and you score it a 9, great — that\'s working. This isn\'t a guilt exercise. It\'s a diagnostic. The gaps become your design challenges for the rest of the course.',
+      tips: [
+        'Be honest, not aspirational. Score where you actually are, not where you want to be.',
+        'For any value scoring below 5, write one sentence about why.',
+        'For any value scoring above 7, write what\'s making it work — so you can protect it.',
+        'The biggest gaps between value rank and score are your highest-leverage areas for change.',
+      ],
+      resources: [
+        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
+      ],
+    },
+  ],
 };
 
 // Behind the Scenes example entries (documenting the build process)
