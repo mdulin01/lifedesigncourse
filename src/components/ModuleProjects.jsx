@@ -169,20 +169,6 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
                   {step.title}
                 </span>
 
-                {/* Exercise indicator */}
-                {hasExercise && exerciseDone && !isComplete && (
-                  <span className="text-[9px] font-bold text-emerald-400/60 bg-emerald-500/10 px-1.5 py-0.5 rounded shrink-0">
-                    DONE
-                  </span>
-                )}
-
-                {/* Active indicator */}
-                {isExpanded && !isComplete && (
-                  <span className="text-[9px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full shrink-0 uppercase tracking-wider">
-                    Active
-                  </span>
-                )}
-
                 {/* Chevron — hidden for completed unless hovered */}
                 {isComplete ? (
                   <ChevronDown className="w-3 h-3 text-white/10 shrink-0 opacity-0 group-hover:opacity-100 transition" />

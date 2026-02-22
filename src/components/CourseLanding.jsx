@@ -93,7 +93,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white mb-6 leading-tight">
-            Design Your Life
+            Life Design
             <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
               With AI
             </span>
