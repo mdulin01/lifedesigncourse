@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { GraduationCap, Lock, CheckCircle, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { Lock, CheckCircle, ChevronRight } from 'lucide-react';
 import { courseModules, moduleProjects } from '../constants';
 import ModuleProjects from './ModuleProjects';
 
-export default function CourseContent({ user }) {
-  const [activeModule, setActiveModule] = useState(null);
+export default function CourseContent({ user, activeModule, onModuleChange }) {
   const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
 
   // If a module is selected, show its project steps
@@ -12,7 +11,7 @@ export default function CourseContent({ user }) {
     return (
       <ModuleProjects
         module={activeModule}
-        onBack={() => setActiveModule(null)}
+        onBack={() => onModuleChange(null)}
         user={user}
       />
     );
@@ -36,7 +35,7 @@ export default function CourseContent({ user }) {
           return (
             <button
               key={mod.id}
-              onClick={() => hasProjects && setActiveModule(mod)}
+              onClick={() => hasProjects && onModuleChange(mod)}
               disabled={!hasProjects}
               className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition text-left ${
                 isActive

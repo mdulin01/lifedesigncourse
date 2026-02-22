@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ChevronDown, ChevronUp, CheckCircle, ExternalLink, PenLine } from 'lucide-react';
+import { ChevronDown, ChevronUp, CheckCircle, ExternalLink, PenLine } from 'lucide-react';
 import { moduleProjects, moduleMilestones } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 import WorkbookExercise from './WorkbookExercise';
@@ -44,40 +44,9 @@ export default function ModuleProjects({ module, onBack, user }) {
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
-      {/* Sticky breadcrumb */}
-      <div className="sticky top-[49px] md:top-0 z-10 -mx-4 px-4 py-3 bg-slate-950/90 backdrop-blur-lg border-b border-white/5">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-1.5 text-sm text-emerald-400/70 hover:text-emerald-400 transition"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to Modules
-        </button>
-      </div>
-
-      {/* Header */}
+      {/* Module description */}
       <div>
-        <div className="flex items-center gap-3 mb-1">
-          <span className="text-3xl">{module.icon}</span>
-          <div>
-            <span className="text-[10px] font-bold text-emerald-400/60 uppercase tracking-wider">Module {module.id}</span>
-            <h1 className="text-2xl font-bold text-white">{module.title}</h1>
-          </div>
-        </div>
-        <p className="text-white/40 text-sm mt-2">{module.description}</p>
-      </div>
-
-      {/* Progress bar */}
-      <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-white">Module Progress</span>
-          <span className="text-sm text-emerald-400 font-bold">{completedCount} / {totalCount}</span>
-        </div>
-        <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
+        <p className="text-white/40 text-sm">{module.description}</p>
       </div>
 
       {/* Project steps */}
