@@ -63,8 +63,8 @@ export default function App() {
             <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
               <div className="w-full max-w-sm text-center">
                 <div className="mb-8">
-                  <div className="text-5xl mb-4">🧭</div>
-                  <h1 className="text-2xl font-bold text-white mb-1">Life Design Portal</h1>
+                  <div className="text-5xl mb-4">🤖</div>
+                  <h1 className="text-2xl font-bold text-white mb-1">AI Life Design Portal</h1>
                   <p className="text-white/50 text-sm">Sign in to access your tools</p>
                 </div>
                 <button

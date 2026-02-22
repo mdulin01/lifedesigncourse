@@ -341,7 +341,7 @@ export const moduleProjects = {
         'Try using your compass for a real decision this week: a job choice, a commitment, how you spend your weekend.',
       ],
       resources: [
-        { label: 'Life Design Portal — Values Section', url: '/portal' },
+        { label: 'AI Life Design Portal — Values Section', url: '/portal' },
       ],
       exercise: {
         type: 'values-ranking',
@@ -440,7 +440,7 @@ export const moduleProjects = {
         'Time of day matters. The same activity might rate differently at 9am vs 9pm.',
       ],
       resources: [
-        { label: 'Life Design Portal — Journal Section', url: '/portal' },
+        { label: 'AI Life Design Portal — Journal Section', url: '/portal' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -492,7 +492,7 @@ export const moduleProjects = {
         'This report feeds directly into your Odyssey Plans (Module 4) — save it.',
       ],
       resources: [
-        { label: 'Life Design Portal — Journal Section', url: '/portal' },
+        { label: 'AI Life Design Portal — Journal Section', url: '/portal' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -909,7 +909,7 @@ export const moduleProjects = {
         'Tell someone about your plan. Accountability dramatically increases follow-through.',
       ],
       resources: [
-        { label: 'Life Design Portal — Check In', url: '/portal' },
+        { label: 'AI Life Design Portal — Check In', url: '/portal' },
       ],
       exercise: {
         type: 'reflection',
@@ -933,7 +933,7 @@ export const moduleProjects = {
         'The portal\'s Resources section has a sample HWPL dashboard you can reference.',
       ],
       resources: [
-        { label: 'Life Design Portal — Resources', url: '/portal' },
+        { label: 'AI Life Design Portal — Resources', url: '/portal' },
       ],
       exercise: {
         type: 'reflection',
@@ -1080,7 +1080,7 @@ export const moduleProjects = {
         'Ask three questions: What went well? What didn\'t? What will I change next week?',
       ],
       resources: [
-        { label: 'Life Design Portal — Check In', url: '/portal' },
+        { label: 'AI Life Design Portal — Check In', url: '/portal' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -1130,7 +1130,7 @@ export const moduleProjects = {
         'Ask Claude to analyze your workbook: "Here are my responses from 8 modules. What themes and growth do you see?"',
       ],
       resources: [
-        { label: 'Life Design Portal — Workbook', url: '/portal' },
+        { label: 'AI Life Design Portal — Workbook', url: '/portal' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,

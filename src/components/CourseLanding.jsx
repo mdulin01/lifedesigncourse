@@ -46,8 +46,8 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
       <nav className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <span className="text-xl">🧭</span>
-            <span className="font-bold text-white text-sm sm:text-base">Life Design Course</span>
+            <span className="text-xl">🤖</span>
+            <span className="font-bold text-white text-sm sm:text-base">AI Life Design Course</span>
           </a>
           <div className="flex items-center gap-2 sm:gap-4">
             <a href="#modules" className="text-xs sm:text-sm text-white/50 hover:text-white transition hidden sm:block">Modules</a>
@@ -307,8 +307,8 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
       <footer className="border-t border-white/5 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-white/30">
-            <span>🧭</span>
-            <span>Life Design Course</span>
+            <span>🤖</span>
+            <span>AI Life Design Course</span>
             <span className="text-white/10">|</span>
             <span>Built with AI</span>
           </div>

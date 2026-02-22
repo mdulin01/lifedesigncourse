@@ -61,9 +61,9 @@ export default function Sidebar({
       {/* Logo / brand */}
       <div className="px-4 py-5 border-b border-white/5">
         <a href="/" className="flex items-center gap-2.5">
-          <span className="text-xl">🧭</span>
+          <span className="text-xl">🤖</span>
           <div>
-            <span className="font-bold text-white text-sm tracking-tight">Life Design</span>
+            <span className="font-bold text-white text-sm tracking-tight">AI Life Design</span>
             <span className="block text-[9px] text-white/30 uppercase tracking-widest">Course Portal</span>
           </div>
         </a>
