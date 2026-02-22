@@ -62,13 +62,11 @@ export default function WorkbookExercise({ exercise, stepTitle, existing, onSave
     setSaveError(null);
     try {
       await onSave(fieldValues);
-      setSaved(true);
-      // Close after brief delay so user sees "Saved"
-      setTimeout(() => onClose(), 600);
+      // Save succeeded — close immediately
+      onClose();
     } catch (err) {
       console.error('[WorkbookExercise] save failed:', err);
-      setSaveError(err.message || 'Save failed. Check Firestore rules.');
-    } finally {
+      setSaveError(err.message || 'Save failed — check Firestore rules for the workbooks collection.');
       setSaving(false);
     }
   };
