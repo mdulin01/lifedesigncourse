@@ -3,12 +3,11 @@ import { Menu } from 'lucide-react';
 import { useBTS } from '../contexts/BTSContext';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
-import ValuesEditor from './ValuesEditor';
+import CheckIn from './CheckIn';
 import Journal from './Journal';
-import OdysseyPlanner from './OdysseyPlanner';
-import HabitTracker from './HabitTracker';
 import CourseContent from './CourseContent';
 import Workbook from './Workbook';
+import Resources from './Resources';
 
 export default function Portal({ user, onSignOut }) {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -17,25 +16,25 @@ export default function Portal({ user, onSignOut }) {
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'dashboard': return <Dashboard user={user} />;
-      case 'values': return <ValuesEditor />;
-      case 'journal': return <Journal />;
-      case 'odyssey': return <OdysseyPlanner />;
-      case 'habits': return <HabitTracker />;
+      case 'dashboard': return <Dashboard user={user} onNavigate={setActiveSection} />;
+      case 'checkin': return <CheckIn user={user} />;
+      case 'journal': return <Journal user={user} />;
       case 'course': return <CourseContent user={user} />;
       case 'workbook': return <Workbook user={user} />;
-      default: return <Dashboard user={user} />;
+      case 'resources': return <Resources />;
+      default: return <Dashboard user={user} onNavigate={setActiveSection} />;
     }
   };
 
   const sectionLabels = {
     dashboard: 'Home',
-    values: 'Values',
-    journal: 'Check In',
-    odyssey: 'Odyssey Plans',
-    habits: 'Habits',
+    checkin: 'Check In',
+    journal: 'Journal',
     course: 'Course',
     workbook: 'Workbook',
+    resources: 'Resources',
+    profile: 'Profile',
+    team: 'My Team',
   };
 
   return (

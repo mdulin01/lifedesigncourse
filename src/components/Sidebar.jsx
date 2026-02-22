@@ -1,17 +1,15 @@
 import React from 'react';
 import {
   Home, BookOpen, GraduationCap, ClipboardList, FolderOpen, User, Users,
-  Compass, Map, BarChart3, LogOut, X, Eye, EyeOff,
+  PenLine, LogOut, X, Eye, EyeOff,
 } from 'lucide-react';
 
 const navSections = [
   { id: 'dashboard', label: 'Home', icon: Home },
-  { id: 'journal', label: 'Check In', icon: BookOpen },
+  { id: 'checkin', label: 'Check In', icon: BookOpen },
+  { id: 'journal', label: 'Journal', icon: PenLine },
   { id: 'course', label: 'Course', icon: GraduationCap },
   { id: 'workbook', label: 'Workbook', icon: ClipboardList },
-  { id: 'values', label: 'Values', icon: Compass },
-  { id: 'odyssey', label: 'Odyssey Plans', icon: Map },
-  { id: 'habits', label: 'Habits', icon: BarChart3 },
   { id: 'resources', label: 'Resources', icon: FolderOpen },
 ];
 
@@ -73,7 +71,7 @@ export default function Sidebar({
 
       {/* Main nav */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        {navSections.map((s) => renderNavItem(s, s.id === 'resources'))}
+        {navSections.map((s) => renderNavItem(s))}
 
         {/* Separator */}
         <div className="pt-3 mt-3 border-t border-white/5 space-y-1">
