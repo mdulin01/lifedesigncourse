@@ -55,13 +55,19 @@ export default function WorkbookExercise({ exercise, stepTitle, existing, onSave
     setSaved(false);
   }, []);
 
+  const [saveError, setSaveError] = useState(null);
+
   const handleSave = async () => {
     setSaving(true);
+    setSaveError(null);
     try {
       await onSave(fieldValues);
       setSaved(true);
+      // Close after brief delay so user sees "Saved"
+      setTimeout(() => onClose(), 600);
     } catch (err) {
       console.error('[WorkbookExercise] save failed:', err);
+      setSaveError(err.message || 'Save failed. Check Firestore rules.');
     } finally {
       setSaving(false);
     }
@@ -355,7 +361,13 @@ export default function WorkbookExercise({ exercise, stepTitle, existing, onSave
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-white/10">
+        <div className="px-6 py-4 border-t border-white/10 space-y-2">
+          {saveError && (
+            <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+              {saveError}
+            </p>
+          )}
+          <div className="flex items-center justify-between">
           <button onClick={onClose} className="text-sm text-white/40 hover:text-white/60 transition">
             Cancel
           </button>
@@ -376,6 +388,7 @@ export default function WorkbookExercise({ exercise, stepTitle, existing, onSave
               <><Save className="w-4 h-4" /> Save Progress</>
             )}
           </button>
+          </div>
         </div>
       </div>
     </div>
