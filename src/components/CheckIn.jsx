@@ -84,7 +84,7 @@ export default function CheckIn({ user }) {
   return (
     <div className="space-y-6 pb-20 md:pb-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Weekly Check In</h1>
+        <h1 className="text-2xl font-bold text-white">Check In</h1>
         <p className="text-white/40 text-sm mt-1">Take a few minutes to reflect on your week</p>
       </div>
 
