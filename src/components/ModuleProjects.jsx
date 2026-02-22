@@ -37,6 +37,14 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
         next.delete(number);
       } else {
         next.add(number);
+        // Collapse this step and auto-expand the next incomplete step
+        const currentStepIdx = projects.findIndex(s => s.number === number);
+        const nextIncomplete = projects.find((s, i) => i > currentStepIdx && !next.has(s.number));
+        if (nextIncomplete) {
+          setExpandedStep(nextIncomplete.number);
+        } else {
+          setExpandedStep(null);
+        }
       }
       return next;
     });
@@ -104,7 +112,7 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
               key={step.number}
               className={`rounded-2xl border-2 transition-all duration-300 relative overflow-hidden ${
                 isComplete
-                  ? 'bg-emerald-500/[0.04] border-emerald-500/25 opacity-75'
+                  ? 'bg-emerald-500/[0.03] border-emerald-500/15'
                   : isExpanded
                     ? 'bg-emerald-500/[0.06] border-emerald-400/50 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-400/20'
                     : 'bg-white/[0.02] border-white/10 hover:border-white/20'
@@ -112,20 +120,22 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
             >
               {/* Left accent bar */}
               {isComplete && (
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500/60 rounded-l-2xl" />
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500/40 rounded-l-2xl" />
               )}
               {isExpanded && !isComplete && (
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 rounded-l-2xl" />
               )}
-              {/* Step header */}
+              {/* Step header — compact for completed, full for others */}
               <button
                 onClick={() => toggleStep(step.number)}
-                className="w-full flex items-center gap-3 px-4 py-3.5 text-left"
+                className={`w-full flex items-center gap-3 text-left transition-all ${
+                  isComplete ? 'px-3 py-2' : 'px-4 py-3.5'
+                }`}
               >
                 {/* Number badge / check icon for completed */}
                 {isComplete ? (
-                  <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <CheckCircle className="w-4.5 h-4.5 text-emerald-400" style={{ width: '18px', height: '18px' }} />
+                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <CheckCircle className="text-emerald-400" style={{ width: '14px', height: '14px' }} />
                   </div>
                 ) : (
                   <span className={`text-xs font-bold px-2 py-0.5 rounded-md shrink-0 ${
@@ -138,18 +148,18 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
                 )}
 
                 {/* Title — strikethrough when complete, highlighted when active */}
-                <span className={`flex-1 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                <span className={`flex-1 font-semibold uppercase tracking-wide transition-colors ${
                   isComplete
-                    ? 'text-white/35 line-through decoration-emerald-500/40 decoration-2'
+                    ? 'text-xs text-white/30 line-through decoration-emerald-500/30 decoration-1'
                     : isExpanded
-                      ? 'text-emerald-200'
-                      : 'text-white'
+                      ? 'text-sm text-emerald-200'
+                      : 'text-sm text-white'
                 }`}>
                   {step.title}
                 </span>
 
                 {/* Exercise indicator */}
-                {hasExercise && exerciseDone && (
+                {hasExercise && exerciseDone && !isComplete && (
                   <span className="text-[9px] font-bold text-emerald-400/60 bg-emerald-500/10 px-1.5 py-0.5 rounded shrink-0">
                     DONE
                   </span>
@@ -162,11 +172,14 @@ export default function ModuleProjects({ module, onBack, onModuleChange, user })
                   </span>
                 )}
 
-                {/* Chevron */}
-                {isExpanded
-                  ? <ChevronUp className="w-4 h-4 text-emerald-400/50 shrink-0" />
-                  : <ChevronDown className="w-4 h-4 text-white/30 shrink-0" />
-                }
+                {/* Chevron — hidden for completed unless hovered */}
+                {isComplete ? (
+                  <ChevronDown className="w-3 h-3 text-white/10 shrink-0 opacity-0 group-hover:opacity-100 transition" />
+                ) : isExpanded ? (
+                  <ChevronUp className="w-4 h-4 text-emerald-400/50 shrink-0" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-white/30 shrink-0" />
+                )}
               </button>
 
               {/* Expanded content */}
