@@ -6,10 +6,10 @@ import { useBTS } from '../contexts/BTSContext';
 import BTSCard from './BTSCard';
 
 const HERO_IMAGES = [
+  'https://nam.edu/wp-content/uploads/2024/10/thumb-2009_NAS_Dome_188-1024x683.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Keck_Center_of_the_National_Academies.JPG/1280px-Keck_Center_of_the_National_Academies.JPG',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/National_Academy_of_Sciences%2C_Washington%2C_D.C._01_-_2012.JPG/1920px-National_Academy_of_Sciences%2C_Washington%2C_D.C._01_-_2012.JPG',
   'https://images.unsplash.com/photo-1698440881207-091797fa03f5?w=1920&q=80&fit=crop',
-  'https://images.unsplash.com/photo-1669820509964-79e93a47ee3d?w=1920&q=80&fit=crop',
-  'https://images.unsplash.com/photo-1606189079330-3dd6b8e20602?w=1920&q=80&fit=crop',
-  'https://images.unsplash.com/photo-1635521451272-93c54a8224c1?w=1920&q=80&fit=crop',
 ];
 
 export default function CourseLanding({ onSignIn, user, onSignOut }) {
