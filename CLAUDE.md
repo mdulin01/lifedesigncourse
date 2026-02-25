@@ -50,18 +50,20 @@ This ensures Chrome only shows tabs for the active project, avoiding confusion a
 ```
 lifedesigncourse/
 ├── src/
-│   ├── components/      # React components
-│   ├── pages/           # Page components
-│   ├── utils/           # Utility functions
-│   ├── services/        # Firebase and API services
-│   ├── styles/          # Global styles
-│   └── App.jsx          # Main app component
+│   ├── components/      # All React components (flat, no subdirectories)
+│   ├── contexts/        # React contexts (BTSContext.jsx)
+│   ├── hooks/           # Custom hooks (useMessages, useProgress, useTeams, etc.)
+│   ├── constants.js     # App constants
+│   ├── firebase-config.js  # Firebase initialization
+│   ├── App.jsx          # Main app component
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Global styles
 ├── public/              # Static assets
 ├── package.json         # Project dependencies
 ├── vite.config.js       # Vite configuration
 ├── tailwind.config.js   # Tailwind configuration
-├── .env                 # Environment variables (not in git)
-└── firestore.rules      # Firestore security rules
+├── firestore.rules      # Firestore security rules
+└── CLAUDE.md            # This file
 ```
 
 ---
@@ -87,23 +89,22 @@ npm run lint
 
 ---
 
-## Firebase Setup
+## Infrastructure
 
-- **Project ID:** lifedesigncourse
+- **Firebase Project ID:** lifedesigncourse
+- **Firebase Storage Bucket:** `gs://lifedesigncourse.firebasestorage.app`
 - **Database:** Firestore
-- **Authentication:** Enabled
+- **Authentication:** Enabled (Google provider)
 - **Storage:** Enabled for course materials and user uploads
 - **Security Rules:** See `firestore.rules` in project root
+- **Firebase config** is hardcoded in `src/firebase-config.js` (public API keys only)
 
----
+## Architecture Notes
 
-## Environment Variables
-
-The `.env` file should contain:
-- Firebase API keys and configuration
-- Other sensitive configuration (not committed to git)
-
-Check with team members for current `.env` values if starting fresh.
+- **Key components:** Dashboard, CourseLanding, MyTeam, Journal, Workbook, CheckIn, ModuleProjects
+- **Custom hooks:** useMessages, useProgress, useTeams, useUnread, useUserProfile, useWorkbook
+- **Context:** BTSContext (behind-the-scenes content)
+- All components are in a flat `src/components/` directory (no subdirectories)
 
 ---
 
@@ -116,10 +117,6 @@ Check with team members for current `.env` values if starting fresh.
 
 ---
 
-## Before Starting Work
+## File Scope Boundary
 
-1. Ensure all dependencies are installed: `npm install`
-2. Verify `.env` file has necessary API keys
-3. Check Firebase Console for Firestore data status
-4. Verify Vercel deployment health at https://vercel.com/dashboard
-5. Test the live site to confirm it's accessible
+**CRITICAL: When working on this project, ONLY access files within the `lifedesigncourse/` directory.** Do not read, write, or reference files from any sibling project folder (dulinproperties, rainbow-rentals, downtownGSO, etc.). If you need something from another project, stop and ask first.
