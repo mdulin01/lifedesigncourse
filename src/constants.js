@@ -1462,6 +1462,120 @@ Dark theme: sidebar bg-slate-900, main content bg-slate-950, borders border-whit
 My app name is "[YOUR APP NAME]" and the primary color is emerald-500 (#10b981).`,
     expectedOutput: 'Your app installable on phones and desktops, with offline support and an app-like experience.',
   },
+  {
+    id: 'build-hwpl-dashboard',
+    title: 'Build a HWPL Life Balance Dashboard',
+    description: 'Create an interactive Health, Work, Play, Love dashboard with sliders and visual gauges.',
+    category: 'components',
+    difficulty: 'intermediate',
+    relatedModules: [3, 6],
+    tags: ['Dashboard', 'HWPL', 'Life Design', 'Recharts'],
+    promptText: `Build a "Life Balance Dashboard" React component for tracking Health, Work, Play, and Love scores. Include:
+
+1. Four category cards in a 2x2 grid, each with:
+   - An emoji icon (💪 Health, 💼 Work, 🎯 Play, ❤️ Love)
+   - A slider (range 0-10) that updates the score in real time
+   - A visual progress bar that fills based on the score
+   - The current score displayed as "X/10"
+
+2. A summary section below with:
+   - An overall average score
+   - A simple radar/spider chart (using Recharts) showing all 4 categories
+   - A text interpretation like "Your life is well-balanced" or "Work needs attention"
+
+3. Style with Tailwind on a dark background (slate-950). Use emerald accents for high scores and amber/red for low scores.
+
+4. Store the scores in React state so they persist during the session.
+
+Make it responsive — 2x2 grid on desktop, single column on mobile.`,
+    expectedOutput: 'An interactive dashboard where you rate each life area 0-10 with sliders, see a radar chart of your balance, and get a text summary of which areas need attention.',
+  },
+  {
+    id: 'build-values-compass',
+    title: 'Build a Values & Life Compass Editor',
+    description: 'Create a reflective writing tool for Workview, Lifeview, and Compass alignment check.',
+    category: 'components',
+    difficulty: 'beginner',
+    relatedModules: [2],
+    tags: ['Values', 'Workview', 'Lifeview', 'Life Design'],
+    promptText: `Build a "Values & Life Compass" React component with three writing sections:
+
+1. **Workview** — A text area with the prompt: "Why do you work? What does work mean to you? What makes it worthwhile?" Use a blue accent color and a document icon.
+
+2. **Lifeview** — A text area with the prompt: "Why are you here? What is the meaning of life? What is the relationship of the individual to others?" Use a rose/pink accent color and a heart icon.
+
+3. **Compass Check** — A read-only reflection section that asks: "How well do your Workview and Lifeview align? Where are the tensions?" Use an emerald accent color and a compass icon. Show a simple alignment meter (e.g., a slider or visual bar from "Misaligned" to "Fully Aligned").
+
+Each section should:
+- Have a card-style layout with the colored accent border
+- Include a large textarea (min 120px height) for free writing
+- Show a word count below each textarea
+- Auto-save text to React state
+
+Style with Tailwind, dark theme (slate-950 background). Make it feel journal-like and reflective.`,
+    expectedOutput: 'A three-section writing tool where users reflect on their Workview, Lifeview, and how they align — styled as elegant cards with word counts and a reflective, journal-like feel.',
+  },
+  {
+    id: 'build-odyssey-planner',
+    title: 'Build an Odyssey Plan Planner',
+    description: 'Create a three-path life planning tool based on the Designing Your Life framework.',
+    category: 'components',
+    difficulty: 'intermediate',
+    relatedModules: [4],
+    tags: ['Odyssey Plans', 'Life Design', 'Planning'],
+    promptText: `Build an "Odyssey Plans" React component for designing three alternative 5-year life paths. Include:
+
+1. Three plan cards, each with:
+   - A title and subtitle (e.g., "Life One — Your current path")
+   - A description prompt:
+     * Life One: "What does your life look like if you keep doing what you're doing?"
+     * Life Two: "What would you do if your current career disappeared tomorrow?"
+     * Life Three: "What would you do if money and image didn't matter at all?"
+   - A large textarea for the user to write their plan
+   - Four rating gauges (sliders 1-5) for: Resources, Likability, Confidence, Coherence
+   - Each gauge should have a label and show the current value
+
+2. A comparison summary at the bottom showing the three plans side by side with their gauge scores in a simple bar chart or table.
+
+3. Use distinct accent colors for each plan:
+   - Life One: blue
+   - Life Two: purple
+   - Life Three: rose/pink
+
+4. Style with Tailwind, dark theme (slate-950). Use icons (Rocket for Life One, Lightbulb for Life Two, Heart for Life Three).
+
+Make it responsive — stacked on mobile, side-by-side comparison on desktop.`,
+    expectedOutput: 'A three-path planning tool where users describe each life path, rate it on 4 dimensions, and see a side-by-side comparison — styled with color-coded cards and rating gauges.',
+  },
+  {
+    id: 'build-habit-tracker-full',
+    title: 'Build a Habit Tracker with the Four Laws',
+    description: 'Create a habit tracking tool based on Atomic Habits\' Four Laws of Behavior Change.',
+    category: 'components',
+    difficulty: 'intermediate',
+    relatedModules: [5, 7],
+    tags: ['Habits', 'Atomic Habits', 'Tracker', 'Streaks'],
+    promptText: `Build a "Habit Tracker" React component using the Four Laws of Behavior Change from Atomic Habits. Include:
+
+1. A "Four Laws" overview section with 4 cards in a 2x2 grid:
+   - 👁️ Law 1: "Make It Obvious" — Cue design & environment
+   - 💎 Law 2: "Make It Attractive" — Temptation bundling & motivation
+   - 🎯 Law 3: "Make It Easy" — Two-minute rule & friction reduction
+   - 🏆 Law 4: "Make It Satisfying" — Tracking & rewards
+
+2. A habit list section with:
+   - An "Add Habit" button that opens a form with: habit name, which law it targets, and a color picker
+   - Each habit shows as a row with: name, a streak count, and 7 toggle buttons (one per day of the week)
+   - Clicking a day toggles it complete/incomplete
+   - Show the current streak (consecutive days completed)
+
+3. A stats summary showing: total habits, longest streak, today's completion rate as a percentage.
+
+4. Store all data in React state. Style with Tailwind, dark theme (slate-950). Use emerald for completed days, white/10 for incomplete.
+
+Make it mobile-friendly with a single-column layout on small screens.`,
+    expectedOutput: 'A habit tracking app with the Four Laws reference cards, an add-habit form, daily check-off grid with streak counting, and a stats summary — all in a dark themed UI.',
+  },
 ];
 
 // ─── PROMPT PATTERNS ────────────────────────────────────────────────────────
