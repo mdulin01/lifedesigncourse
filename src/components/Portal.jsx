@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Menu, ArrowLeft, Home, BookOpen, GraduationCap, ClipboardList, Users } from 'lucide-react';
-import { useBTS } from '../contexts/BTSContext';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import CheckIn from './CheckIn';
@@ -21,8 +20,6 @@ export default function Portal({ user, onSignOut }) {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeModule, setActiveModule] = useState(null); // tracks current module for header
-  const { showBTS, toggleBTS } = useBTS();
-
   const handleNavigate = (section) => {
     setActiveSection(section);
     if (section !== 'course') setActiveModule(null);
@@ -63,8 +60,6 @@ export default function Portal({ user, onSignOut }) {
         onClose={() => setSidebarOpen(false)}
         user={user}
         onSignOut={onSignOut}
-        showBTS={showBTS}
-        toggleBTS={toggleBTS}
       />
 
       {/* Main content area — offset by sidebar width on desktop */}

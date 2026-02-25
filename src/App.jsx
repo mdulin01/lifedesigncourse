@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { auth, googleProvider } from './firebase-config';
 import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { allowedEmails } from './constants';
-import { BTSProvider } from './contexts/BTSContext';
 import CourseLanding from './components/CourseLanding';
 import Portal from './components/Portal';
 
@@ -58,7 +57,6 @@ export default function App() {
   }
 
   return (
-    <BTSProvider>
       <Routes>
         <Route path="/portal/*" element={
           user ? (
@@ -110,6 +108,5 @@ export default function App() {
           <CourseLanding onSignIn={handleSignIn} user={user} onSignOut={handleSignOut} />
         } />
       </Routes>
-    </BTSProvider>
   );
 }

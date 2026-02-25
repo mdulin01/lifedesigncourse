@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, BookOpen, Compass, BarChart3, Target, Zap, Brain, Sparkles, Eye, EyeOff, LogIn, LogOut, ChevronRight } from 'lucide-react';
-import { courseModules, btsEntries } from '../constants';
-import { useBTS } from '../contexts/BTSContext';
-import BTSCard from './BTSCard';
+import { ArrowRight, BookOpen, Compass, BarChart3, Target, Zap, Brain, Sparkles, LogIn, LogOut, ChevronRight } from 'lucide-react';
+import { courseModules } from '../constants';
 
 const HERO_IMAGES = [
   'https://nam.edu/wp-content/uploads/2024/10/thumb-2009_NAS_Dome_188-1024x683.jpg',
@@ -14,7 +12,6 @@ const HERO_IMAGES = [
 
 export default function CourseLanding({ onSignIn, user, onSignOut }) {
   const navigate = useNavigate();
-  const { showBTS, toggleBTS } = useBTS();
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -29,19 +26,6 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
 
   return (
     <div className="min-h-screen bg-slate-950 relative">
-      {/* BTS Toggle */}
-      <button
-        onClick={toggleBTS}
-        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium shadow-2xl transition-all active:scale-95 ${
-          showBTS
-            ? 'bg-amber-500 text-black hover:bg-amber-400'
-            : 'bg-slate-800 text-white/70 hover:text-white border border-white/20 hover:border-amber-500/50'
-        }`}
-      >
-        {showBTS ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-        {showBTS ? 'Hide' : 'Behind the Scenes'}
-      </button>
-
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -118,11 +102,6 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
         </div>
       </section>
 
-      {/* BTS Card for hero */}
-      {btsEntries.filter(e => e.section === 'hero').map(entry => (
-        <BTSCard key={entry.id} {...entry} />
-      ))}
-
       {/* What You'll Build */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
@@ -156,11 +135,6 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">Course Modules</h2>
           <p className="text-white/50 max-w-xl mx-auto">Eight hands-on modules that take you from setting up your tools to designing and iterating on your life.</p>
         </div>
-
-        {/* BTS Card for modules */}
-        {btsEntries.filter(e => e.section === 'modules').map(entry => (
-          <BTSCard key={entry.id} {...entry} />
-        ))}
 
         <div className="space-y-4">
           {courseModules.map((mod) => (
@@ -271,11 +245,6 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
           </p>
         </div>
       </section>
-
-      {/* BTS Card for BTS system */}
-      {btsEntries.filter(e => e.section === 'bts').map(entry => (
-        <BTSCard key={entry.id} {...entry} />
-      ))}
 
       {/* CTA Section */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">

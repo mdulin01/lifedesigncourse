@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Home, BookOpen, GraduationCap, ClipboardList, FolderOpen, User, Users,
-  LogOut, X, Eye, EyeOff,
+  LogOut, X,
 } from 'lucide-react';
 
 const navSections = [
@@ -24,8 +24,6 @@ export default function Sidebar({
   onClose,
   user,
   onSignOut,
-  showBTS,
-  toggleBTS,
 }) {
   const renderNavItem = (section, disabled = false) => {
     const Icon = section.icon;
@@ -78,21 +76,8 @@ export default function Sidebar({
         </div>
       </nav>
 
-      {/* Footer: user + BTS + logout */}
+      {/* Footer: user + logout */}
       <div className="px-3 py-4 border-t border-white/5 space-y-3">
-        {/* BTS toggle */}
-        <button
-          onClick={toggleBTS}
-          className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition ${
-            showBTS
-              ? 'bg-amber-500/15 text-amber-300 border border-amber-500/25'
-              : 'text-white/25 hover:text-white/40 hover:bg-white/5'
-          }`}
-        >
-          {showBTS ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-          Behind the Scenes
-        </button>
-
         {/* User row */}
         <div className="flex items-center gap-2.5 px-1">
           <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-xs font-bold text-emerald-400 shrink-0">
