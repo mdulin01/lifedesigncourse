@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { Menu, ArrowLeft, Home, BookOpen, PenLine, GraduationCap, ClipboardList, Users } from 'lucide-react';
+import { Menu, ArrowLeft, Home, BookOpen, GraduationCap, ClipboardList, Users } from 'lucide-react';
 import { useBTS } from '../contexts/BTSContext';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import CheckIn from './CheckIn';
-import Journal from './Journal';
 import CourseContent from './CourseContent';
 import Workbook from './Workbook';
 import Resources from './Resources';
 import MyTeam from './MyTeam';
-import PromptRecipeLibrary from './PromptRecipeLibrary';
-import StackStarterKit from './StackStarterKit';
 
 const mobileNav = [
   { id: 'dashboard', label: 'Home', icon: Home },
   { id: 'checkin', label: 'Check In', icon: BookOpen },
-  { id: 'journal', label: 'Journal', icon: PenLine },
   { id: 'course', label: 'Course', icon: GraduationCap },
   { id: 'workbook', label: 'Workbook', icon: ClipboardList },
   { id: 'team', label: 'Team', icon: Users },
@@ -36,12 +32,9 @@ export default function Portal({ user, onSignOut }) {
     switch (activeSection) {
       case 'dashboard': return <Dashboard user={user} onNavigate={handleNavigate} />;
       case 'checkin': return <CheckIn user={user} />;
-      case 'journal': return <Journal user={user} />;
       case 'course': return <CourseContent user={user} activeModule={activeModule} onModuleChange={setActiveModule} />;
       case 'workbook': return <Workbook user={user} />;
       case 'resources': return <Resources />;
-      case 'prompts': return <PromptRecipeLibrary />;
-      case 'stack': return <StackStarterKit />;
       case 'team': return <MyTeam user={user} />;
       default: return <Dashboard user={user} onNavigate={handleNavigate} />;
     }
@@ -50,12 +43,9 @@ export default function Portal({ user, onSignOut }) {
   const sectionLabels = {
     dashboard: 'Home',
     checkin: 'Check In',
-    journal: 'Journal',
     course: 'Course',
     workbook: 'Workbook',
     resources: 'Resources',
-    prompts: 'Prompt Library',
-    stack: 'Stack Starter',
     profile: 'Profile',
     team: 'My Team',
   };

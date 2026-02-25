@@ -1,18 +1,15 @@
 import React from 'react';
 import {
   Home, BookOpen, GraduationCap, ClipboardList, FolderOpen, User, Users,
-  PenLine, LogOut, X, Eye, EyeOff, Sparkles, Zap,
+  LogOut, X, Eye, EyeOff,
 } from 'lucide-react';
 
 const navSections = [
   { id: 'dashboard', label: 'Home', icon: Home },
   { id: 'checkin', label: 'Check In', icon: BookOpen },
-  { id: 'journal', label: 'Journal', icon: PenLine },
   { id: 'course', label: 'Course', icon: GraduationCap },
   { id: 'workbook', label: 'Workbook', icon: ClipboardList },
   { id: 'resources', label: 'Resources', icon: FolderOpen },
-  { id: 'prompts', label: 'Prompt Library', icon: Sparkles },
-  { id: 'stack', label: 'Stack Starter', icon: Zap },
 ];
 
 const bottomSections = [

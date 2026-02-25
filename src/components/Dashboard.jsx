@@ -144,19 +144,6 @@ export default function Dashboard({ user, onNavigate }) {
           <ChevronRight className="w-4 h-4 text-white/20" />
         </button>
 
-        <button
-          onClick={() => onNavigate?.('journal')}
-          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
-        >
-          <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
-            <BookOpen className="w-5 h-5 text-amber-400" />
-          </div>
-          <div className="flex-1">
-            <span className="text-sm font-semibold text-white">Journal</span>
-            <p className="text-xs text-white/30 mt-0.5">Reflect on your progress</p>
-          </div>
-          <ChevronRight className="w-4 h-4 text-white/20" />
-        </button>
       </div>
     </div>
   );

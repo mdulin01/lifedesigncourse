@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { FolderOpen, ChevronRight, Compass, Map, BarChart3, LayoutDashboard, AlertCircle } from 'lucide-react';
+import { FolderOpen, ChevronRight, Compass, Map, BarChart3, LayoutDashboard, AlertCircle, Sparkles, Zap, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import ValuesEditor from './ValuesEditor';
 import OdysseyPlanner from './OdysseyPlanner';
 import HabitTracker from './HabitTracker';
 import ErrorRecoveryGuide from './ErrorRecoveryGuide';
+import PromptRecipeLibrary from './PromptRecipeLibrary';
+import StackStarterKit from './StackStarterKit';
 
 const samplePages = [
   { id: 'hwpl', label: 'HWPL Dashboard', description: 'Health, Work, Play, Love balance gauges and habit streaks', icon: LayoutDashboard, color: 'blue' },
@@ -11,7 +13,71 @@ const samplePages = [
   { id: 'odyssey', label: 'Odyssey Planner', description: 'Three alternative 5-year life plans', icon: Map, color: 'purple' },
   { id: 'habits', label: 'Habit Tracker', description: 'Daily habit tracking with streaks and analytics', icon: BarChart3, color: 'amber' },
   { id: 'errors', label: 'Error Recovery Guide', description: 'Common errors and how to fix them with AI', icon: AlertCircle, color: 'red' },
+  { id: 'prompts', label: 'Prompt Recipe Library', description: 'Copy-paste prompts for common tasks', icon: Sparkles, color: 'emerald' },
+  { id: 'stack', label: 'Stack Starter Kit', description: 'The exact tech stack used to build this site', icon: Zap, color: 'amber' },
 ];
+
+const references = [
+  {
+    category: 'Books & Frameworks',
+    color: 'purple',
+    links: [
+      { label: 'Designing Your Life — Burnett & Evans', url: 'https://designingyour.life' },
+      { label: 'Stanford Life Design Lab', url: 'https://lifedesignlab.stanford.edu' },
+      { label: 'Atomic Habits — Identity-Based Habits', url: 'https://jamesclear.com/identity-based-habits' },
+      { label: 'Atomic Habits — The Four Laws', url: 'https://jamesclear.com/three-steps-habit-change' },
+      { label: 'Atomic Habits — Implementation Intentions', url: 'https://jamesclear.com/implementation-intentions' },
+      { label: 'Atomic Habits — The Two-Minute Rule', url: 'https://jamesclear.com/how-to-stop-procrastinating' },
+      { label: 'Atomic Habits — Habit Stacking', url: 'https://jamesclear.com/habit-stacking' },
+      { label: 'Atomic Habits — Habits Scorecard', url: 'https://jamesclear.com/habits-scorecard' },
+      { label: 'Atomic Habits — Environment Design', url: 'https://jamesclear.com/choice-architecture' },
+      { label: 'Atomic Habits — Habit Tracking', url: 'https://jamesclear.com/habit-tracker' },
+    ],
+  },
+  {
+    category: 'Tools & Values',
+    color: 'emerald',
+    links: [
+      { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
+      { label: 'The 5 Whys Technique', url: 'https://en.wikipedia.org/wiki/Five_whys' },
+      { label: 'Brené Brown — List of Values', url: 'https://brenebrown.com/resources/dare-to-lead-list-of-values/' },
+      { label: 'Personal Values Card Sort (PDF)', url: 'https://motivationalinterviewing.org/sites/default/files/valuescardsort_0.pdf' },
+    ],
+  },
+  {
+    category: 'Dev & Design',
+    color: 'blue',
+    links: [
+      { label: 'Node.js Download', url: 'https://nodejs.org' },
+      { label: 'Vite — Getting Started', url: 'https://vitejs.dev/guide/' },
+      { label: 'Tailwind CSS — Docs', url: 'https://tailwindcss.com/docs' },
+      { label: 'React Docs — Your First Component', url: 'https://react.dev/learn/your-first-component' },
+      { label: 'Recharts — React Chart Library', url: 'https://recharts.org' },
+      { label: 'GitHub — Create Account', url: 'https://github.com/signup' },
+      { label: 'Vercel — Deploy', url: 'https://vercel.com/new' },
+      { label: 'Vercel — Custom Domains', url: 'https://vercel.com/docs/projects/domains' },
+      { label: 'PWA Guide — web.dev', url: 'https://web.dev/progressive-web-apps/' },
+    ],
+  },
+  {
+    category: 'Design & Content',
+    color: 'amber',
+    links: [
+      { label: 'Personal Site Inspiration — One Page Love', url: 'https://onepagelove.com/inspiration/personal' },
+      { label: 'Coolors — Color Palette Generator', url: 'https://coolors.co' },
+      { label: 'Google Fonts', url: 'https://fonts.google.com' },
+      { label: 'Unsplash — Free Photos', url: 'https://unsplash.com' },
+      { label: 'How to Write a Great Bio', url: 'https://www.grammarly.com/blog/professional-bio/' },
+    ],
+  },
+];
+
+const refColorMap = {
+  purple: 'text-purple-400',
+  emerald: 'text-emerald-400',
+  blue: 'text-blue-400',
+  amber: 'text-amber-400',
+};
 
 const colorMap = {
   blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', iconBg: 'bg-blue-500/15' },
@@ -43,6 +109,8 @@ export default function Resources() {
         {activePage === 'odyssey' && <OdysseyPlanner />}
         {activePage === 'habits' && <HabitTracker />}
         {activePage === 'errors' && <ErrorRecoveryGuide onBack={() => setActivePage(null)} />}
+        {activePage === 'prompts' && <PromptRecipeLibrary />}
+        {activePage === 'stack' && <StackStarterKit />}
       </div>
     );
   }
@@ -73,6 +141,61 @@ export default function Resources() {
               </div>
               <ChevronRight className="w-4 h-4 text-white/20 shrink-0" />
             </button>
+          );
+        })}
+      </div>
+
+      {/* References */}
+      <ReferencesSection />
+    </div>
+  );
+}
+
+function ReferencesSection() {
+  const [expandedCategory, setExpandedCategory] = useState(null);
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <h2 className="text-lg font-bold text-white">References</h2>
+        <p className="text-white/40 text-sm mt-1">External links referenced throughout the course</p>
+      </div>
+      <div className="space-y-2">
+        {references.map((group) => {
+          const isExpanded = expandedCategory === group.category;
+          const colors = refColorMap[group.color];
+          return (
+            <div key={group.category} className="bg-white/[0.03] border border-white/10 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setExpandedCategory(isExpanded ? null : group.category)}
+                className="w-full flex items-center gap-3 p-4 text-left hover:bg-white/[0.02] transition"
+              >
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-semibold text-white">{group.category}</span>
+                  <span className="text-xs text-white/20 ml-2">{group.links.length} links</span>
+                </div>
+                {isExpanded
+                  ? <ChevronUp className="w-4 h-4 text-white/20 shrink-0" />
+                  : <ChevronDown className="w-4 h-4 text-white/20 shrink-0" />
+                }
+              </button>
+              {isExpanded && (
+                <div className="px-4 pb-4 space-y-1.5 border-t border-white/5 pt-3">
+                  {group.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/[0.04] transition text-sm ${colors}`}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0 opacity-50" />
+                      <span>{link.label}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
