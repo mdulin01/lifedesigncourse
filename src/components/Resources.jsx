@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { FolderOpen, ChevronRight, Compass, Map, BarChart3, LayoutDashboard } from 'lucide-react';
+import { FolderOpen, ChevronRight, Compass, Map, BarChart3, LayoutDashboard, AlertCircle } from 'lucide-react';
 import ValuesEditor from './ValuesEditor';
 import OdysseyPlanner from './OdysseyPlanner';
 import HabitTracker from './HabitTracker';
+import ErrorRecoveryGuide from './ErrorRecoveryGuide';
 
 const samplePages = [
   { id: 'hwpl', label: 'HWPL Dashboard', description: 'Health, Work, Play, Love balance gauges and habit streaks', icon: LayoutDashboard, color: 'blue' },
   { id: 'values', label: 'Values Editor', description: 'Interactive values identification and ranking tool', icon: Compass, color: 'emerald' },
   { id: 'odyssey', label: 'Odyssey Planner', description: 'Three alternative 5-year life plans', icon: Map, color: 'purple' },
   { id: 'habits', label: 'Habit Tracker', description: 'Daily habit tracking with streaks and analytics', icon: BarChart3, color: 'amber' },
+  { id: 'errors', label: 'Error Recovery Guide', description: 'Common errors and how to fix them with AI', icon: AlertCircle, color: 'red' },
 ];
 
 const colorMap = {
@@ -16,6 +18,7 @@ const colorMap = {
   emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', iconBg: 'bg-emerald-500/15' },
   purple: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400', iconBg: 'bg-purple-500/15' },
   amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', iconBg: 'bg-amber-500/15' },
+  red: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400', iconBg: 'bg-red-500/15' },
 };
 
 export default function Resources() {
@@ -39,6 +42,7 @@ export default function Resources() {
         {activePage === 'values' && <ValuesEditor />}
         {activePage === 'odyssey' && <OdysseyPlanner />}
         {activePage === 'habits' && <HabitTracker />}
+        {activePage === 'errors' && <ErrorRecoveryGuide onBack={() => setActivePage(null)} />}
       </div>
     );
   }

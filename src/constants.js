@@ -536,10 +536,11 @@ export const moduleProjects = {
       artifact: 'A working energy tracker on your site where you can log activities, rate energy/engagement, and see patterns.',
       details: 'Your energy audit revealed what fuels and drains you. Now build a tool on your personal site that lets you keep tracking. Prompt AI to create a component where you can log an activity, rate your energy (-2 to +2) and engagement (low/med/high), and see your history. Over time, this becomes your personal energy database — far more useful than a one-time audit.',
       tips: [
+        '📋 PROMPT LEVEL: Starter with Blanks — Fill in the [BRACKETS] to make it yours.',
         'Copy your Energy Audit findings from the Workbook and share them with Claude as context for the design.',
-        'Start with: "Build a React component with a form to log activities with energy ratings (-2 to +2) and engagement (low/med/high). Store entries in localStorage and show a scrollable history list."',
-        'Ask Claude to color-code entries: green for high-energy, red for drains, yellow for neutral.',
-        'Bonus: ask for a simple chart that shows your energy trend over the last 7 days.',
+        'PROMPT STARTER: "Build a React component with a form to log [YOUR ACTIVITY TYPES] with energy ratings from [YOUR SCALE, e.g. -2 to +2] and engagement levels [YOUR LEVELS, e.g. low/med/high]. Store entries in [localStorage or Firestore] and show a [scrollable list / card grid / table] of history."',
+        'Try adding: "Color-code entries based on [YOUR CATEGORIES] so I can spot patterns at a glance."',
+        'Stretch goal — add to your prompt: "Include a [line chart / bar chart] showing my energy trend over the last [7 days / 2 weeks]."',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -685,10 +686,11 @@ export const moduleProjects = {
       artifact: 'A working Odyssey Plans page on your site with side-by-side plan views and dimension scores.',
       details: 'You\'ve created three life plans with ratings across four dimensions. Now build a visualizer on your personal site that brings them to life. Prompt AI to create a component that shows all three plans side by side with radar charts or bar charts for Resources, Likability, Confidence, and Coherence. Include your hybrid Plan 4. This becomes a living document you update as your thinking evolves.',
       tips: [
+        '📋 PROMPT LEVEL: Starter with Blanks — Fill in the [BRACKETS] to make it yours.',
         'Copy all three plan descriptions and ratings from your Workbook and paste them into Claude.',
-        'Try: "Create a React component that shows 3 Odyssey Plans side by side. Each plan has a title, description, and 4 scores (1-10). Show the scores as a radar chart or grouped bar chart. Use Recharts for the charts."',
-        'Ask Claude to make the plans editable — so you can update descriptions and re-score as your thinking changes.',
-        'Add your hybrid Plan 4 and highlight which elements came from which original plan.',
+        'PROMPT STARTER: "Create a React component that shows [NUMBER] Odyssey Plans in a [side-by-side / tabbed / stacked] layout. Each plan has a title, description, and [YOUR SCORING DIMENSIONS] rated 1-10. Show scores as a [radar chart / bar chart / progress bars] using [Recharts / plain Tailwind]. Style with [YOUR THEME]."',
+        'Try adding: "Make the plans [editable / read-only] so I can [update descriptions / re-score] as my thinking changes."',
+        'Stretch goal — add: "Include a [Plan 4 / hybrid plan] section that highlights which elements came from which original plan."',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -832,10 +834,10 @@ export const moduleProjects = {
       artifact: 'A working habit tracker on your site with checkboxes, streak counters, and the "never miss twice" alert.',
       details: 'Your identity statements and Four Laws audit defined the habits you want. Now build the engine that runs them. Prompt AI to create a daily habit checklist on your personal site — each habit gets a checkbox, a streak counter, and a visual indicator. Add a "never miss twice" alert that flags any habit where you\'ve missed one day. This is the tool you\'ll check every morning.',
       tips: [
-        'Copy your habit list, two-minute versions, and reward system from the Workbook.',
-        'Try: "Build a React habit tracker component. I have these 5 habits [list them]. Each needs a daily checkbox, a streak counter, and a \'never miss twice\' warning if I missed yesterday. Store data in localStorage."',
-        'Ask Claude to add your habit stacks as a morning/evening view so you see the chain, not just individual habits.',
-        'Color-code streaks: green for 7+, gold for 30+, red flash when you\'re at risk of missing twice.',
+        '🎯 PROMPT LEVEL: Goal Only — You write the prompt. Use what you\'ve learned from the Prompt Patterns in the Prompt Library.',
+        'YOUR GOAL: Build a daily habit checklist on your site with checkboxes, streak counters, and a "never miss twice" alert. It should display your actual habits from this module.',
+        'HINTS: Copy your habit list and two-minute versions from the Workbook. Think about: What data does each habit need? How should streaks be calculated? What storage will you use? What happens visually when a streak is at risk?',
+        'Check the Prompt Library\'s "Give Context" and "Describe Layout" patterns before writing your prompt.',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -952,10 +954,10 @@ export const moduleProjects = {
       artifact: 'A working HWPL dashboard on your site with gauges, score history, and trend visualization.',
       details: 'Turn your HWPL assessment into a real dashboard on your personal site. Prompt AI to create four visual gauges (one per area), the ability to re-score yourself, and a history view that shows how your scores change over time. This is your early warning system — when any area drops, you\'ll see it immediately instead of waiting until you feel it.',
       tips: [
-        'Copy your HWPL scores and analysis from the Workbook to give Claude context.',
-        'Try: "Build a React HWPL Dashboard with 4 circular gauges for Health, Work, Play, Love (each 1-10). Include a button to log new scores with a date. Show a line chart of score history over time using Recharts. Store data in localStorage."',
-        'Ask Claude to color the gauges: red below 4, yellow 4-6, green 7+.',
-        'Add your rebalance plan as a pinned note on whichever gauge scored lowest.',
+        '🎯 PROMPT LEVEL: Goal Only — You write the entire prompt. Refer to the Prompt Library for patterns and the Stack Starter Kit for tech choices.',
+        'YOUR GOAL: Build an interactive HWPL dashboard with visual gauges for Health, Work, Play, and Love (each 1-10). Users should be able to log new scores over time and see trends.',
+        'HINTS: Think about visualization (gauges, bars, charts?), data persistence (localStorage vs Firestore), color coding (what thresholds?), and history (how far back?). Copy your HWPL scores from the Workbook as starting data.',
+        'Challenge: Can you make the dashboard show which area needs the most attention right now?',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -1099,10 +1101,10 @@ export const moduleProjects = {
       artifact: 'A working weekly review page on your site that shows habit streaks, HWPL snapshot, energy trends, and a journal prompt.',
       details: 'The weekly review is the habit that maintains all other habits. Build a review page on your personal site that shows everything in one place: this week\'s habit streaks, current HWPL scores, recent energy log patterns, and a journal prompt. This becomes your Sunday evening ritual — open one page, see your whole life at a glance, and plan the week ahead.',
       tips: [
-        'Copy your review template and schedule from the Workbook exercise.',
-        'Try: "Build a React Weekly Review page that shows: (1) habit streak summary from my tracker, (2) current HWPL gauge snapshot, (3) this week\'s energy log entries, (4) a journal text area for reflections, and (5) three questions: What went well? What didn\'t? What will I change?"',
-        'Ask Claude to pull data from the same localStorage your other components use, so everything stays connected.',
-        'Add a "Week of [date]" header and let it save weekly reviews so you can look back over time.',
+        '🚀 PROMPT LEVEL: Independent — No prompt provided. You\'re a vibe coder now. Design and build this yourself with AI.',
+        'YOUR GOAL: Build a weekly review page that pulls together data from your other tools (habit streaks, HWPL scores, energy logs) into a single view for your Sunday evening ritual.',
+        'Think about what makes a review page actually useful: What data do you want to see at a glance? What reflective questions should it ask? How does it connect to the components you\'ve already built? Should it save reviews for comparison over time?',
+        'You have all the skills: use the Prompt Patterns, check the Fork & Remix examples for inspiration, and refer to your Stack Starter Kit for technical decisions.',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -1222,10 +1224,10 @@ export const moduleProjects = {
       artifact: 'A complete personal life management web app with a "Today" screen, all your tools connected, and PWA install capability.',
       details: 'This is the capstone. Throughout Modules 2-7, you built individual components: a values compass, energy tracker, odyssey visualizer, habit engine, HWPL dashboard, and weekly review. Now you\'ll use AI to wire them all together with navigation, a "Today" home screen, and PWA (Progressive Web App) support so you can install it on your phone like a native app. The "Today" screen shows: today\'s habits to check off, your current HWPL snapshot, your active odyssey plan, and a quick journal entry. This is the app you open every morning.',
       tips: [
-        'Start by telling Claude about all the components you\'ve already built and ask it to create a navigation system that connects them.',
-        'The key prompt: "I have these React components: [list them]. Create a main App shell with tab navigation at the bottom (Today, Habits, Dashboard, Plans, Review). Add a PWA manifest and service worker so it can be installed as a phone app."',
-        'For the "Today" screen, ask Claude to pull today\'s habit checklist, show the HWPL gauges in mini form, display your top 3 values, and include a one-line journal input.',
-        'To make it a PWA: ask Claude to add a manifest.json with your app name and icon, and a basic service worker. Then deploy to Vercel. You\'ll be able to "Add to Home Screen" on your phone.',
+        '🚀 PROMPT LEVEL: Independent — This is your capstone. You design the entire app and write every prompt yourself.',
+        'YOUR GOAL: Wire all your components (values compass, energy tracker, odyssey visualizer, habit engine, HWPL dashboard, weekly review) into a single app with navigation, a "Today" home screen, and PWA support so it installs on your phone.',
+        'You\'ve built 6+ components across this course. Now think like an architect: What\'s the navigation structure? What belongs on the "Today" screen? How do the components share data? What makes this app worth opening every morning?',
+        'Deploy it to Vercel, add PWA support, and install it on your phone. Refer to the Stack Starter Kit and Prompt Library if you get stuck — but the design decisions are all yours.',
       ],
       resources: [
         { label: 'Claude — AI Assistant', url: 'https://claude.ai' },
@@ -1305,5 +1307,402 @@ export const btsEntries = [
     description: 'This very toggle system you\'re using right now was designed to let students see exactly how each piece was built — the prompts, screenshots, and tools used.',
     prompt: `"...some type of interface button that could switch between how the site looks in production and then show screenshots of the various tools and our example projects that they could create for themselves or the text input that I'm using with you to create web apps."`,
     tools: ['React Context', 'Component Composition'],
+  },
+];
+
+// ─── PROMPT RECIPE LIBRARY ──────────────────────────────────────────────────
+// Copy-paste-ready prompts organized by category, each showing input → output
+
+export const promptRecipes = [
+  {
+    id: 'scaffold-react-vite-tailwind',
+    title: 'Scaffold a React + Vite + Tailwind Project',
+    description: 'Generate a complete project from scratch with one prompt. This is the same stack used to build this course site.',
+    category: 'scaffold',
+    difficulty: 'beginner',
+    relatedModules: [1],
+    tags: ['React', 'Vite', 'Tailwind', 'Setup'],
+    promptText: `Create a new React project using Vite with Tailwind CSS. Set it up with:
+- React Router for navigation
+- A clean folder structure: src/components, src/pages, src/styles
+- Tailwind configured with a dark theme (slate-950 background, white text, emerald accents)
+- A basic App.jsx with a home route and a placeholder page
+- PostCSS configured for Tailwind
+
+Give me the terminal commands to create the project and all the file contents I need to paste.`,
+    expectedOutput: 'A running dev server at localhost:5173 with a dark-themed homepage, React Router configured, and Tailwind utility classes working.',
+  },
+  {
+    id: 'add-firebase-auth',
+    title: 'Add Firebase Authentication (Google Sign-In)',
+    description: 'Add Google OAuth login to your React app with a protected route pattern.',
+    category: 'firebase',
+    difficulty: 'beginner',
+    relatedModules: [1, 6],
+    tags: ['Firebase', 'Auth', 'Google OAuth'],
+    promptText: `Add Firebase Authentication with Google Sign-In to my React + Vite app. I need:
+1. A firebase-config.js file that initializes Firebase (I'll add my own API keys)
+2. A login page with a "Sign in with Google" button
+3. A protected route wrapper that redirects to login if not authenticated
+4. A user context that provides the current user to all components
+5. A sign-out button in the header
+
+Use the modular Firebase v9+ SDK (import from 'firebase/auth'). Style everything with Tailwind using a dark theme.`,
+    expectedOutput: 'A login page with Google sign-in button, automatic redirect to your app after login, and user info available throughout the app via React Context.',
+  },
+  {
+    id: 'create-recharts-dashboard',
+    title: 'Build a Data Dashboard with Recharts',
+    description: 'Create an interactive dashboard with bar charts, radar charts, and gauges.',
+    category: 'recharts',
+    difficulty: 'intermediate',
+    relatedModules: [4, 6],
+    tags: ['Recharts', 'Data Viz', 'Dashboard'],
+    promptText: `Build a React dashboard component using Recharts with a dark theme (slate-950 background). Include:
+1. A radar chart comparing scores across 4 categories (each rated 1-10)
+2. A bar chart showing weekly progress data
+3. A row of stat cards showing current values with +/- change indicators
+4. Make it responsive — single column on mobile, grid on desktop
+
+Here's my data:
+- Categories: Health (7), Work (5), Play (8), Love (6)
+- Weekly data: [{week: 'Mon', score: 6}, {week: 'Tue', score: 7}, ...]
+
+Use Tailwind for layout. Make the charts use emerald-500 as the primary color.`,
+    expectedOutput: 'A responsive dashboard with a radar chart, bar chart, and stat cards — all styled in a dark theme with emerald accents. Data updates when you change the values.',
+  },
+  {
+    id: 'deploy-to-vercel',
+    title: 'Deploy to Vercel from GitHub',
+    description: 'Push your project to GitHub and deploy it live with a custom domain.',
+    category: 'deploy',
+    difficulty: 'beginner',
+    relatedModules: [1],
+    tags: ['Vercel', 'GitHub', 'Deploy'],
+    promptText: `Walk me through deploying my React + Vite project to Vercel:
+1. How to create a GitHub repository and push my code
+2. How to connect it to Vercel for automatic deployments
+3. How to add a custom domain (I own mydomain.com)
+4. What environment variables I need to set in Vercel for Firebase
+
+I'm new to git. Give me the exact terminal commands in order, and explain what each one does.`,
+    expectedOutput: 'Your site live at your-project.vercel.app (or your custom domain), auto-deploying whenever you push to GitHub.',
+  },
+  {
+    id: 'add-firestore-crud',
+    title: 'Add Firestore Database (Save & Load Data)',
+    description: 'Store user data in Firestore with create, read, update, delete operations.',
+    category: 'firebase',
+    difficulty: 'intermediate',
+    relatedModules: [5, 6, 7],
+    tags: ['Firebase', 'Firestore', 'Database', 'CRUD'],
+    promptText: `Add Firestore to my React app to save and load user data. I need:
+1. A custom React hook called useFirestore that handles CRUD operations
+2. Functions: saveDocument(collection, id, data), getDocument(collection, id), updateDocument(collection, id, data), deleteDocument(collection, id)
+3. Real-time listener support using onSnapshot
+4. Data scoped to the logged-in user (use their UID as part of the document path)
+5. Firestore security rules that only allow users to read/write their own data
+
+I already have Firebase initialized in firebase-config.js with Auth working.`,
+    expectedOutput: 'A reusable hook that lets any component save/load data to Firestore, scoped to the current user. Data persists across sessions and devices.',
+  },
+  {
+    id: 'build-habit-tracker',
+    title: 'Build a Habit Tracker with Streaks',
+    description: 'Create a daily habit checklist with streak counting and localStorage persistence.',
+    category: 'components',
+    difficulty: 'intermediate',
+    relatedModules: [5, 7],
+    tags: ['Habits', 'localStorage', 'Tracker'],
+    promptText: `Build a React habit tracker component with these features:
+1. A list of habits I can check off daily (here are my habits: [LIST YOUR HABITS])
+2. Each habit shows its current streak (consecutive days completed)
+3. A "never miss twice" warning — if I missed yesterday, show an orange alert
+4. Streaks color-coded: green for 7+ days, gold for 30+ days
+5. Data saved in localStorage, keyed by date (YYYY-MM-DD format)
+6. A simple weekly grid view showing the last 7 days
+
+Style with Tailwind, dark theme (slate-950 bg, emerald accents). Make checkboxes satisfying to click.`,
+    expectedOutput: 'A daily habit checklist with visual streaks, color-coded progress, and persistent data across sessions.',
+  },
+  {
+    id: 'tailwind-responsive-layout',
+    title: 'Responsive Page Layout with Sidebar',
+    description: 'Build a responsive app shell with collapsible sidebar, header, and main content area.',
+    category: 'styling',
+    difficulty: 'beginner',
+    relatedModules: [1],
+    tags: ['Tailwind', 'Layout', 'Responsive', 'Sidebar'],
+    promptText: `Create a responsive app layout in React with Tailwind CSS:
+1. A fixed sidebar on the left (256px wide on desktop, hidden on mobile)
+2. A hamburger menu button that slides the sidebar in on mobile
+3. A top header bar with the app name and a user avatar on the right
+4. A scrollable main content area that fills the remaining space
+5. The sidebar has navigation links with icons (use Lucide React icons)
+6. Active link highlighted with an emerald accent
+
+Dark theme: sidebar bg-slate-900, main content bg-slate-950, borders border-white/10.`,
+    expectedOutput: 'A professional app shell that works on both desktop and mobile, with smooth sidebar transitions.',
+  },
+  {
+    id: 'add-pwa-features',
+    title: 'Make Your App a Progressive Web App (PWA)',
+    description: 'Add offline support, install prompt, and app-like behavior to your site.',
+    category: 'deploy',
+    difficulty: 'advanced',
+    relatedModules: [7, 8],
+    tags: ['PWA', 'Service Worker', 'Offline'],
+    promptText: `Convert my React + Vite app into a Progressive Web App (PWA):
+1. Add a manifest.json with app name, icons, theme color, and display: standalone
+2. Add a service worker that caches the app shell for offline use
+3. Add a Vite PWA plugin for automatic service worker generation
+4. Add an "Install App" prompt that appears for mobile users
+5. Make sure the app works offline after the first visit
+
+My app name is "[YOUR APP NAME]" and the primary color is emerald-500 (#10b981).`,
+    expectedOutput: 'Your app installable on phones and desktops, with offline support and an app-like experience.',
+  },
+];
+
+// ─── PROMPT PATTERNS ────────────────────────────────────────────────────────
+// Repeatable techniques for communicating with AI effectively
+
+export const promptPatterns = [
+  {
+    id: 'describe-layout',
+    title: 'Describe Layout in Words',
+    order: 1,
+    description: 'Instead of wireframes, describe your UI layout in plain English. AI is great at translating spatial descriptions into code.',
+    explanation: 'Most people think they need to draw something before coding it. With AI, your words ARE the wireframe. The more specific you are about placement, sizing, and hierarchy, the closer the first result will be to what you want.',
+    examplePrompt: 'Create a card component with a small icon in the top-left corner, a bold title below it, a one-line description in lighter text, and a green "Start" button aligned to the bottom-right. The card should have a dark background with a subtle border and rounded corners.',
+    whyItWorks: 'Spatial language (top-left, below, bottom-right) maps directly to CSS positioning. Color and size words (bold, lighter, subtle) map to Tailwind classes. You\'re basically speaking CSS in plain English.',
+  },
+  {
+    id: 'give-context',
+    title: 'Give Context About Your Existing Code',
+    order: 2,
+    description: 'Always tell the AI what you already have before asking for something new. Context prevents conflicting code.',
+    explanation: 'AI generates code in isolation unless you tell it otherwise. If you have a React app with Tailwind and Firebase, say so — otherwise it might generate vanilla JavaScript with inline styles. Copy-paste your existing component or describe your file structure.',
+    examplePrompt: 'I have a React + Vite + Tailwind app with Firebase Auth already set up. The user object is available via a useAuth() hook. I need to add a settings page where the user can update their display name and profile photo. Here\'s my current App.jsx routing: [paste code].',
+    whyItWorks: 'Context eliminates guessing. Instead of generating a standalone file, AI integrates with your existing patterns — same styling, same hooks, same routing convention. Less refactoring for you.',
+  },
+  {
+    id: 'iterate-results',
+    title: 'Iterate Instead of Starting Over',
+    order: 3,
+    description: 'When the result is close but not right, describe what to change — don\'t re-prompt from scratch.',
+    explanation: 'Your first prompt rarely produces a perfect result. That\'s normal. The power of AI coding is rapid iteration. Instead of rewriting your entire prompt, tell it what\'s wrong and what you want instead. This is faster and produces better results because the AI keeps context from the previous output.',
+    examplePrompt: 'The card looks good but make these changes:\n1. The title font is too small — make it text-xl instead of text-base\n2. Move the icon to the right side of the title, not above it\n3. The button should be full-width on mobile and auto-width on desktop\n4. Add a hover effect that slightly lifts the card (transform + shadow)',
+    whyItWorks: 'Specific change requests are faster to process than full rebuilds. You keep what works and fix what doesn\'t. This mirrors how real developers work — nobody rewrites everything for a font size change.',
+  },
+  {
+    id: 'debug-with-errors',
+    title: 'Debug by Sharing Error Messages',
+    order: 4,
+    description: 'When something breaks, paste the exact error message. AI can diagnose most errors instantly if it can see them.',
+    explanation: 'The #1 mistake beginners make is describing the error instead of showing it. "It doesn\'t work" tells AI nothing. "Uncaught TypeError: Cannot read properties of undefined (reading \'map\')" tells it exactly what\'s wrong. Always paste the full error from your browser console or terminal.',
+    examplePrompt: 'I\'m getting this error when I load my dashboard page:\n\nUncaught TypeError: Cannot read properties of undefined (reading \'map\')\n    at Dashboard (Dashboard.jsx:24)\n\nHere\'s my Dashboard component: [paste the component code]\n\nThe data comes from a Firestore query in useHabits() hook.',
+    whyItWorks: 'Error messages contain the file name, line number, and exact failure. Combined with your code, AI can pinpoint the bug in seconds. It\'s like giving a doctor your X-ray instead of saying "my chest hurts."',
+  },
+  {
+    id: 'ask-for-alternatives',
+    title: 'Ask for Alternatives',
+    order: 5,
+    description: 'When you\'re not sure what approach to take, ask AI to show you multiple options before committing.',
+    explanation: 'AI can generate three different implementations in the time it takes you to build one. Use this superpower. When you\'re not sure about a design, layout, or data structure, ask for options. Compare them, pick the best parts from each, and combine them.',
+    examplePrompt: 'Show me 3 different ways to display a user\'s habit streaks:\n1. A calendar heatmap (like GitHub contributions)\n2. A horizontal bar chart with streak lengths\n3. A simple list with flame emojis for active streaks\n\nUse the same data structure for all three so I can swap between them. Tailwind dark theme.',
+    whyItWorks: 'You see multiple design directions instantly, which is impossible when coding by hand. You also learn different approaches — each option teaches you something about React patterns and data visualization.',
+  },
+];
+
+// ─── STACK STARTER KIT ──────────────────────────────────────────────────────
+// The recommended tech stack with explanations and setup prompt
+
+export const stackStarterKit = {
+  overview: [
+    {
+      name: 'React',
+      icon: '⚛️',
+      color: 'cyan',
+      what: 'A JavaScript library for building user interfaces with reusable components.',
+      why: 'Components let you build once and reuse everywhere. AI generates React components extremely well because the pattern is consistent: props in, JSX out.',
+      tip: 'Think of components like LEGO blocks. Each one does one thing. Snap them together to build pages.',
+      learnUrl: 'https://react.dev',
+    },
+    {
+      name: 'Vite',
+      icon: '⚡',
+      color: 'yellow',
+      what: 'A fast build tool that runs your React app locally and bundles it for production.',
+      why: 'Instant hot reload — you see changes the moment you save a file. Zero configuration needed. It just works.',
+      tip: 'Run "npm run dev" and keep it running while you code. Changes appear instantly in your browser.',
+      learnUrl: 'https://vitejs.dev',
+    },
+    {
+      name: 'Tailwind CSS',
+      icon: '🎨',
+      color: 'emerald',
+      what: 'A utility-first CSS framework — style elements with class names instead of writing CSS files.',
+      why: 'AI loves Tailwind because every style is a single class name. "Make it bigger" = change text-sm to text-lg. No CSS files to manage.',
+      tip: 'Learn these 10 classes and you can style 80% of anything: flex, grid, p-4, m-2, rounded, bg-*, text-*, border, w-full, gap-*',
+      learnUrl: 'https://tailwindcss.com',
+    },
+    {
+      name: 'Firebase',
+      icon: '🔥',
+      color: 'orange',
+      what: 'Google\'s backend-as-a-service: database (Firestore), user login (Auth), and file storage — no server to manage.',
+      why: 'You get a full backend with zero server code. AI can set up Auth and Firestore in one prompt. Your data syncs across devices automatically.',
+      tip: 'Start with Auth + Firestore only. Add Storage later if you need file uploads. Keep your security rules strict from day one.',
+      learnUrl: 'https://firebase.google.com',
+    },
+  ],
+  setupPrompt: `Help me create a new React project with this exact stack:
+
+1. Scaffold with Vite: npm create vite@latest my-app -- --template react
+2. Add Tailwind CSS with PostCSS (follow the latest Tailwind + Vite setup)
+3. Add these dependencies: react-router-dom, firebase, lucide-react, recharts
+4. Create this folder structure:
+   src/components/ — React components
+   src/pages/ — Page-level components
+   src/hooks/ — Custom React hooks
+   src/contexts/ — React Context providers
+   src/services/ — Firebase config and API helpers
+5. Set up a dark theme in Tailwind config: slate-950 background, white text, emerald-500 as primary accent
+6. Create a basic App.jsx with React Router, a home page, and a placeholder component
+7. Create a firebase-config.js template (I'll add my own API keys)
+
+Give me every terminal command and file content I need to go from zero to a running dev server.`,
+  customizationTips: [
+    'Replace "my-app" with your actual project name in the scaffold command.',
+    'After the initial setup, tell Claude about your specific project: "This app is for [purpose]. The main features will be [list features]."',
+    'Don\'t install everything at once. Start with the scaffold, then add Firebase when you need login, Recharts when you need charts, etc.',
+    'Keep the dark theme — it\'s easier to read, and Tailwind\'s dark utilities are well-supported by AI.',
+    'If you want a different color accent, change emerald-500 to any Tailwind color (blue, purple, amber, rose, etc.).',
+  ],
+  templateRepo: 'https://github.com/mdulin01/ldc-starter-template',
+};
+
+// ─── FORK & REMIX EXAMPLES ──────────────────────────────────────────────────
+// Same component, different prompts → different results
+
+export const forkRemixExamples = [
+  {
+    id: 'habit-tracker-variations',
+    component: 'Habit Tracker',
+    relatedModule: 5,
+    description: 'Three students prompted Claude to build a habit tracker. Same feature, three different results — each shaped by how they described what they wanted.',
+    variations: [
+      {
+        name: 'Minimal Daily Checklist',
+        promptUsed: 'Build a simple habit tracker. Just a list of checkboxes for my 5 daily habits with the habit name next to each one. Save to localStorage. Dark theme, minimal styling.',
+        description: 'Clean, no-frills checklist. Opens fast, zero distractions. Just checkboxes and habit names on a dark background. Great if you want something you\'ll actually use every morning without fiddling.',
+        keyDifferences: 'No streaks, no charts, no colors. Pure function over form. Loads instantly.',
+      },
+      {
+        name: 'Visual Streak Dashboard',
+        promptUsed: 'Build a habit tracker with streak counting for each habit. Show streaks as colored bars — green for 7+ days, gold for 30+. Add a "never miss twice" warning with an orange flash if I missed yesterday. Include a weekly calendar grid showing the last 7 days. Dark theme with emerald accents.',
+        description: 'Motivational and visual. Each habit has a streak counter with color progression, a mini calendar showing your week, and urgency alerts when you\'re about to break a streak. Satisfying to check off.',
+        keyDifferences: 'Streak tracking, color-coded progress, "never miss twice" alerts, weekly grid view.',
+      },
+      {
+        name: 'Analytics-Heavy Tracker',
+        promptUsed: 'Build a habit tracker with data analysis. Track daily completion for each habit, calculate completion percentage over the last 30 days, show a Recharts line chart of my overall completion rate over time, and identify my "weakest habit" (lowest completion %). Include a monthly summary. Dark theme.',
+        description: 'Data-driven approach. Shows completion percentages, trend lines, and identifies weak spots. Great for people who want to see patterns and optimize their systems over time.',
+        keyDifferences: 'Recharts integration, 30-day analytics, completion percentages, weakest habit identification.',
+      },
+    ],
+  },
+  {
+    id: 'values-display-variations',
+    component: 'Values Compass',
+    relatedModule: 2,
+    description: 'Three different ways to visualize the same set of personal values — each prompt emphasizes a different aspect.',
+    variations: [
+      {
+        name: 'Ranked List with Definitions',
+        promptUsed: 'Display my top 5 values as a numbered list. Each value has a name and a one-sentence definition. Put the most important value at the top with a larger font. Dark theme, simple layout.',
+        description: 'Straightforward hierarchy. Your #1 value stands out visually, and each value has context through its definition. Easy to scan when making decisions.',
+        keyDifferences: 'Text-focused, hierarchical sizing, no charts or visuals.',
+      },
+      {
+        name: 'Radar Chart Compass',
+        promptUsed: 'Create a values compass using a Recharts radar chart. I have 5 values, each rated 1-10 on how well I\'m living them. Show the radar chart centered on the page with value names at each point. Below the chart, show each value with its score and a one-line reflection. Emerald theme.',
+        description: 'Visual "compass" that shows at a glance which values you\'re honoring and which have gaps. The radar shape creates an intuitive picture of your life balance.',
+        keyDifferences: 'Radar chart visualization, gap analysis, living-alignment scores.',
+      },
+      {
+        name: 'Decision Filter Cards',
+        promptUsed: 'Build a values decision tool. Show my 5 values as cards. When I\'m facing a decision, I type the decision into a text input, then each value card shows a prompt: "Does this decision align with [value name]?" with Yes/No buttons. At the end, show how many values align. Dark theme, card-based layout.',
+        description: 'Interactive tool that turns values from abstract concepts into a practical decision-making framework. Forces you to check each decision against what matters.',
+        keyDifferences: 'Interactive decision input, per-value alignment check, practical daily use.',
+      },
+    ],
+  },
+];
+
+// ─── ERROR RECOVERY WALKTHROUGHS ────────────────────────────────────────────
+// Common errors beginners hit and the exact prompts to fix them
+
+export const errorRecoveryWalkthroughs = [
+  {
+    id: 'blank-page',
+    title: 'Blank Page — Nothing Renders',
+    icon: '🔲',
+    description: 'Your app runs without terminal errors, but the browser shows a completely blank white (or dark) page.',
+    errorExample: 'Browser shows an empty page. No errors in terminal. Console may show: "Warning: ReactDOM.render is no longer supported in React 18" or nothing at all.',
+    rootCauses: [
+      'Component not exported correctly (missing "export default")',
+      'Root element ID doesn\'t match between index.html and main.jsx',
+      'React Router path doesn\'t match the current URL',
+      'Component returns null or undefined instead of JSX',
+    ],
+    fixPrompt: 'My React + Vite app shows a blank page. No errors in the terminal. Here\'s my:\n\n1. index.html: [paste the <body> section]\n2. main.jsx: [paste the full file]\n3. App.jsx: [paste the full file]\n\nWhat\'s causing the blank page?',
+    explanation: 'Blank pages are almost always a connection issue between your entry files. The chain is: index.html → main.jsx → App.jsx → your components. If any link breaks, nothing renders. Always paste ALL THREE files so AI can trace the chain.',
+  },
+  {
+    id: 'firebase-permission-denied',
+    title: 'Firebase Permission Denied',
+    icon: '🔒',
+    description: 'Firestore reads or writes fail with "Missing or insufficient permissions."',
+    errorExample: 'FirebaseError: Missing or insufficient permissions.\n    at new FirestoreError (firestore.js:424)\n    at fromRpcStatus (firestore.js:6543)',
+    rootCauses: [
+      'Firestore security rules are too restrictive (default rules block all access)',
+      'User is not authenticated when the read/write happens',
+      'Document path doesn\'t match the pattern in your rules',
+      'Rules reference a field that doesn\'t exist on the document',
+    ],
+    fixPrompt: 'I\'m getting "Missing or insufficient permissions" from Firestore. Here are my:\n\n1. Security rules (firestore.rules): [paste full rules]\n2. The code that triggers the error: [paste the function/hook]\n3. The user is logged in: [yes/no]\n\nWhat\'s wrong with my rules?',
+    explanation: 'Firebase security rules are the #1 blocker for beginners. The default rules block everything. Always share your rules file AND the code making the request — AI needs both to find the mismatch.',
+  },
+  {
+    id: 'tailwind-not-working',
+    title: 'Tailwind Classes Not Applying',
+    icon: '🎨',
+    description: 'You add Tailwind classes but they have no effect. Elements appear unstyled or use browser defaults.',
+    errorExample: 'Elements render with no styling. Adding "bg-emerald-500 text-white p-4 rounded" to a div shows a plain unstyled div.',
+    rootCauses: [
+      'Tailwind CSS not imported in main.jsx or index.css',
+      'tailwind.config.js content array doesn\'t include your component files',
+      'PostCSS not configured correctly',
+      'Using a class that doesn\'t exist in Tailwind (typo or custom class)',
+    ],
+    fixPrompt: 'My Tailwind classes aren\'t working in my React + Vite app. Nothing is styled. Here\'s my:\n\n1. tailwind.config.js: [paste full file]\n2. postcss.config.js: [paste full file]\n3. src/index.css or main CSS file: [paste full file]\n4. main.jsx where I import CSS: [paste the import line]\n\nWhat\'s missing?',
+    explanation: 'Tailwind needs three things to work: (1) the @tailwind directives in your CSS file, (2) that CSS file imported in main.jsx, and (3) the content array in tailwind.config.js pointing to your component files. If any one is missing, no classes apply.',
+  },
+  {
+    id: 'deploy-failed',
+    title: 'Vercel Deployment Failed',
+    icon: '🚀',
+    description: 'Your app works locally but Vercel shows a build error or deployment failure.',
+    errorExample: 'Vercel Build Error:\nsh: vite: command not found\n\nOR\n\nError: Cannot find module \'./components/Dashboard\'\n\nOR\n\n404 on page refresh (React Router)',
+    rootCauses: [
+      'Dependencies not in package.json (installed globally but not saved)',
+      'Case-sensitive file imports (works on Mac, fails on Linux build server)',
+      'Missing environment variables in Vercel settings',
+      'React Router needs a vercel.json rewrites config for client-side routing',
+    ],
+    fixPrompt: 'My Vercel deployment is failing. It works perfectly on localhost. Here\'s the:\n\n1. Build error from Vercel: [paste the error log]\n2. My package.json: [paste dependencies section]\n3. My vite.config.js: [paste full file]\n\nIf the issue is 404 on page refresh: I\'m using React Router and need client-side routing to work on Vercel.',
+    explanation: 'Vercel builds on Linux, which is case-sensitive (Dashboard.jsx ≠ dashboard.jsx). It also only has access to dependencies listed in package.json. For React Router, you need a vercel.json with {"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]} so all routes serve your app.',
   },
 ];

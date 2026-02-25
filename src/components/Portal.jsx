@@ -9,6 +9,8 @@ import CourseContent from './CourseContent';
 import Workbook from './Workbook';
 import Resources from './Resources';
 import MyTeam from './MyTeam';
+import PromptRecipeLibrary from './PromptRecipeLibrary';
+import StackStarterKit from './StackStarterKit';
 
 const mobileNav = [
   { id: 'dashboard', label: 'Home', icon: Home },
@@ -38,6 +40,8 @@ export default function Portal({ user, onSignOut }) {
       case 'course': return <CourseContent user={user} activeModule={activeModule} onModuleChange={setActiveModule} />;
       case 'workbook': return <Workbook user={user} />;
       case 'resources': return <Resources />;
+      case 'prompts': return <PromptRecipeLibrary />;
+      case 'stack': return <StackStarterKit />;
       case 'team': return <MyTeam user={user} />;
       default: return <Dashboard user={user} onNavigate={handleNavigate} />;
     }
@@ -50,6 +54,8 @@ export default function Portal({ user, onSignOut }) {
     course: 'Course',
     workbook: 'Workbook',
     resources: 'Resources',
+    prompts: 'Prompt Library',
+    stack: 'Stack Starter',
     profile: 'Profile',
     team: 'My Team',
   };
