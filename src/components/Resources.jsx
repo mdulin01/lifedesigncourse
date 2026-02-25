@@ -5,9 +5,9 @@ import PromptRecipeLibrary from './PromptRecipeLibrary';
 import StackStarterKit from './StackStarterKit';
 
 const samplePages = [
-  { id: 'errors', label: 'Error Recovery Guide', description: 'Common errors and how to fix them with AI', icon: AlertCircle, color: 'red' },
-  { id: 'prompts', label: 'Prompt Recipe Library', description: 'Copy-paste prompts for common tasks', icon: Sparkles, color: 'emerald' },
   { id: 'stack', label: 'Stack Starter Kit', description: 'The exact tech stack used to build this site', icon: Zap, color: 'amber' },
+  { id: 'prompts', label: 'Prompt Recipe Library', description: 'Copy-paste prompts for common tasks', icon: Sparkles, color: 'emerald' },
+  { id: 'errors', label: 'Error Recovery Guide', description: 'Common errors and how to fix them with AI', icon: AlertCircle, color: 'red' },
 ];
 
 const references = [
