@@ -24,12 +24,12 @@ const scaleQuestionMeta = {
 };
 
 const checkInQuestions = [
-  { id: 'energy', label: 'Energy Level', prompt: 'How\'s your energy this week?', type: 'scale', min: 1, max: 5, labels: ['Drained', 'Low', 'Okay', 'Good', 'On fire'] },
+  { id: 'energy', label: 'Energy Level', prompt: 'How\'s your energy today?', type: 'scale', min: 1, max: 5, labels: ['Drained', 'Low', 'Okay', 'Good', 'On fire'] },
   { id: 'momentum', label: 'Course Momentum', prompt: 'How engaged are you with the course material?', type: 'scale', min: 1, max: 5, labels: ['Stuck', 'Slow', 'Steady', 'Rolling', 'Flying'] },
   { id: 'clarity', label: 'Clarity', prompt: 'How clear are you on your direction right now?', type: 'scale', min: 1, max: 5, labels: ['Foggy', 'Hazy', 'Getting there', 'Clear', 'Crystal'] },
-  { id: 'highlight', label: 'Highlight', prompt: 'What\'s one thing that went well this week?', type: 'text' },
+  { id: 'highlight', label: 'Highlight', prompt: 'What\'s one thing that went well today?', type: 'text' },
   { id: 'challenge', label: 'Challenge', prompt: 'What\'s one thing you\'re struggling with?', type: 'text' },
-  { id: 'intention', label: 'Intention', prompt: 'What\'s your one focus for next week?', type: 'text' },
+  { id: 'intention', label: 'Intention', prompt: 'What\'s your one focus for tomorrow?', type: 'text' },
 ];
 
 function isQuestionComplete(q, responses) {
@@ -63,14 +63,13 @@ export default function CheckIn({ user }) {
     return unsub;
   }, [user?.uid]);
 
-  // Check if already checked in this week
+  // Check if already checked in today
   const now = new Date();
-  const weekStart = new Date(now);
-  weekStart.setDate(now.getDate() - now.getDay());
-  weekStart.setHours(0, 0, 0, 0);
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
   const alreadyCheckedIn = pastCheckIns.some(c => {
     const d = c.createdAt ? new Date(c.createdAt) : null;
-    return d && d >= weekStart;
+    return d && d >= todayStart;
   });
 
   const updateResponse = (id, value) => {
@@ -81,8 +80,8 @@ export default function CheckIn({ user }) {
     if (!user?.uid) return;
     setSubmitting(true);
     try {
-      const weekId = weekStart.toISOString().split('T')[0];
-      await setDoc(doc(db, 'checkins', user.uid, 'entries', weekId), {
+      const dayId = todayStart.toISOString().split('T')[0];
+      await setDoc(doc(db, 'checkins', user.uid, 'entries', dayId), {
         ...responses,
         createdAt: new Date().toISOString(),
         userEmail: user.email,
@@ -110,7 +109,7 @@ export default function CheckIn({ user }) {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Check In</h1>
-          <p className="text-white/40 text-sm mt-1">Take a few minutes to reflect on your week</p>
+          <p className="text-white/40 text-sm mt-1">Take a few minutes to reflect on your day</p>
         </div>
         {!alreadyCheckedIn && !submitted && (
           <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full">
@@ -129,8 +128,8 @@ export default function CheckIn({ user }) {
       {alreadyCheckedIn || submitted ? (
         <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6 text-center">
           <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-white mb-1">Checked in this week</h3>
-          <p className="text-sm text-white/40">Come back next week for your next check-in.</p>
+          <h3 className="text-base font-bold text-white mb-1">Checked in today</h3>
+          <p className="text-sm text-white/40">Come back tomorrow for your next check-in.</p>
         </div>
       ) : (
         <div className="space-y-4">
