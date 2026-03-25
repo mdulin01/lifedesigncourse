@@ -54,6 +54,14 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
+    // Survey responses — anyone can create (public survey), anyone can read (results dashboard)
+    // Write limited to create-only (no updates/deletes) to prevent tampering
+    match /surveyResponses/{docId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
+    }
+
     // Default deny
     match /{document=**} {
       allow read, write: if false;

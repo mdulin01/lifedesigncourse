@@ -3,6 +3,16 @@ export const allowedEmails = [
   'mdulin@gmail.com',
   'jdulin07@gmail.com',
   'adamjosephbritten@gmail.com',
+  // 2026 AI/DYL Training Cohort
+  'alewisgilbert.healthpolicy@gmail.com',
+  'ellenmarie.whelan@gmail.com',
+  'carrie.h.colla@dartmouth.edu',
+  'lumarcil@gmail.com',
+  'tonyamoore.healthpolicy@gmail.com',
+  'wendigosliner@gmail.com',
+  'mary.mazanec@comcast.net',
+  'carolepratt12@gmail.com',
+  'stephen.a.morales@gmail.com',
 ];
 
 // Course module definitions

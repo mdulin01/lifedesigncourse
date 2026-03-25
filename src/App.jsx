@@ -5,6 +5,8 @@ import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { allowedEmails } from './constants';
 import CourseLanding from './components/CourseLanding';
 import Portal from './components/Portal';
+import Survey from './components/Survey';
+import SurveyResults from './components/SurveyResults';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +60,8 @@ export default function App() {
 
   return (
       <Routes>
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/survey/results" element={<SurveyResults />} />
         <Route path="/portal/*" element={
           user ? (
             <Portal user={user} onSignOut={handleSignOut} />
