@@ -15,6 +15,7 @@ const participants = [
   { name: 'Carole Pratt', email: 'carolepratt12@gmail.com' },
   { name: 'Stephen Morales', email: 'stephen.a.morales@gmail.com' },
   { name: 'Mike Dulin', email: 'mdulin@gmail.com' },
+  { name: 'Kate Cerulli', email: 'catherine_cerulli@urmc.rochester.edu' },
 ];
 
 // April 9, 2026 at 8:00 AM EDT (UTC-4)
