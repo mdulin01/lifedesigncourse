@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Home, BookOpen, GraduationCap, ClipboardList, FolderOpen, User, Users,
-  LogOut, X,
+  LogOut, X, Settings,
 } from 'lucide-react';
 
 const navSections = [
@@ -17,6 +17,8 @@ const bottomSections = [
   { id: 'team', label: 'My Team', icon: Users },
 ];
 
+const INSTRUCTOR_EMAILS = ['mdulin@gmail.com', 'jdulin07@gmail.com', 'catherine_cerulli@urmc.rochester.edu'];
+
 export default function Sidebar({
   activeSection,
   onNavigate,
@@ -25,6 +27,7 @@ export default function Sidebar({
   user,
   onSignOut,
 }) {
+  const isInstructor = user && INSTRUCTOR_EMAILS.includes(user.email?.toLowerCase());
   const renderNavItem = (section, disabled = false) => {
     const Icon = section.icon;
     const isActive = activeSection === section.id;
@@ -73,6 +76,7 @@ export default function Sidebar({
         {/* Separator */}
         <div className="pt-3 mt-3 border-t border-white/5 space-y-1">
           {bottomSections.map((s) => renderNavItem(s))}
+          {isInstructor && renderNavItem({ id: 'instructor', label: 'Instructor', icon: Settings })}
         </div>
       </nav>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, ArrowLeft, Home, BookOpen, GraduationCap, ClipboardList, Users } from 'lucide-react';
+import { Menu, ArrowLeft, Home, BookOpen, GraduationCap, ClipboardList, Users, Settings } from 'lucide-react';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import CheckIn from './CheckIn';
@@ -7,6 +7,7 @@ import CourseContent from './CourseContent';
 import Workbook from './Workbook';
 import Resources from './Resources';
 import MyTeam from './MyTeam';
+import InstructorDashboard from './InstructorDashboard';
 
 const mobileNav = [
   { id: 'dashboard', label: 'Home', icon: Home },
@@ -33,6 +34,7 @@ export default function Portal({ user, onSignOut }) {
       case 'workbook': return <Workbook user={user} />;
       case 'resources': return <Resources />;
       case 'team': return <MyTeam user={user} />;
+      case 'instructor': return <InstructorDashboard user={user} />;
       default: return <Dashboard user={user} onNavigate={handleNavigate} />;
     }
   };
@@ -45,6 +47,7 @@ export default function Portal({ user, onSignOut }) {
     resources: 'Resources',
     profile: 'Profile',
     team: 'My Team',
+    instructor: 'Instructor',
   };
 
   // Desktop top bar for module view
