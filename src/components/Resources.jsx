@@ -15,8 +15,8 @@ const references = [
     category: 'Books & Frameworks',
     color: 'purple',
     links: [
-      { label: 'Designing Your Life — Burnett & Evans', url: 'https://designingyour.life' },
-      { label: 'Stanford Life Design Lab', url: 'https://lifedesignlab.stanford.edu' },
+      { label: 'Life Design Framework', url: 'https://designingyour.life' },
+      { label: 'Life Design Lab', url: 'https://lifedesignlab.stanford.edu' },
       { label: 'Atomic Habits — Identity-Based Habits', url: 'https://jamesclear.com/identity-based-habits' },
       { label: 'Atomic Habits — The Four Laws', url: 'https://jamesclear.com/three-steps-habit-change' },
       { label: 'Atomic Habits — Implementation Intentions', url: 'https://jamesclear.com/implementation-intentions' },

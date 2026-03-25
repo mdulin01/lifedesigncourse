@@ -5,7 +5,7 @@ import { useProgress } from '../hooks/useProgress';
 import ModuleProjects from './ModuleProjects';
 
 export default function CourseContent({ user, activeModule, onModuleChange }) {
-  const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
+  const frameworkLabels = { dyl: 'Life Design', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
   const { isModuleComplete } = useProgress(user);
 
   // If a module is selected, show its project steps

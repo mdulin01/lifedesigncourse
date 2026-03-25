@@ -22,7 +22,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
   }, []);
 
   const frameworkIcons = { dyl: '🧭', ah: '🔄', ai: '🤖', both: '🧪' };
-  const frameworkLabels = { dyl: 'Designing Your Life', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
+  const frameworkLabels = { dyl: 'Life Design', ah: 'Atomic Habits', ai: 'AI Tools', both: 'Combined' };
 
   return (
     <div className="min-h-screen bg-slate-950 relative">
@@ -84,8 +84,8 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
           </h1>
 
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            A hands-on course that combines the <strong className="text-white/80">Designing Your Life</strong> framework
-            with <strong className="text-white/80">Atomic Habits</strong> — and teaches you to build personal tools
+            A hands-on course that combines <strong className="text-white/80">life design</strong> frameworks
+            with <strong className="text-white/80">habit science</strong> — and teaches you to build personal tools
             using AI along the way.
           </p>
 
@@ -169,7 +169,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
       <section id="frameworks" className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">Two Frameworks, One System</h2>
-          <p className="text-white/50 max-w-xl mx-auto">Designing Your Life gives you direction. Atomic Habits gives you execution. Together, they create a complete system for intentional living.</p>
+          <p className="text-white/50 max-w-xl mx-auto">Life design gives you direction. Habit science gives you execution. Together, they create a complete system for intentional living.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -178,8 +178,8 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
             <div className="flex items-center gap-3 mb-4">
               <Compass className="w-8 h-8 text-emerald-400" />
               <div>
-                <h3 className="text-lg font-bold text-white">Designing Your Life</h3>
-                <p className="text-xs text-emerald-400/70">Burnett & Evans — Stanford d.school</p>
+                <h3 className="text-lg font-bold text-white">Life Design</h3>
+                <p className="text-xs text-emerald-400/70">Intentional living through design thinking</p>
               </div>
             </div>
             <p className="text-sm text-white/60 mb-4">
@@ -282,7 +282,7 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
             <span>Built with AI</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-white/20">
-            <span>Designing Your Life + Atomic Habits + AI Tools</span>
+            <span>Life Design + Habit Science + AI Tools</span>
           </div>
           <p className="text-[10px] text-white/10 mt-2">v1.0 · Feb 22, 2026 · Built By Mike Dulin, MD</p>
         </div>

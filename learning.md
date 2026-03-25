@@ -1,0 +1,4 @@
+- **2026-03-25 · lifedesigncourse** — Public (no-auth) pages like `/survey` need Firestore rules with `allow create: if true` for unauthenticated writes. Deploy rules via Firebase Console if CLI auth isn't available.
+- **2026-03-25 · lifedesigncourse** — Instructor-only sections: gate on email in both the component (for rendering) and Sidebar (for nav visibility). Use a shared `INSTRUCTOR_EMAILS` constant.
+- **2026-03-25 · lifedesigncourse** — For senior professional cohorts, reframe DYL exercises from foundational ("Why do you work?") to advanced ("How have your values evolved across career transitions?"). Same framework, elevated prompts.
+- **2026-03-25 · lifedesigncourse** — Participants should use individual free-tier accounts (Firebase Spark, Vercel free, GitHub free) rather than shared instructor accounts. Ownership, security, and post-course continuity.

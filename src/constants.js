@@ -3,7 +3,7 @@ export const allowedEmails = [
   'mdulin@gmail.com',
   'jdulin07@gmail.com',
   'adamjosephbritten@gmail.com',
-  // 2026 AI/DYL Training Cohort
+  // 2026 AI Life Design Training Cohort
   'alewisgilbert.healthpolicy@gmail.com',
   'ellenmarie.whelan@gmail.com',
   'carrie.h.colla@dartmouth.edu',
@@ -32,7 +32,7 @@ export const courseModules = [
   {
     id: 2,
     title: 'Values & Life Compass',
-    subtitle: 'Designing Your Life — Workview & Lifeview',
+    subtitle: 'Life Design — Workview & Lifeview',
     description: 'Define your Workview (why you work, what work means) and Lifeview (why you\'re here, what life means). Build a digital compass that keeps your decisions aligned with your values.',
     icon: '🧭',
     framework: 'dyl',
@@ -108,7 +108,7 @@ export const courseModules = [
   },
 ];
 
-// DYL Life Balance categories
+// Life Balance categories
 export const dylCategories = [
   { id: 'health', label: 'Health', emoji: '❤️', color: 'emerald', description: 'Physical, mental, and spiritual well-being' },
   { id: 'work', label: 'Work', emoji: '💼', color: 'blue', description: 'Career, projects, purpose-driven effort' },
@@ -272,7 +272,7 @@ export const moduleProjects = {
       title: 'The Mirror',
       description: 'Reflect on what work and life mean to you right now — before trying to change anything.',
       artifact: 'Two short written pieces: your Workview (1 paragraph) and your Lifeview (1 paragraph).',
-      details: 'The Designing Your Life framework starts with two foundational questions: Why do you work? And why are you alive? Your Workview covers what work means to you, why you do it, and what makes it worthwhile. Your Lifeview covers your beliefs about life, purpose, meaning, and how the world works. These don\'t need to be perfect — they\'re a snapshot of where you are today. Write honestly, not aspirationally.',
+      details: 'The life design framework starts with two foundational questions: Why do you work? And why are you alive? Your Workview covers what work means to you, why you do it, and what makes it worthwhile. Your Lifeview covers your beliefs about life, purpose, meaning, and how the world works. These don\'t need to be perfect — they\'re a snapshot of where you are today. Write honestly, not aspirationally.',
       tips: [
         'Set a timer for 15 minutes per piece. Don\'t overthink — write what comes naturally.',
         'Your Workview should answer: Why do I work? What does work mean to me? What makes work "good" or "worthwhile"?',
@@ -280,8 +280,8 @@ export const moduleProjects = {
         'These are private. Nobody else needs to see them. Honesty matters more than eloquence.',
       ],
       resources: [
-        { label: 'Designing Your Life — Burnett & Evans (Book)', url: 'https://designingyour.life' },
-        { label: 'Workview & Lifeview Explained (Stanford Life Design Lab)', url: 'https://lifedesignlab.stanford.edu' },
+        { label: 'Life Design Framework (Book)', url: 'https://designingyour.life' },
+        { label: 'Workview & Lifeview Explained', url: 'https://lifedesignlab.stanford.edu' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -376,7 +376,7 @@ export const moduleProjects = {
         'The biggest gaps between value rank and score are your highest-leverage areas for change.',
       ],
       resources: [
-        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
+        { label: 'Life Design — The Dashboard', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'scored-assessment',
@@ -424,7 +424,7 @@ export const moduleProjects = {
         'Don\'t judge your entries. "Watched TV for 2 hours" is valid data, not a failure.',
       ],
       resources: [
-        { label: 'Designing Your Life — Good Time Journal', url: 'https://designingyour.life' },
+        { label: 'Life Design — Good Time Journal', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -444,7 +444,7 @@ export const moduleProjects = {
       title: 'The Energy Map',
       description: 'Rate each logged activity for energy and engagement.',
       artifact: 'Your activity log annotated with energy ratings (-2 to +2) and engagement ratings (low/medium/high).',
-      details: 'Go back through your week of logs and add two ratings to each activity. Energy: did it drain you (-2, -1) or charge you (+1, +2)? Engagement: were you bored (low), going through the motions (medium), or in flow (high)? This is the core of the DYL energy audit — you\'re mapping what fuels you and what depletes you. Patterns will start to emerge.',
+      details: 'Go back through your week of logs and add two ratings to each activity. Energy: did it drain you (-2, -1) or charge you (+1, +2)? Engagement: were you bored (low), going through the motions (medium), or in flow (high)? This is the core of the energy audit — you\'re mapping what fuels you and what depletes you. Patterns will start to emerge.',
       tips: [
         'Rate on feel, not on what you think "should" energize you. Data beats expectations.',
         'Pay special attention to activities that are high-energy AND high-engagement — those are gold.',
@@ -521,7 +521,7 @@ export const moduleProjects = {
       title: 'The Redesign',
       description: 'Make one concrete change to your week based on your energy data.',
       artifact: 'A specific plan to add one energizing activity and reduce or redesign one draining activity.',
-      details: 'Knowledge without action is just trivia. Pick one high-energy activity you want more of and one low-energy activity you want to change. For the energizer, schedule it — put it on your calendar this week. For the drain, you have three options: eliminate it, delegate it, or redesign it (change the environment, interaction, or timing). Start small. One change, one week. This is prototyping your life — the DYL way.',
+      details: 'Knowledge without action is just trivia. Pick one high-energy activity you want more of and one low-energy activity you want to change. For the energizer, schedule it — put it on your calendar this week. For the drain, you have three options: eliminate it, delegate it, or redesign it (change the environment, interaction, or timing). Start small. One change, one week. This is prototyping your life — the life design way.',
       tips: [
         'Make the energizing addition easy. Block 30 minutes, not 3 hours. You can always expand later.',
         'For the drain, redesign is often better than elimination. Can you do the same task in a different place, at a different time, or with different people?',
@@ -529,7 +529,7 @@ export const moduleProjects = {
         'Track the results next week. Did the change stick? Did it affect your energy as expected?',
       ],
       resources: [
-        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -580,7 +580,7 @@ export const moduleProjects = {
         'Don\'t judge it yet. Just describe it honestly.',
       ],
       resources: [
-        { label: 'Designing Your Life — Odyssey Planning', url: 'https://designingyour.life' },
+        { label: 'Life Design — Odyssey Planning', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -630,7 +630,7 @@ export const moduleProjects = {
         'Rate it: Resources, Likability, Confidence, Coherence. Notice which scores surprise you.',
       ],
       resources: [
-        { label: 'Designing Your Life — Chapter on Odyssey Plans', url: 'https://designingyour.life' },
+        { label: 'Life Design — Odyssey Plans', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -679,7 +679,7 @@ export const moduleProjects = {
         'Document what you learn. This feeds directly into Module 8 (Prototype & Iterate).',
       ],
       resources: [
-        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -869,7 +869,7 @@ export const moduleProjects = {
       title: 'The HWPL Assessment',
       description: 'Rate your current Health, Work, Play, and Love balance on a scale of 1-10.',
       artifact: 'A scored self-assessment across all four life areas with written reflections.',
-      details: 'The DYL dashboard starts with an honest snapshot. Rate yourself 1-10 in four areas: Health (physical, mental, spiritual well-being), Work (career, projects, purpose), Play (fun, creativity, recreation), and Love (relationships, community, belonging). Be honest — this is a diagnostic, not a report card. Most people have at least one area that\'s significantly lower than the others.',
+      details: 'The life dashboard starts with an honest snapshot. Rate yourself 1-10 in four areas: Health (physical, mental, spiritual well-being), Work (career, projects, purpose), Play (fun, creativity, recreation), and Love (relationships, community, belonging). Be honest — this is a diagnostic, not a report card. Most people have at least one area that\'s significantly lower than the others.',
       tips: [
         'Don\'t overthink the scores. Your gut reaction is usually accurate.',
         'A "full" life isn\'t all 10s. It\'s about being intentional about the balance YOU want.',
@@ -877,7 +877,7 @@ export const moduleProjects = {
         'Use your Energy Audit (Module 3) to inform your ratings — energy patterns reveal a lot about HWPL.',
       ],
       resources: [
-        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
+        { label: 'Life Design — The Dashboard', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'scored-assessment',
@@ -1168,7 +1168,7 @@ export const moduleProjects = {
         'If you haven\'t run any prototypes yet, this is your prompt to design one for this week.',
       ],
       resources: [
-        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -1192,7 +1192,7 @@ export const moduleProjects = {
         'Your values might have shifted. That\'s growth, not failure.',
       ],
       resources: [
-        { label: 'Designing Your Life — Iterate', url: 'https://designingyour.life' },
+        { label: 'Life Design — Iterate', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -1307,8 +1307,8 @@ export const btsEntries = [
     id: 'landing-page',
     section: 'modules',
     title: 'Designing the Landing Page',
-    description: 'The course landing page was built in a single conversation. We described the course structure, referenced the DYL and Atomic Habits frameworks, and the AI generated all the content and layout.',
-    prompt: `"Please look at the Designing your Life framework and tools as well as Atomic Habits to develop ideas for how this site should work, look, and feel."`,
+    description: 'The course landing page was built in a single conversation. We described the course structure, referenced the life design and habit science frameworks, and the AI generated all the content and layout.',
+    prompt: `"Please look at the life design framework and tools as well as habit science to develop ideas for how this site should work, look, and feel."`,
     tools: ['Claude Code', 'Web Research', 'React Components'],
   },
   {
@@ -1529,7 +1529,7 @@ Style with Tailwind, dark theme (slate-950 background). Make it feel journal-lik
   {
     id: 'build-odyssey-planner',
     title: 'Build an Odyssey Plan Planner',
-    description: 'Create a three-path life planning tool based on the Designing Your Life framework.',
+    description: 'Create a three-path life planning tool based on the life design framework.',
     category: 'components',
     difficulty: 'intermediate',
     relatedModules: [4],

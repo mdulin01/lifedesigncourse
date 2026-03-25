@@ -170,7 +170,7 @@ export default function InstructorDashboard({ user }) {
           },
           {
             title: '3. Course Overview & Frameworks',
-            detail: 'Introduce the two frameworks: Designing Your Life (Stanford) and Atomic Habits (James Clear). Explain how they complement each other — DYL for direction, Atomic Habits for execution. Show the 8-module structure.',
+            detail: 'Introduce the two frameworks: Life Design (design thinking applied to life) and Atomic Habits (James Clear). Explain how they complement each other — life design for direction, habit science for execution. Show the 8-module structure.',
             time: '15 min',
           },
           {
