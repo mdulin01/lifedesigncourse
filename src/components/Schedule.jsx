@@ -249,7 +249,7 @@ export default function Schedule() {
           <div className="text-center mb-10">
             <div className="text-4xl mb-4">📅</div>
             <h1 className="text-3xl font-bold text-white mb-2">One-on-One Sign-Up</h1>
-            <p className="text-white/50 text-sm mb-1">April 9 & 10 · Afternoons · Washington, DC</p>
+            <p className="text-white/50 text-sm mb-1">April 9 & 10 · Washington, DC</p>
             <p className="text-white/30 text-xs">45-minute sessions with your instructors</p>
           </div>
 

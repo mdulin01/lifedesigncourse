@@ -125,7 +125,7 @@ export default function Welcome() {
       num: 2,
       icon: '📅',
       title: 'Book Your One-on-One Sessions',
-      desc: 'Sign up for afternoon sessions with Dr. Cerulli (CV review) and Dr. Dulin (AI training) on April 9–10.',
+      desc: 'Sign up for a session with Dr. Cerulli (CV review) and Dr. Dulin (AI training) on April 9–10.',
       to: `/schedule?email=${emailParam}`,
       btn: 'Schedule Sessions',
       color: 'emerald',
