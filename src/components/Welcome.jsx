@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const participants = [
   { name: 'Amy Gilbert', email: 'alewisgilbert.healthpolicy@gmail.com' },
@@ -43,10 +43,24 @@ function Countdown() {
 }
 
 export default function Welcome() {
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [verified, setVerified] = useState(false);
+
+  // Auto-verify from URL params
+  useEffect(() => {
+    const paramEmail = searchParams.get('email');
+    if (paramEmail && !verified) {
+      const match = participants.find(p => p.email.toLowerCase() === paramEmail.trim().toLowerCase());
+      if (match) {
+        setEmail(paramEmail.trim().toLowerCase());
+        setName(match.name);
+        setVerified(true);
+      }
+    }
+  }, [searchParams]);
 
   const handleVerify = (e) => {
     e.preventDefault();
@@ -96,13 +110,14 @@ export default function Welcome() {
     );
   }
 
+  const emailParam = encodeURIComponent(email);
   const steps = [
     {
       num: 1,
       icon: '📋',
       title: 'Complete the Pre-Training Survey',
       desc: 'Help us tailor the experience to your goals and current AI comfort level. Takes about 5 minutes.',
-      to: '/survey',
+      to: `/survey?email=${emailParam}`,
       btn: 'Take the Survey',
       color: 'purple',
     },
@@ -111,7 +126,7 @@ export default function Welcome() {
       icon: '📅',
       title: 'Book Your One-on-One Sessions',
       desc: 'Sign up for afternoon sessions with Dr. Cerulli (CV review) and Dr. Dulin (AI training) on April 9–10.',
-      to: '/schedule',
+      to: `/schedule?email=${emailParam}`,
       btn: 'Schedule Sessions',
       color: 'emerald',
     },

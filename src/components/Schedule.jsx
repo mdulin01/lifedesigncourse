@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Calendar, Clock, User, CheckCircle, X, ArrowLeft, RefreshCw } from 'lucide-react';
 import { doc, setDoc, deleteDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase-config';
@@ -64,11 +65,25 @@ const colorMap = {
 };
 
 export default function Schedule() {
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState('');
   const [matchedParticipant, setMatchedParticipant] = useState(null);
   const [emailError, setEmailError] = useState('');
   const [bookings, setBookings] = useState({});
   const [confirmCancel, setConfirmCancel] = useState(null);
+
+  // Auto-verify from URL params
+  useEffect(() => {
+    const paramEmail = searchParams.get('email');
+    if (paramEmail && !matchedParticipant) {
+      const cleaned = paramEmail.trim().toLowerCase();
+      const match = participants.find(p => p.email.toLowerCase() === cleaned);
+      if (match) {
+        setEmail(cleaned);
+        setMatchedParticipant(match);
+      }
+    }
+  }, [searchParams]);
 
   // Listen to bookings in real-time
   useEffect(() => {

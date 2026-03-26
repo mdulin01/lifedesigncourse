@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Send, CheckCircle, Clock, Sparkles } from 'lucide-react';
 import { doc, setDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase-config';
@@ -280,6 +281,7 @@ const surveyQuestions = [
 ];
 
 export default function Survey() {
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState('');
   const [matchedParticipant, setMatchedParticipant] = useState(null);
@@ -290,6 +292,31 @@ export default function Survey() {
   const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
   const totalSections = surveyQuestions.length;
+
+  // Auto-verify from URL params
+  useEffect(() => {
+    const paramEmail = searchParams.get('email');
+    if (paramEmail && !matchedParticipant && step === 0) {
+      const cleaned = paramEmail.trim().toLowerCase();
+      const match = participants.find(p => p.email.toLowerCase() === cleaned);
+      if (match) {
+        setEmail(cleaned);
+        setMatchedParticipant(match);
+        // Check if already submitted, then advance
+        (async () => {
+          try {
+            const snap = await getDocs(collection(db, 'surveyResponses'));
+            const existing = snap.docs.find(d => d.data().email?.toLowerCase() === cleaned);
+            if (existing) {
+              setAlreadySubmitted(true);
+              return;
+            }
+          } catch (e) { /* proceed */ }
+          setStep(1);
+        })();
+      }
+    }
+  }, [searchParams]);
 
   const handleEmailSubmit = async () => {
     const cleaned = email.trim().toLowerCase();
