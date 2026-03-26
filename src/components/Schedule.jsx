@@ -40,6 +40,7 @@ const instructors = [
 
 // 45-min slots on the hour (15-min break between)
 const slotTimes = [
+  { start: '12:00 PM', end: '12:45 PM' },
   { start: '1:00 PM', end: '1:45 PM' },
   { start: '2:00 PM', end: '2:45 PM' },
   { start: '3:00 PM', end: '3:45 PM' },
@@ -47,8 +48,8 @@ const slotTimes = [
 ];
 
 const days = [
-  { id: 'apr9', label: 'Wednesday, April 9', short: 'Apr 9' },
-  { id: 'apr10', label: 'Thursday, April 10', short: 'Apr 10' },
+  { id: 'apr9', label: 'Thursday, April 9', short: 'Apr 9' },
+  { id: 'apr10', label: 'Friday, April 10', short: 'Apr 10' },
 ];
 
 const colorMap = {
@@ -66,7 +67,7 @@ const colorMap = {
 
 // Calendar event helpers
 const dayDates = { apr9: '2026-04-09', apr10: '2026-04-10' };
-const slotHours = [13, 14, 15, 16]; // 1PM, 2PM, 3PM, 4PM ET
+const slotHours = [12, 13, 14, 15, 16]; // 12PM, 1PM, 2PM, 3PM, 4PM ET
 
 function toICSDate(dateStr, hour, minute = 0) {
   // EDT is UTC-4, so convert to UTC
@@ -186,7 +187,18 @@ export default function Schedule() {
 
   const slotKey = (instructorId, dayId, slotIdx) => `${instructorId}_${dayId}_${slotIdx}`;
 
+  // Check if participant already has a booking with a given instructor
+  const hasBookingWithInstructor = (instructorId) => {
+    return Object.values(bookings).some(
+      b => b.instructorId === instructorId && b.participantEmail === matchedParticipant?.email?.toLowerCase()
+    );
+  };
+
   const bookSlot = async (instructorId, dayId, slotIdx) => {
+    if (hasBookingWithInstructor(instructorId)) {
+      alert('You already have a session booked with this instructor. Cancel your existing booking first if you want to switch.');
+      return;
+    }
     const key = slotKey(instructorId, dayId, slotIdx);
     try {
       await setDoc(doc(db, 'scheduleBookings', key), {
@@ -464,21 +476,23 @@ export default function Schedule() {
                   <div key={day.id} className="bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden">
                     <div className="px-4 py-2.5 border-b border-white/5 bg-white/[0.01]">
                       <p className="text-white/60 text-sm font-medium">{day.label}</p>
-                      <p className="text-white/20 text-xs">1:00 PM – 4:45 PM ET · 45 min each</p>
+                      <p className="text-white/20 text-xs">12:00 PM – 4:45 PM ET · 45 min each</p>
                     </div>
                     <div className="p-2 space-y-1.5">
                       {slotTimes.map((slot, idx) => {
                         const { status, key, name } = getSlotStatus(inst.id, day.id, idx);
+                        const alreadyBookedWithInst = hasBookingWithInstructor(inst.id);
                         return (
                           <div key={idx}>
                             {status === 'open' && (
                               <button
                                 onClick={() => bookSlot(inst.id, day.id, idx)}
-                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border transition text-left ${colors.btn}`}
+                                disabled={alreadyBookedWithInst}
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border transition text-left ${alreadyBookedWithInst ? 'border-white/5 bg-white/[0.01] opacity-40 cursor-not-allowed' : colors.btn}`}
                               >
                                 <Clock className="w-4 h-4 shrink-0 opacity-60" />
                                 <span className="text-sm flex-1">{slot.start} – {slot.end}</span>
-                                <span className="text-[10px] opacity-60">Book</span>
+                                <span className="text-[10px] opacity-60">{alreadyBookedWithInst ? '' : 'Book'}</span>
                               </button>
                             )}
                             {status === 'mine' && (
@@ -507,7 +521,7 @@ export default function Schedule() {
         })}
 
         <p className="text-white/15 text-xs text-center pt-4">
-          You can book sessions with both instructors. Cancel and rebook anytime before April 9.
+          Book one session with each instructor. Cancel and rebook anytime before April 9.
         </p>
       </div>
     </div>
