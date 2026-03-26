@@ -62,6 +62,14 @@ service cloud.firestore {
       allow update, delete: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
     }
 
+    // Schedule bookings — anyone can read (see who's booked), create, and delete their own
+    match /scheduleBookings/{slotId} {
+      allow read: if true;
+      allow create: if true;
+      allow delete: if true;
+      allow update: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
+    }
+
     // Default deny
     match /{document=**} {
       allow read, write: if false;

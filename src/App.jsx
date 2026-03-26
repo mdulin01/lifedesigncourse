@@ -7,6 +7,7 @@ import CourseLanding from './components/CourseLanding';
 import Portal from './components/Portal';
 import Survey from './components/Survey';
 import SurveyResults from './components/SurveyResults';
+import Schedule from './components/Schedule';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -62,6 +63,7 @@ export default function App() {
       <Routes>
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/results" element={<SurveyResults />} />
+        <Route path="/schedule" element={<Schedule />} />
         <Route path="/portal/*" element={
           user ? (
             <Portal user={user} onSignOut={handleSignOut} />
