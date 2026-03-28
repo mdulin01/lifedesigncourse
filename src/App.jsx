@@ -9,6 +9,7 @@ import Survey from './components/Survey';
 import SurveyResults from './components/SurveyResults';
 import Schedule from './components/Schedule';
 import Welcome from './components/Welcome';
+import AdminDashboard from './components/AdminDashboard';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="/survey/results" element={<SurveyResults />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/portal/*" element={
           user ? (
             <Portal user={user} onSignOut={handleSignOut} />
