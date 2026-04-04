@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
-import { BarChart3, Users, MessageSquare, ArrowLeft, RefreshCw } from 'lucide-react';
+import { BarChart3, Users, MessageSquare, ArrowLeft, RefreshCw, User, ChevronDown, ChevronRight, AlertCircle } from 'lucide-react';
 
 const baselineQuestions = [
   { id: 'baseline_reflection', label: 'Self-Reflection', labels: ['Rarely', 'Sometimes', 'Monthly', 'Weekly', 'Daily'] },
@@ -25,6 +25,142 @@ const textQuestions = [
   { id: 'why_not_lower', label: 'Why this matters' },
   { id: 'one_point_higher', label: 'What would build confidence' },
 ];
+
+const expectedParticipants = [
+  'Amy Gilbert', 'Ellen-Marie Whelan', 'Carrie Colla', 'Lucy Marcil',
+  'Tonya Moore', 'Wendi Gosliner', 'Mary Mazanec', 'Carole Pratt', 'Stephen Morales',
+];
+
+function IndividualView({ data }) {
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  const respondedNames = data.map(d => d.name);
+  const notResponded = expectedParticipants.filter(
+    name => !respondedNames.some(rn => rn?.toLowerCase() === name.toLowerCase())
+  );
+
+  const person = selectedPerson ? data.find(d => d.name === selectedPerson) : null;
+
+  return (
+    <div className="space-y-6">
+      {/* Response status */}
+      <div className="grid gap-3 sm:grid-cols-2">
+        {/* Responded */}
+        <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4">
+          <h3 className="text-emerald-400 text-xs uppercase tracking-wider font-medium mb-3 flex items-center gap-2">
+            <Users className="w-3.5 h-3.5" />
+            Responded ({data.length})
+          </h3>
+          <div className="space-y-1">
+            {data.map(d => (
+              <button
+                key={d.name}
+                onClick={() => setSelectedPerson(selectedPerson === d.name ? null : d.name)}
+                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition flex items-center justify-between ${
+                  selectedPerson === d.name
+                    ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20'
+                    : 'text-white/70 hover:bg-white/[0.04]'
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <User className="w-3.5 h-3.5 text-emerald-400/60" />
+                  {d.name}
+                </span>
+                {selectedPerson === d.name ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5 opacity-40" />}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Not responded */}
+        <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4">
+          <h3 className="text-amber-400/80 text-xs uppercase tracking-wider font-medium mb-3 flex items-center gap-2">
+            <AlertCircle className="w-3.5 h-3.5" />
+            Not yet responded ({notResponded.length})
+          </h3>
+          {notResponded.length === 0 ? (
+            <p className="text-white/30 text-sm italic">Everyone has responded!</p>
+          ) : (
+            <div className="space-y-1">
+              {notResponded.map(name => (
+                <div key={name} className="px-3 py-2 text-white/40 text-sm flex items-center gap-2">
+                  <User className="w-3.5 h-3.5 opacity-40" />
+                  {name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Individual detail */}
+      {person && (
+        <div className="space-y-6">
+          <h2 className="text-lg font-semibold text-white">{person.name}'s Responses</h2>
+
+          {/* Scale responses */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+            <h3 className="text-white/60 text-xs uppercase tracking-wider font-medium mb-4">Starting Points</h3>
+            <div className="space-y-3">
+              {baselineQuestions.map(q => {
+                const val = person.responses?.[q.id];
+                return (
+                  <div key={q.id} className="flex items-center justify-between">
+                    <span className="text-white/60 text-sm">{q.label}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="text-emerald-400 font-semibold">{val || '—'}</span>
+                      <span className="text-white/20 text-xs">/ 5</span>
+                      {val && <span className="text-white/30 text-xs">({q.labels[val - 1]})</span>}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Ruler responses */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+            <h3 className="text-white/60 text-xs uppercase tracking-wider font-medium mb-4">Readiness</h3>
+            <div className="space-y-3">
+              {rulerQuestions.map(q => {
+                const val = person.responses?.[q.id];
+                return (
+                  <div key={q.id} className="flex items-center justify-between">
+                    <span className="text-white/60 text-sm">{q.label}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="text-emerald-400 font-semibold">{val || '—'}</span>
+                      <span className="text-white/20 text-xs">/ 10</span>
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Text responses */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+            <h3 className="text-white/60 text-xs uppercase tracking-wider font-medium mb-4">In Their Own Words</h3>
+            <div className="space-y-4">
+              {textQuestions.map(q => {
+                const val = person.responses?.[q.id];
+                if (!val?.trim()) return null;
+                return (
+                  <div key={q.id}>
+                    <h4 className="text-white/40 text-xs font-medium mb-1 flex items-center gap-1.5">
+                      <MessageSquare className="w-3 h-3 text-emerald-400/50" />
+                      {q.label}
+                    </h4>
+                    <p className="text-white/70 text-sm leading-relaxed bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2">{val}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function BarChart({ data, labels, maxCount }) {
   return (
@@ -98,6 +234,7 @@ function ThemeCloud({ responses }) {
 export default function SurveyResults() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState('aggregate'); // 'aggregate' or 'individual'
 
   const loadData = async () => {
     setLoading(true);
@@ -165,6 +302,33 @@ export default function SurveyResults() {
             </button>
           </div>
         </div>
+        {/* View toggle */}
+        {totalResponses > 0 && (
+          <div className="max-w-3xl mx-auto px-4 pb-3 flex gap-1">
+            <button
+              onClick={() => setView('aggregate')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                view === 'aggregate'
+                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
+                  : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
+              }`}
+            >
+              <BarChart3 className="w-3 h-3 inline mr-1.5 -mt-0.5" />
+              Group
+            </button>
+            <button
+              onClick={() => setView('individual')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                view === 'individual'
+                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
+                  : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
+              }`}
+            >
+              <User className="w-3 h-3 inline mr-1.5 -mt-0.5" />
+              Individual
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-10">
@@ -176,6 +340,10 @@ export default function SurveyResults() {
           </div>
         ) : (
           <>
+            {view === 'individual' ? (
+              <IndividualView data={data} />
+            ) : (
+            <>
             {/* Baseline skills */}
             <section>
               <h2 className="text-xl font-bold text-white mb-1">Starting Points</h2>
@@ -236,6 +404,8 @@ export default function SurveyResults() {
                 })}
               </div>
             </section>
+            </>
+            )}
           </>
         )}
       </div>
