@@ -15,6 +15,7 @@ export const allowedEmails = [
   'stephen.a.morales@gmail.com',
   'catherine_cerulli@urmc.rochester.edu',
   'nicolearthun@gmail.com',
+  'mgioffre@nas.edu',
 ];
 
 // Course module definitions

@@ -15,6 +15,7 @@ const participants = [
   { name: 'Mike Dulin', email: 'mdulin@gmail.com' },
   { name: 'Kate Cerulli', email: 'catherine_cerulli@urmc.rochester.edu' },
   { name: 'Nicole Arthun', email: 'nicolearthun@gmail.com' },
+  { name: 'Marissa Gioffre', email: 'mgioffre@nas.edu' },
 ];
 
 const COURSE_START = new Date('2026-04-09T08:00:00-04:00');
