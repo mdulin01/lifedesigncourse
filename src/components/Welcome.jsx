@@ -131,6 +131,24 @@ export default function Welcome() {
       btn: 'Schedule Sessions',
       color: 'emerald',
     },
+    {
+      num: 3,
+      icon: '🧭',
+      title: 'Share Your Values & Principles',
+      desc: 'Select your core values and guiding principles. Results build a live word cloud for the group.',
+      to: `/values?email=${emailParam}`,
+      btn: 'Values Survey',
+      color: 'blue',
+    },
+    {
+      num: 4,
+      icon: '📓',
+      title: 'Workshop Workbook',
+      desc: 'Map your intellectual areas of inspiration, find synergies, and set SMART goals for the year.',
+      to: `/worksheet?email=${emailParam}`,
+      btn: 'Open Workbook',
+      color: 'amber',
+    },
   ];
 
   return (
@@ -142,7 +160,7 @@ export default function Welcome() {
             Welcome, {name.split(' ')[0]}!
           </h1>
           <p className="text-white/50 text-sm">
-            Complete these two steps before the training begins.
+            Your workshop tools and activities are below.
           </p>
           <div className="mt-4">
             <Countdown />
@@ -151,11 +169,16 @@ export default function Welcome() {
 
         <div className="space-y-4">
           {steps.map((s) => {
-            const border = s.color === 'purple' ? 'border-purple-500/30 hover:border-purple-500/50' : 'border-emerald-500/30 hover:border-emerald-500/50';
-            const numBg = s.color === 'purple' ? 'bg-purple-500/20 text-purple-400' : 'bg-emerald-500/20 text-emerald-400';
-            const btnClass = s.color === 'purple'
-              ? 'bg-purple-500/20 border-purple-500/30 text-purple-400 hover:bg-purple-500/30'
-              : 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30';
+            const colorMap = {
+              purple: { border: 'border-purple-500/30 hover:border-purple-500/50', num: 'bg-purple-500/20 text-purple-400', btn: 'bg-purple-500/20 border-purple-500/30 text-purple-400 hover:bg-purple-500/30' },
+              emerald: { border: 'border-emerald-500/30 hover:border-emerald-500/50', num: 'bg-emerald-500/20 text-emerald-400', btn: 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30' },
+              blue: { border: 'border-blue-500/30 hover:border-blue-500/50', num: 'bg-blue-500/20 text-blue-400', btn: 'bg-blue-500/20 border-blue-500/30 text-blue-400 hover:bg-blue-500/30' },
+              amber: { border: 'border-amber-500/30 hover:border-amber-500/50', num: 'bg-amber-500/20 text-amber-400', btn: 'bg-amber-500/20 border-amber-500/30 text-amber-400 hover:bg-amber-500/30' },
+            };
+            const c = colorMap[s.color] || colorMap.emerald;
+            const border = c.border;
+            const numBg = c.num;
+            const btnClass = c.btn;
 
             return (
               <Link

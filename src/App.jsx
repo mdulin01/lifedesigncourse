@@ -12,6 +12,7 @@ import Welcome from './components/Welcome';
 import AdminDashboard from './components/AdminDashboard';
 import ValuesSurvey from './components/ValuesSurvey';
 import ValuesCloud from './components/ValuesCloud';
+import GoalWorksheet from './components/GoalWorksheet';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/values" element={<ValuesSurvey />} />
         <Route path="/values/cloud" element={<ValuesCloud />} />
+        <Route path="/worksheet" element={<GoalWorksheet />} />
         <Route path="/portal/*" element={
           user ? (
             <Portal user={user} onSignOut={handleSignOut} />
