@@ -152,8 +152,8 @@ export default function Welcome() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
+    <div className="min-h-screen bg-slate-950 px-4 py-12">
+      <div className="w-full max-w-lg mx-auto">
         <div className="text-center mb-10">
           <div className="text-4xl mb-3">👋</div>
           <h1 className="text-2xl font-bold text-white mb-1">
