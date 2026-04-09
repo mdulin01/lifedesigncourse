@@ -18,12 +18,11 @@ const participants = [
 ];
 
 const suggestedValues = [
-  'Integrity', 'Compassion', 'Justice', 'Innovation', 'Collaboration',
-  'Excellence', 'Curiosity', 'Resilience', 'Empathy', 'Leadership',
-  'Service', 'Equity', 'Courage', 'Authenticity', 'Growth',
-  'Community', 'Transparency', 'Accountability', 'Creativity', 'Balance',
-  'Family', 'Health', 'Education', 'Freedom', 'Sustainability',
-  'Mentorship', 'Advocacy', 'Inclusion', 'Trust', 'Wisdom',
+  'Joy', 'Community', 'Service', 'Autonomy', 'Change',
+  'Resilience', 'Debt Free', 'Flexibility', 'Health', 'Freedom / Choice',
+  'Sustainability', 'Security', 'Justice', 'Loyalty', 'Self Awareness',
+  'Altruism', 'Curiosity', 'Purpose', 'Creativity', 'Knowledge',
+  'Gratefulness', 'Faith', 'Honesty', 'Humility', 'Empathy', 'Magic',
 ];
 
 export default function ValuesSurvey() {
