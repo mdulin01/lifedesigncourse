@@ -102,6 +102,34 @@ export default function CourseLanding({ onSignIn, user, onSignOut }) {
         </div>
       </section>
 
+      {/* Workshop Activities */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Workshop Activities</h2>
+          <p className="text-white/50 text-sm">RWJF Health Policy Fellows — April 9–10, 2026</p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { icon: '🧭', title: 'Values & Principles', desc: 'Share your core values and see the group word cloud', to: '/values' },
+            { icon: '📓', title: 'Workshop Workbook', desc: 'Venn diagram, synergies, and SMART goals', to: '/worksheet' },
+            { icon: '📋', title: 'Pre-Training Survey', desc: 'AI comfort level and training goals', to: '/survey' },
+            { icon: '📅', title: '1:1 Schedule', desc: 'Book sessions with Kate and Mike', to: '/schedule' },
+          ].map((item) => (
+            <a
+              key={item.to}
+              href={item.to}
+              className="flex items-center gap-4 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] hover:border-emerald-500/20 transition group"
+            >
+              <div className="text-3xl shrink-0">{item.icon}</div>
+              <div>
+                <h3 className="text-sm font-semibold text-white group-hover:text-emerald-400 transition">{item.title}</h3>
+                <p className="text-xs text-white/40">{item.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* What You'll Build */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
