@@ -15,6 +15,7 @@ const participants = [
   { name: 'Stephen Morales', email: 'stephen.a.morales@gmail.com' },
   { name: 'Mike Dulin', email: 'mdulin@gmail.com' },
   { name: 'Kate Cerulli', email: 'catherine_cerulli@urmc.rochester.edu' },
+  { name: 'Nicole Arthun', email: 'nicolearthun@gmail.com' },
 ];
 
 const suggestedValues = [
@@ -97,15 +98,7 @@ export default function ValuesSurvey() {
   };
 
   const handleSubmit = async () => {
-    if (selectedValues.length < 3) {
-      alert('Please select at least 3 values.');
-      return;
-    }
     const filledPrinciples = principles.filter(p => p.trim());
-    if (filledPrinciples.length < 1) {
-      alert('Please enter at least one guiding principle.');
-      return;
-    }
     setSubmitting(true);
     try {
       const docId = email.replace(/[^a-zA-Z0-9]/g, '_');
@@ -296,7 +289,7 @@ export default function ValuesSurvey() {
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          disabled={submitting || selectedValues.length < 3}
+          disabled={submitting}
           className="w-full py-4 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-semibold rounded-xl hover:bg-emerald-500/30 transition disabled:opacity-30 disabled:cursor-not-allowed text-lg"
         >
           {submitting ? 'Submitting...' : 'Submit My Values & Principles'}

@@ -13,6 +13,7 @@ const participants = [
   { name: 'Stephen Morales', email: 'stephen.a.morales@gmail.com' },
   { name: 'Mike Dulin', email: 'mdulin@gmail.com' },
   { name: 'Kate Cerulli', email: 'catherine_cerulli@urmc.rochester.edu' },
+  { name: 'Nicole Arthun', email: 'nicolearthun@gmail.com' },
 ];
 
 const COURSE_START = new Date('2026-04-09T08:00:00-04:00');
