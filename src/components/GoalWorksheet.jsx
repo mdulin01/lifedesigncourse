@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import WorkshopNav from './WorkshopNav';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
@@ -221,6 +222,7 @@ export default function GoalWorksheet() {
 
   return (
     <div className="min-h-screen bg-slate-950 pb-24">
+      <WorkshopNav email={email} />
       <div className="max-w-2xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="text-center mb-6">

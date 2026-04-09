@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import WorkshopNav from './WorkshopNav';
 
 const participants = [
   { name: 'Amy Gilbert', email: 'alewisgilbert.healthpolicy@gmail.com' },
@@ -153,6 +154,7 @@ export default function Welcome() {
 
   return (
     <div className="min-h-screen bg-slate-950 px-4 py-12">
+      <WorkshopNav email={email} />
       <div className="w-full max-w-lg mx-auto">
         <div className="text-center mb-10">
           <div className="text-4xl mb-3">👋</div>

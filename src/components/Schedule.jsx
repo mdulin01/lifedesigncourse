@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Calendar, Clock, User, CheckCircle, X, ArrowLeft, RefreshCw, Download } from 'lucide-react';
+import WorkshopNav from './WorkshopNav';
 import { doc, setDoc, deleteDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
@@ -294,6 +295,7 @@ export default function Schedule() {
   // Main scheduling view
   return (
     <div className="min-h-screen bg-slate-950 pb-20">
+      <WorkshopNav email={email} />
       {/* Header */}
       <div className="border-b border-white/5 bg-slate-950/80 backdrop-blur-lg sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">

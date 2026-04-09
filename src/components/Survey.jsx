@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Send, CheckCircle, Clock, Sparkles } from 'lucide-react';
+import WorkshopNav from './WorkshopNav';
 import { doc, setDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
@@ -486,6 +487,7 @@ export default function Survey() {
 
   return (
     <div className="min-h-screen bg-slate-950">
+      <WorkshopNav email={email} />
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-white/5">
         <div

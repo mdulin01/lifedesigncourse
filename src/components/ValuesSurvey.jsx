@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { doc, setDoc, collection, getDocs, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import WorkshopNav from './WorkshopNav';
 import { db } from '../firebase-config';
 
 const participants = [
@@ -181,6 +182,7 @@ export default function ValuesSurvey() {
   // Survey form
   return (
     <div className="min-h-screen bg-slate-950 pb-20">
+      <WorkshopNav email={email} />
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <div className="text-3xl mb-2">🧭</div>

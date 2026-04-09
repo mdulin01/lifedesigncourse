@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import WorkshopNav from './WorkshopNav';
 
 // Simple deterministic "random" from seed
 function seededRandom(seed) {
@@ -119,6 +121,8 @@ function WordCloud({ words }) {
 }
 
 export default function ValuesCloud() {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email') || '';
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState('values'); // 'values' | 'principles'
@@ -185,6 +189,7 @@ export default function ValuesCloud() {
 
   return (
     <div className="min-h-screen bg-slate-950 pb-12">
+      <WorkshopNav email={email} />
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="text-center mb-6">
           <div className="text-3xl mb-2">🧭</div>
