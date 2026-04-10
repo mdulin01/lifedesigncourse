@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Menu, ArrowLeft, Home, BookOpen, GraduationCap, ClipboardList, Users, Settings } from 'lucide-react';
+import { Menu, ArrowLeft, Home, BookOpen, PenLine, GraduationCap, ClipboardList, Users, Sparkles as SparklesIcon } from 'lucide-react';
+import { useBTS } from '../contexts/BTSContext';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import CheckIn from './CheckIn';
+import Journal from './Journal';
 import CourseContent from './CourseContent';
 import Workbook from './Workbook';
 import Resources from './Resources';
 import MyTeam from './MyTeam';
-import InstructorDashboard from './InstructorDashboard';
+import PromptRecipeLibrary from './PromptRecipeLibrary';
+import StackStarterKit from './StackStarterKit';
+import VibeBoard from './VibeBoard';
+import Training from './Training';
 
 const mobileNav = [
   { id: 'dashboard', label: 'Home', icon: Home },
   { id: 'checkin', label: 'Check In', icon: BookOpen },
+  { id: 'journal', label: 'Journal', icon: PenLine },
   { id: 'course', label: 'Course', icon: GraduationCap },
   { id: 'workbook', label: 'Workbook', icon: ClipboardList },
   { id: 'team', label: 'Team', icon: Users },
@@ -21,6 +27,8 @@ export default function Portal({ user, onSignOut }) {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeModule, setActiveModule] = useState(null); // tracks current module for header
+  const { showBTS, toggleBTS } = useBTS();
+
   const handleNavigate = (section) => {
     setActiveSection(section);
     if (section !== 'course') setActiveModule(null);
@@ -30,11 +38,15 @@ export default function Portal({ user, onSignOut }) {
     switch (activeSection) {
       case 'dashboard': return <Dashboard user={user} onNavigate={handleNavigate} />;
       case 'checkin': return <CheckIn user={user} />;
+      case 'journal': return <Journal user={user} />;
       case 'course': return <CourseContent user={user} activeModule={activeModule} onModuleChange={setActiveModule} />;
       case 'workbook': return <Workbook user={user} />;
       case 'resources': return <Resources />;
+      case 'prompts': return <PromptRecipeLibrary />;
+      case 'stack': return <StackStarterKit />;
+      case 'vibeboard': return <VibeBoard user={user} />;
+      case 'training': return <Training user={user} onNavigate={handleNavigate} />;
       case 'team': return <MyTeam user={user} />;
-      case 'instructor': return <InstructorDashboard user={user} />;
       default: return <Dashboard user={user} onNavigate={handleNavigate} />;
     }
   };
@@ -42,12 +54,16 @@ export default function Portal({ user, onSignOut }) {
   const sectionLabels = {
     dashboard: 'Home',
     checkin: 'Check In',
+    journal: 'Journal',
     course: 'Course',
     workbook: 'Workbook',
     resources: 'Resources',
+    prompts: 'Prompt Library',
+    stack: 'Stack Starter',
+    vibeboard: 'Vibe Board',
+    training: 'Training Hub',
     profile: 'Profile',
     team: 'My Team',
-    instructor: 'Instructor',
   };
 
   // Desktop top bar for module view
@@ -63,6 +79,8 @@ export default function Portal({ user, onSignOut }) {
         onClose={() => setSidebarOpen(false)}
         user={user}
         onSignOut={onSignOut}
+        showBTS={showBTS}
+        toggleBTS={toggleBTS}
       />
 
       {/* Main content area — offset by sidebar width on desktop */}

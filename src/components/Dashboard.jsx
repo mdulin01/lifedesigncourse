@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, GraduationCap, ChevronRight, BookOpen, Sparkles } from 'lucide-react';
+import { Users, GraduationCap, ChevronRight, BookOpen, Sparkles, Compass, Lightbulb } from 'lucide-react';
 import { courseModules, moduleProjects } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 
@@ -102,6 +102,21 @@ export default function Dashboard({ user, onNavigate }) {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {/* Training Hub — featured card */}
+        <button
+          onClick={() => onNavigate?.('training')}
+          className="sm:col-span-2 flex items-center gap-3 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl p-4 hover:from-emerald-500/15 hover:to-teal-500/15 transition text-left"
+        >
+          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+            <Compass className="w-5 h-5 text-emerald-400" />
+          </div>
+          <div className="flex-1">
+            <span className="text-sm font-semibold text-white">Training Hub</span>
+            <p className="text-xs text-white/40 mt-0.5">Values, website build, workbook results & vibe board</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-white/20" />
+        </button>
+
         <button
           onClick={() => onNavigate?.('course')}
           className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
@@ -131,19 +146,32 @@ export default function Dashboard({ user, onNavigate }) {
         </button>
 
         <button
-          onClick={() => onNavigate?.('workbook')}
+          onClick={() => onNavigate?.('vibeboard')}
           className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
         >
-          <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center shrink-0">
-            <Sparkles className="w-5 h-5 text-purple-400" />
+          <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
+            <Lightbulb className="w-5 h-5 text-amber-400" />
           </div>
           <div className="flex-1">
-            <span className="text-sm font-semibold text-white">My Workbook</span>
-            <p className="text-xs text-white/30 mt-0.5">Review your exercise responses</p>
+            <span className="text-sm font-semibold text-white">Vibe Board</span>
+            <p className="text-xs text-white/30 mt-0.5">Live coding ideas from class</p>
           </div>
           <ChevronRight className="w-4 h-4 text-white/20" />
         </button>
 
+        <button
+          onClick={() => onNavigate?.('journal')}
+          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
+        >
+          <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center shrink-0">
+            <BookOpen className="w-5 h-5 text-purple-400" />
+          </div>
+          <div className="flex-1">
+            <span className="text-sm font-semibold text-white">Journal</span>
+            <p className="text-xs text-white/30 mt-0.5">Reflect on your progress</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-white/20" />
+        </button>
       </div>
     </div>
   );

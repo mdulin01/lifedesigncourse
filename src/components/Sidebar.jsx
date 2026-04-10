@@ -1,23 +1,26 @@
 import React from 'react';
 import {
   Home, BookOpen, GraduationCap, ClipboardList, FolderOpen, User, Users,
-  LogOut, X, Settings,
+  PenLine, LogOut, X, Eye, EyeOff, Sparkles, Zap, Lightbulb, Compass,
 } from 'lucide-react';
 
 const navSections = [
   { id: 'dashboard', label: 'Home', icon: Home },
+  { id: 'training', label: 'Training Hub', icon: Compass },
   { id: 'checkin', label: 'Check In', icon: BookOpen },
+  { id: 'journal', label: 'Journal', icon: PenLine },
   { id: 'course', label: 'Course', icon: GraduationCap },
   { id: 'workbook', label: 'Workbook', icon: ClipboardList },
   { id: 'resources', label: 'Resources', icon: FolderOpen },
+  { id: 'prompts', label: 'Prompt Library', icon: Sparkles },
+  { id: 'stack', label: 'Stack Starter', icon: Zap },
+  { id: 'vibeboard', label: 'Vibe Board', icon: Lightbulb },
 ];
 
 const bottomSections = [
   { id: 'profile', label: 'Profile', icon: User },
   { id: 'team', label: 'My Team', icon: Users },
 ];
-
-const INSTRUCTOR_EMAILS = ['mdulin@gmail.com', 'jdulin07@gmail.com', 'catherine_cerulli@urmc.rochester.edu'];
 
 export default function Sidebar({
   activeSection,
@@ -26,8 +29,9 @@ export default function Sidebar({
   onClose,
   user,
   onSignOut,
+  showBTS,
+  toggleBTS,
 }) {
-  const isInstructor = user && INSTRUCTOR_EMAILS.includes(user.email?.toLowerCase());
   const renderNavItem = (section, disabled = false) => {
     const Icon = section.icon;
     const isActive = activeSection === section.id;
@@ -76,12 +80,24 @@ export default function Sidebar({
         {/* Separator */}
         <div className="pt-3 mt-3 border-t border-white/5 space-y-1">
           {bottomSections.map((s) => renderNavItem(s))}
-          {isInstructor && renderNavItem({ id: 'instructor', label: 'Instructor', icon: Settings })}
         </div>
       </nav>
 
-      {/* Footer: user + logout */}
+      {/* Footer: user + BTS + logout */}
       <div className="px-3 py-4 border-t border-white/5 space-y-3">
+        {/* BTS toggle */}
+        <button
+          onClick={toggleBTS}
+          className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition ${
+            showBTS
+              ? 'bg-amber-500/15 text-amber-300 border border-amber-500/25'
+              : 'text-white/25 hover:text-white/40 hover:bg-white/5'
+          }`}
+        >
+          {showBTS ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          Behind the Scenes
+        </button>
+
         {/* User row */}
         <div className="flex items-center gap-2.5 px-1">
           <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-xs font-bold text-emerald-400 shrink-0">
