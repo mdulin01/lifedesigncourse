@@ -300,11 +300,11 @@ export default function Training({ user, onNavigate }) {
         </p>
       </div>
 
-      {/* 1. Values, Principles & Time Study */}
+      {/* 1. Values & Life Compass */}
       <Section
         icon={Compass}
-        title="Values, Principles & Time Study"
-        subtitle="Your compass, energy audit, and how you spend your time"
+        title="Values & Life Compass"
+        subtitle="Workview, Lifeview, ranked values, and energy audit"
         color="emerald"
         gradient="from-emerald-500/10 to-teal-500/10"
         border="border-emerald-500/20"
