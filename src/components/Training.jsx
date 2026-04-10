@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Compass, Globe, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap, Zap, Code,
+  CalendarDays,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
@@ -276,6 +277,73 @@ function WorkbookSummary({ workbookData, onNavigate }) {
   );
 }
 
+// Generate biweekly meeting dates for the next 4 months
+function generateMeetingDates() {
+  const now = new Date();
+  const dates = [];
+  // Start from the next upcoming Tuesday (or today if Tuesday)
+  const start = new Date(now);
+  const dayOfWeek = start.getDay();
+  const daysUntilTue = (2 - dayOfWeek + 7) % 7 || 7; // next Tuesday
+  start.setDate(start.getDate() + daysUntilTue);
+  start.setHours(12, 0, 0, 0); // noon default
+
+  const endDate = new Date(now);
+  endDate.setMonth(endDate.getMonth() + 4);
+
+  let current = new Date(start);
+  while (current <= endDate) {
+    dates.push(new Date(current));
+    current.setDate(current.getDate() + 14); // every 2 weeks
+  }
+  return dates;
+}
+
+function MeetingSchedule() {
+  const dates = generateMeetingDates();
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+  });
+
+  return (
+    <div className="space-y-2">
+      <p className="text-xs text-white/40 mb-3">
+        1-hour sessions every 2 weeks · {dates.length} meetings through {fmt.format(dates[dates.length - 1])}
+      </p>
+      <div className="space-y-1.5">
+        {dates.map((d, i) => {
+          const isPast = d < new Date();
+          return (
+            <div
+              key={i}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                isPast ? 'bg-white/[0.02] opacity-50' : 'bg-white/[0.04]'
+              }`}
+            >
+              <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
+                isPast ? 'bg-white/10 text-white/30' : 'bg-sky-500/20 text-sky-300'
+              }`}>
+                {i + 1}
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className={`text-sm block ${isPast ? 'text-white/40 line-through' : 'text-white/80'}`}>
+                  {fmt.format(d)}
+                </span>
+                <span className="text-xs text-white/30">12:00 PM – 1:00 PM</span>
+              </div>
+              {isPast ? (
+                <CheckCircle2 className="w-4 h-4 text-white/20 shrink-0" />
+              ) : (
+                <Circle className="w-4 h-4 text-sky-400/30 shrink-0" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function Training({ user, onNavigate }) {
   const { workbookData, loading } = useWorkbook(user);
 
@@ -344,7 +412,20 @@ export default function Training({ user, onNavigate }) {
         <ModuleProgress moduleId={1} moduleInfo={courseModules[0]} workbookData={workbookData} onNavigate={onNavigate} />
       </Section>
 
-      {/* 3. Workbook Results */}
+      {/* 3. Meeting Schedule */}
+      <Section
+        icon={CalendarDays}
+        title="Meeting Schedule"
+        subtitle="1-hour sessions every 2 weeks for 4 months"
+        color="sky"
+        gradient="from-sky-500/10 to-blue-500/10"
+        border="border-sky-500/20"
+        defaultOpen={true}
+      >
+        <MeetingSchedule />
+      </Section>
+
+      {/* 4. Workbook Results */}
       <Section
         icon={BookOpen}
         title="My Workbook Results"
