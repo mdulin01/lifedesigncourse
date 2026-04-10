@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import {
   Compass, Globe, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap, Zap, Code,
-  CalendarDays, ClipboardList,
+  CalendarDays, ClipboardList, BarChart3,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
 import VibeBoard from './VibeBoard';
 import MeetingScheduler from './MeetingScheduler';
 import TrainingSurvey from './TrainingSurvey';
+import TrainingSurveyResults from './TrainingSurveyResults';
+import { allowedEmails } from '../constants';
 
 // Small inline card for a completed exercise field
 function FieldPreview({ label, value }) {
@@ -315,6 +317,21 @@ export default function Training({ user, onNavigate }) {
       >
         <TrainingSurvey user={user} />
       </Section>
+
+      {/* 0b. Survey Results — admin only */}
+      {allowedEmails.includes(user?.email?.toLowerCase()) && (
+        <Section
+          icon={BarChart3}
+          title="Survey Results"
+          subtitle="Aggregated feedback from all participants (admin only)"
+          color="rose"
+          gradient="from-rose-500/10 to-orange-500/10"
+          border="border-rose-500/20"
+          defaultOpen={false}
+        >
+          <TrainingSurveyResults user={user} />
+        </Section>
+      )}
 
       {/* 1. Values & Life Compass */}
       <Section
