@@ -1,21 +1,8 @@
 // Authorized portal users
 export const allowedEmails = [
   'mdulin@gmail.com',
-  'jdulin07@gmail.com',
+  'Catherine_Cerulli@urmc.rochester.edu',
   'adamjosephbritten@gmail.com',
-  // 2026 AI Life Design Training Cohort
-  'alewisgilbert.healthpolicy@gmail.com',
-  'ellenmarie.whelan@gmail.com',
-  'carrie.h.colla@dartmouth.edu',
-  'lumarcil@gmail.com',
-  'tonyamoore.healthpolicy@gmail.com',
-  'wendigosliner@gmail.com',
-  'mary.mazanec@comcast.net',
-  'carolepratt12@gmail.com',
-  'stephen.a.morales@gmail.com',
-  'catherine_cerulli@urmc.rochester.edu',
-  'nicolearthun@gmail.com',
-  'mgioffre@nas.edu',
 ];
 
 // Course module definitions
@@ -34,7 +21,7 @@ export const courseModules = [
   {
     id: 2,
     title: 'Values & Life Compass',
-    subtitle: 'Life Design — Workview & Lifeview',
+    subtitle: 'Designing Your Life — Workview & Lifeview',
     description: 'Define your Workview (why you work, what work means) and Lifeview (why you\'re here, what life means). Build a digital compass that keeps your decisions aligned with your values.',
     icon: '🧭',
     framework: 'dyl',
@@ -110,7 +97,7 @@ export const courseModules = [
   },
 ];
 
-// Life Balance categories
+// DYL Life Balance categories
 export const dylCategories = [
   { id: 'health', label: 'Health', emoji: '❤️', color: 'emerald', description: 'Physical, mental, and spiritual well-being' },
   { id: 'work', label: 'Work', emoji: '💼', color: 'blue', description: 'Career, projects, purpose-driven effort' },
@@ -274,7 +261,7 @@ export const moduleProjects = {
       title: 'The Mirror',
       description: 'Reflect on what work and life mean to you right now — before trying to change anything.',
       artifact: 'Two short written pieces: your Workview (1 paragraph) and your Lifeview (1 paragraph).',
-      details: 'The life design framework starts with two foundational questions: Why do you work? And why are you alive? Your Workview covers what work means to you, why you do it, and what makes it worthwhile. Your Lifeview covers your beliefs about life, purpose, meaning, and how the world works. These don\'t need to be perfect — they\'re a snapshot of where you are today. Write honestly, not aspirationally.',
+      details: 'The Designing Your Life framework starts with two foundational questions: Why do you work? And why are you alive? Your Workview covers what work means to you, why you do it, and what makes it worthwhile. Your Lifeview covers your beliefs about life, purpose, meaning, and how the world works. These don\'t need to be perfect — they\'re a snapshot of where you are today. Write honestly, not aspirationally.',
       tips: [
         'Set a timer for 15 minutes per piece. Don\'t overthink — write what comes naturally.',
         'Your Workview should answer: Why do I work? What does work mean to me? What makes work "good" or "worthwhile"?',
@@ -282,8 +269,8 @@ export const moduleProjects = {
         'These are private. Nobody else needs to see them. Honesty matters more than eloquence.',
       ],
       resources: [
-        { label: 'Life Design Framework (Book)', url: 'https://designingyour.life' },
-        { label: 'Workview & Lifeview Explained', url: 'https://lifedesignlab.stanford.edu' },
+        { label: 'Designing Your Life — Burnett & Evans (Book)', url: 'https://designingyour.life' },
+        { label: 'Workview & Lifeview Explained (Stanford Life Design Lab)', url: 'https://lifedesignlab.stanford.edu' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -378,7 +365,7 @@ export const moduleProjects = {
         'The biggest gaps between value rank and score are your highest-leverage areas for change.',
       ],
       resources: [
-        { label: 'Life Design — The Dashboard', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'scored-assessment',
@@ -426,7 +413,7 @@ export const moduleProjects = {
         'Don\'t judge your entries. "Watched TV for 2 hours" is valid data, not a failure.',
       ],
       resources: [
-        { label: 'Life Design — Good Time Journal', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Good Time Journal', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -446,7 +433,7 @@ export const moduleProjects = {
       title: 'The Energy Map',
       description: 'Rate each logged activity for energy and engagement.',
       artifact: 'Your activity log annotated with energy ratings (-2 to +2) and engagement ratings (low/medium/high).',
-      details: 'Go back through your week of logs and add two ratings to each activity. Energy: did it drain you (-2, -1) or charge you (+1, +2)? Engagement: were you bored (low), going through the motions (medium), or in flow (high)? This is the core of the energy audit — you\'re mapping what fuels you and what depletes you. Patterns will start to emerge.',
+      details: 'Go back through your week of logs and add two ratings to each activity. Energy: did it drain you (-2, -1) or charge you (+1, +2)? Engagement: were you bored (low), going through the motions (medium), or in flow (high)? This is the core of the DYL energy audit — you\'re mapping what fuels you and what depletes you. Patterns will start to emerge.',
       tips: [
         'Rate on feel, not on what you think "should" energize you. Data beats expectations.',
         'Pay special attention to activities that are high-energy AND high-engagement — those are gold.',
@@ -523,7 +510,7 @@ export const moduleProjects = {
       title: 'The Redesign',
       description: 'Make one concrete change to your week based on your energy data.',
       artifact: 'A specific plan to add one energizing activity and reduce or redesign one draining activity.',
-      details: 'Knowledge without action is just trivia. Pick one high-energy activity you want more of and one low-energy activity you want to change. For the energizer, schedule it — put it on your calendar this week. For the drain, you have three options: eliminate it, delegate it, or redesign it (change the environment, interaction, or timing). Start small. One change, one week. This is prototyping your life — the life design way.',
+      details: 'Knowledge without action is just trivia. Pick one high-energy activity you want more of and one low-energy activity you want to change. For the energizer, schedule it — put it on your calendar this week. For the drain, you have three options: eliminate it, delegate it, or redesign it (change the environment, interaction, or timing). Start small. One change, one week. This is prototyping your life — the DYL way.',
       tips: [
         'Make the energizing addition easy. Block 30 minutes, not 3 hours. You can always expand later.',
         'For the drain, redesign is often better than elimination. Can you do the same task in a different place, at a different time, or with different people?',
@@ -531,7 +518,7 @@ export const moduleProjects = {
         'Track the results next week. Did the change stick? Did it affect your energy as expected?',
       ],
       resources: [
-        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -582,7 +569,7 @@ export const moduleProjects = {
         'Don\'t judge it yet. Just describe it honestly.',
       ],
       resources: [
-        { label: 'Life Design — Odyssey Planning', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Odyssey Planning', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -632,7 +619,7 @@ export const moduleProjects = {
         'Rate it: Resources, Likability, Confidence, Coherence. Notice which scores surprise you.',
       ],
       resources: [
-        { label: 'Life Design — Odyssey Plans', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Chapter on Odyssey Plans', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -681,7 +668,7 @@ export const moduleProjects = {
         'Document what you learn. This feeds directly into Module 8 (Prototype & Iterate).',
       ],
       resources: [
-        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -871,7 +858,7 @@ export const moduleProjects = {
       title: 'The HWPL Assessment',
       description: 'Rate your current Health, Work, Play, and Love balance on a scale of 1-10.',
       artifact: 'A scored self-assessment across all four life areas with written reflections.',
-      details: 'The life dashboard starts with an honest snapshot. Rate yourself 1-10 in four areas: Health (physical, mental, spiritual well-being), Work (career, projects, purpose), Play (fun, creativity, recreation), and Love (relationships, community, belonging). Be honest — this is a diagnostic, not a report card. Most people have at least one area that\'s significantly lower than the others.',
+      details: 'The DYL dashboard starts with an honest snapshot. Rate yourself 1-10 in four areas: Health (physical, mental, spiritual well-being), Work (career, projects, purpose), Play (fun, creativity, recreation), and Love (relationships, community, belonging). Be honest — this is a diagnostic, not a report card. Most people have at least one area that\'s significantly lower than the others.',
       tips: [
         'Don\'t overthink the scores. Your gut reaction is usually accurate.',
         'A "full" life isn\'t all 10s. It\'s about being intentional about the balance YOU want.',
@@ -879,7 +866,7 @@ export const moduleProjects = {
         'Use your Energy Audit (Module 3) to inform your ratings — energy patterns reveal a lot about HWPL.',
       ],
       resources: [
-        { label: 'Life Design — The Dashboard', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — The Dashboard', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'scored-assessment',
@@ -1170,7 +1157,7 @@ export const moduleProjects = {
         'If you haven\'t run any prototypes yet, this is your prompt to design one for this week.',
       ],
       resources: [
-        { label: 'Life Design — Prototyping', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Prototyping', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing', timer: 15,
@@ -1194,7 +1181,7 @@ export const moduleProjects = {
         'Your values might have shifted. That\'s growth, not failure.',
       ],
       resources: [
-        { label: 'Life Design — Iterate', url: 'https://designingyour.life' },
+        { label: 'Designing Your Life — Iterate', url: 'https://designingyour.life' },
       ],
       exercise: {
         type: 'timed-writing',
@@ -1309,8 +1296,8 @@ export const btsEntries = [
     id: 'landing-page',
     section: 'modules',
     title: 'Designing the Landing Page',
-    description: 'The course landing page was built in a single conversation. We described the course structure, referenced the life design and habit science frameworks, and the AI generated all the content and layout.',
-    prompt: `"Please look at the life design framework and tools as well as habit science to develop ideas for how this site should work, look, and feel."`,
+    description: 'The course landing page was built in a single conversation. We described the course structure, referenced the DYL and Atomic Habits frameworks, and the AI generated all the content and layout.',
+    prompt: `"Please look at the Designing your Life framework and tools as well as Atomic Habits to develop ideas for how this site should work, look, and feel."`,
     tools: ['Claude Code', 'Web Research', 'React Components'],
   },
   {
@@ -1474,120 +1461,6 @@ Dark theme: sidebar bg-slate-900, main content bg-slate-950, borders border-whit
 
 My app name is "[YOUR APP NAME]" and the primary color is emerald-500 (#10b981).`,
     expectedOutput: 'Your app installable on phones and desktops, with offline support and an app-like experience.',
-  },
-  {
-    id: 'build-hwpl-dashboard',
-    title: 'Build a HWPL Life Balance Dashboard',
-    description: 'Create an interactive Health, Work, Play, Love dashboard with sliders and visual gauges.',
-    category: 'components',
-    difficulty: 'intermediate',
-    relatedModules: [3, 6],
-    tags: ['Dashboard', 'HWPL', 'Life Design', 'Recharts'],
-    promptText: `Build a "Life Balance Dashboard" React component for tracking Health, Work, Play, and Love scores. Include:
-
-1. Four category cards in a 2x2 grid, each with:
-   - An emoji icon (💪 Health, 💼 Work, 🎯 Play, ❤️ Love)
-   - A slider (range 0-10) that updates the score in real time
-   - A visual progress bar that fills based on the score
-   - The current score displayed as "X/10"
-
-2. A summary section below with:
-   - An overall average score
-   - A simple radar/spider chart (using Recharts) showing all 4 categories
-   - A text interpretation like "Your life is well-balanced" or "Work needs attention"
-
-3. Style with Tailwind on a dark background (slate-950). Use emerald accents for high scores and amber/red for low scores.
-
-4. Store the scores in React state so they persist during the session.
-
-Make it responsive — 2x2 grid on desktop, single column on mobile.`,
-    expectedOutput: 'An interactive dashboard where you rate each life area 0-10 with sliders, see a radar chart of your balance, and get a text summary of which areas need attention.',
-  },
-  {
-    id: 'build-values-compass',
-    title: 'Build a Values & Life Compass Editor',
-    description: 'Create a reflective writing tool for Workview, Lifeview, and Compass alignment check.',
-    category: 'components',
-    difficulty: 'beginner',
-    relatedModules: [2],
-    tags: ['Values', 'Workview', 'Lifeview', 'Life Design'],
-    promptText: `Build a "Values & Life Compass" React component with three writing sections:
-
-1. **Workview** — A text area with the prompt: "Why do you work? What does work mean to you? What makes it worthwhile?" Use a blue accent color and a document icon.
-
-2. **Lifeview** — A text area with the prompt: "Why are you here? What is the meaning of life? What is the relationship of the individual to others?" Use a rose/pink accent color and a heart icon.
-
-3. **Compass Check** — A read-only reflection section that asks: "How well do your Workview and Lifeview align? Where are the tensions?" Use an emerald accent color and a compass icon. Show a simple alignment meter (e.g., a slider or visual bar from "Misaligned" to "Fully Aligned").
-
-Each section should:
-- Have a card-style layout with the colored accent border
-- Include a large textarea (min 120px height) for free writing
-- Show a word count below each textarea
-- Auto-save text to React state
-
-Style with Tailwind, dark theme (slate-950 background). Make it feel journal-like and reflective.`,
-    expectedOutput: 'A three-section writing tool where users reflect on their Workview, Lifeview, and how they align — styled as elegant cards with word counts and a reflective, journal-like feel.',
-  },
-  {
-    id: 'build-odyssey-planner',
-    title: 'Build an Odyssey Plan Planner',
-    description: 'Create a three-path life planning tool based on the life design framework.',
-    category: 'components',
-    difficulty: 'intermediate',
-    relatedModules: [4],
-    tags: ['Odyssey Plans', 'Life Design', 'Planning'],
-    promptText: `Build an "Odyssey Plans" React component for designing three alternative 5-year life paths. Include:
-
-1. Three plan cards, each with:
-   - A title and subtitle (e.g., "Life One — Your current path")
-   - A description prompt:
-     * Life One: "What does your life look like if you keep doing what you're doing?"
-     * Life Two: "What would you do if your current career disappeared tomorrow?"
-     * Life Three: "What would you do if money and image didn't matter at all?"
-   - A large textarea for the user to write their plan
-   - Four rating gauges (sliders 1-5) for: Resources, Likability, Confidence, Coherence
-   - Each gauge should have a label and show the current value
-
-2. A comparison summary at the bottom showing the three plans side by side with their gauge scores in a simple bar chart or table.
-
-3. Use distinct accent colors for each plan:
-   - Life One: blue
-   - Life Two: purple
-   - Life Three: rose/pink
-
-4. Style with Tailwind, dark theme (slate-950). Use icons (Rocket for Life One, Lightbulb for Life Two, Heart for Life Three).
-
-Make it responsive — stacked on mobile, side-by-side comparison on desktop.`,
-    expectedOutput: 'A three-path planning tool where users describe each life path, rate it on 4 dimensions, and see a side-by-side comparison — styled with color-coded cards and rating gauges.',
-  },
-  {
-    id: 'build-habit-tracker-full',
-    title: 'Build a Habit Tracker with the Four Laws',
-    description: 'Create a habit tracking tool based on Atomic Habits\' Four Laws of Behavior Change.',
-    category: 'components',
-    difficulty: 'intermediate',
-    relatedModules: [5, 7],
-    tags: ['Habits', 'Atomic Habits', 'Tracker', 'Streaks'],
-    promptText: `Build a "Habit Tracker" React component using the Four Laws of Behavior Change from Atomic Habits. Include:
-
-1. A "Four Laws" overview section with 4 cards in a 2x2 grid:
-   - 👁️ Law 1: "Make It Obvious" — Cue design & environment
-   - 💎 Law 2: "Make It Attractive" — Temptation bundling & motivation
-   - 🎯 Law 3: "Make It Easy" — Two-minute rule & friction reduction
-   - 🏆 Law 4: "Make It Satisfying" — Tracking & rewards
-
-2. A habit list section with:
-   - An "Add Habit" button that opens a form with: habit name, which law it targets, and a color picker
-   - Each habit shows as a row with: name, a streak count, and 7 toggle buttons (one per day of the week)
-   - Clicking a day toggles it complete/incomplete
-   - Show the current streak (consecutive days completed)
-
-3. A stats summary showing: total habits, longest streak, today's completion rate as a percentage.
-
-4. Store all data in React state. Style with Tailwind, dark theme (slate-950). Use emerald for completed days, white/10 for incomplete.
-
-Make it mobile-friendly with a single-column layout on small screens.`,
-    expectedOutput: 'A habit tracking app with the Four Laws reference cards, an add-habit form, daily check-off grid with streak counting, and a stats summary — all in a dark themed UI.',
   },
 ];
 
