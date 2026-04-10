@@ -54,34 +54,13 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Survey responses — anyone can create (public survey), anyone can read (results dashboard)
-    // Write limited to create-only (no updates/deletes) to prevent tampering
-    match /surveyResponses/{docId} {
-      allow read: if true;
-      allow create: if true;
-      allow update, delete: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
-    }
-
-    // Schedule bookings — anyone can read (see who's booked), create, and delete their own
-    match /scheduleBookings/{slotId} {
-      allow read: if true;
-      allow create: if true;
-      allow delete: if true;
-      allow update: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
-    }
-
-    // Values & Principles survey responses — public read/create, admin-only update/delete
-    match /valuesResponses/{docId} {
-      allow read: if true;
-      allow create: if true;
-      allow update, delete: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
-    }
-
-    // Workshop workbook goals — public read/write (participants save their own)
-    match /workbookGoals/{docId} {
-      allow read: if true;
-      allow create, update: if true;
-      allow delete: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com'];
+    // Vibe Board — any authenticated user can read/create, authors can update/delete their own, admins can do anything
+    match /vibeBoard/{docId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null
+        && (request.auth.uid == resource.data.authorUid
+            || request.auth.token.email in ['mdulin@gmail.com', 'jdulin07@gmail.com']);
     }
 
     // Default deny
