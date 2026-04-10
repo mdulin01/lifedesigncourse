@@ -19,7 +19,7 @@ export default function VibeBoard({ user }) {
   const [adding, setAdding] = useState(false);
   const inputRef = useRef(null);
 
-  const isAdmin = allowedEmails.includes(user?.email);
+  const isAdmin = allowedEmails.includes(user?.email?.toLowerCase());
 
   // Real-time listener on shared collection
   useEffect(() => {

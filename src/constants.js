@@ -1,8 +1,7 @@
-// Authorized portal users
+// Admin emails — used for admin-only features (not for sign-in gating)
 export const allowedEmails = [
   'mdulin@gmail.com',
-  'Catherine_Cerulli@urmc.rochester.edu',
-  'adamjosephbritten@gmail.com',
+  'catherine_cerulli@urmc.rochester.edu',
 ];
 
 // Course module definitions

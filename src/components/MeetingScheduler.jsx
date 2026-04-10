@@ -63,7 +63,7 @@ export default function MeetingScheduler({ user }) {
   const [saving, setSaving] = useState(false);
   const [monthIndex, setMonthIndex] = useState(0);
 
-  const isAdmin = allowedEmails.includes(user?.email);
+  const isAdmin = allowedEmails.includes(user?.email?.toLowerCase());
   const candidateDates = useMemo(() => generateCandidateDates(), []);
   const months = useMemo(() => groupByMonth(candidateDates), [candidateDates]);
 

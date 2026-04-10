@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { auth, googleProvider } from './firebase-config';
 import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
-import { allowedEmails } from './constants';
 import { BTSProvider } from './contexts/BTSContext';
 import CourseLanding from './components/CourseLanding';
 import Portal from './components/Portal';
@@ -14,12 +13,7 @@ export default function App() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
-      if (u && allowedEmails.includes(u.email?.toLowerCase())) {
-        setUser(u);
-      } else {
-        setUser(null);
-        if (u) signOut(auth);
-      }
+      setUser(u || null);
       setAuthLoading(false);
     });
     return unsub;
@@ -28,11 +22,7 @@ export default function App() {
   const handleSignIn = async () => {
     try {
       setAuthError('');
-      const result = await signInWithPopup(auth, googleProvider);
-      if (!allowedEmails.includes(result.user.email?.toLowerCase())) {
-        await signOut(auth);
-        setAuthError('Access denied. Your account is not authorized for the portal.');
-      }
+      await signInWithPopup(auth, googleProvider);
     } catch (e) {
       if (e.code !== 'auth/popup-closed-by-user') {
         setAuthError('Sign-in failed: ' + e.message);
