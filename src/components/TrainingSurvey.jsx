@@ -41,7 +41,6 @@ const QUESTIONS = [
     items: [
       { id: 'ld_values', text: 'The values and life compass exercises were meaningful to me.' },
       { id: 'ld_energy', text: 'The energy audit / time study helped me see my priorities more clearly.' },
-      { id: 'ld_framework', text: 'I understand the Designing Your Life framework and how to apply it.' },
       { id: 'ld_reflection', text: 'The exercises gave me useful insights about myself.' },
     ],
   },

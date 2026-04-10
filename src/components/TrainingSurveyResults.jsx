@@ -19,14 +19,13 @@ const QUESTION_LABELS = {
   ai_continue: 'Plan to continue using AI tools',
   ld_values: 'Values/compass exercises were meaningful',
   ld_energy: 'Energy audit helped see priorities',
-  ld_framework: 'Understand the DYL framework',
   ld_reflection: 'Exercises gave useful insights',
 };
 
 const SECTIONS = [
   { id: 'overall', label: 'Overall Experience', keys: ['overall_valuable', 'overall_organized', 'overall_pace', 'overall_recommend'] },
   { id: 'ai', label: 'AI & Vibe Coding', keys: ['ai_confidence', 'ai_practical', 'ai_website', 'ai_continue'] },
-  { id: 'ld', label: 'Life Design', keys: ['ld_values', 'ld_energy', 'ld_framework', 'ld_reflection'] },
+  { id: 'ld', label: 'Life Design', keys: ['ld_values', 'ld_energy', 'ld_reflection'] },
 ];
 
 const OPEN_QUESTIONS = [
