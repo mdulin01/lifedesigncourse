@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {
   Compass, Globe, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap, Zap, Code,
-  CalendarDays,
+  CalendarDays, ClipboardList,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
 import VibeBoard from './VibeBoard';
 import MeetingScheduler from './MeetingScheduler';
+import TrainingSurvey from './TrainingSurvey';
 
 // Small inline card for a completed exercise field
 function FieldPreview({ label, value }) {
@@ -301,6 +302,19 @@ export default function Training({ user, onNavigate }) {
           Your values, time study, vibe coding projects, workbook results, and live ideas — all in one place.
         </p>
       </div>
+
+      {/* 0. Training Survey */}
+      <Section
+        icon={ClipboardList}
+        title="Training Feedback Survey"
+        subtitle="Help us improve — rate your experience from the past 2 days"
+        color="rose"
+        gradient="from-rose-500/10 to-pink-500/10"
+        border="border-rose-500/20"
+        defaultOpen={true}
+      >
+        <TrainingSurvey user={user} />
+      </Section>
 
       {/* 1. Values & Life Compass */}
       <Section
