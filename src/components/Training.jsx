@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Compass, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap,
-  Code, CalendarDays, ClipboardList, BarChart3, Heart, BookMarked,
+  Code, CalendarDays, ClipboardList, BarChart3, Heart, Bookmark,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
@@ -202,7 +202,7 @@ export default function Training({ user, onNavigate }) {
 
       {/* DYL Book Club */}
       <Section
-        icon={BookMarked}
+        icon={Bookmark}
         title="Designing Your Life — Book Club"
         subtitle="Biweekly reading and discussion group"
         color="emerald"
