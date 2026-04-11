@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Compass, Globe, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
-  BookOpen, CheckCircle2, Circle, Loader2, GraduationCap, Zap, Code,
-  CalendarDays, ClipboardList, BarChart3,
+  Compass, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
+  BookOpen, CheckCircle2, Circle, Loader2, GraduationCap,
+  Code, CalendarDays, ClipboardList, BarChart3, Heart, BookMarked,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
@@ -11,19 +11,6 @@ import MeetingScheduler from './MeetingScheduler';
 import TrainingSurvey from './TrainingSurvey';
 import TrainingSurveyResults from './TrainingSurveyResults';
 import { allowedEmails } from '../constants';
-
-// Small inline card for a completed exercise field
-function FieldPreview({ label, value }) {
-  if (!value) return null;
-  const text = typeof value === 'string' ? value : JSON.stringify(value);
-  if (!text.trim()) return null;
-  return (
-    <div className="bg-white/[0.03] border border-white/5 rounded-lg p-3">
-      <span className="text-[10px] uppercase tracking-wider text-white/30 block mb-1">{label}</span>
-      <p className="text-sm text-white/70 leading-relaxed line-clamp-3">{text}</p>
-    </div>
-  );
-}
 
 // Collapsible section wrapper
 function Section({ icon: Icon, title, subtitle, color, gradient, border, children, defaultOpen = false }) {
@@ -46,8 +33,8 @@ function Section({ icon: Icon, title, subtitle, color, gradient, border, childre
   );
 }
 
-// Module progress summary with step list
-function ModuleProgress({ moduleId, moduleInfo, workbookData, onNavigate }) {
+// Module progress summary
+function ModuleProgress({ moduleId, workbookData, onNavigate }) {
   const steps = moduleProjects[moduleId] || [];
   const modData = workbookData?.moduleData?.[String(moduleId)] || {};
   const exerciseSteps = steps.filter((s) => s.exercise);
@@ -56,28 +43,18 @@ function ModuleProgress({ moduleId, moduleInfo, workbookData, onNavigate }) {
 
   return (
     <div className="space-y-3">
-      {/* Progress bar */}
       <div className="flex items-center gap-3">
         <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
           <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${pct}%` }} />
         </div>
         <span className="text-xs text-white/40 tabular-nums shrink-0">{completedCount}/{exerciseSteps.length}</span>
       </div>
-
-      {/* Step list */}
       <div className="space-y-1.5">
         {steps.map((step) => {
           const done = step.exercise && modData[step.number];
           return (
-            <div
-              key={step.number}
-              className="flex items-start gap-2.5 px-3 py-2 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition"
-            >
-              {done ? (
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-              ) : (
-                <Circle className="w-4 h-4 text-white/15 shrink-0 mt-0.5" />
-              )}
+            <div key={step.number} className="flex items-start gap-2.5 px-3 py-2 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition">
+              {done ? <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /> : <Circle className="w-4 h-4 text-white/15 shrink-0 mt-0.5" />}
               <div className="min-w-0">
                 <span className="text-sm text-white/80 block">{step.title}</span>
                 <span className="text-xs text-white/30 block truncate">{step.description}</span>
@@ -86,167 +63,22 @@ function ModuleProgress({ moduleId, moduleInfo, workbookData, onNavigate }) {
           );
         })}
       </div>
-
-      <button
-        onClick={() => onNavigate?.('course')}
-        className="text-xs text-emerald-400/70 hover:text-emerald-400 flex items-center gap-1 transition mt-1"
-      >
+      <button onClick={() => onNavigate?.('course')} className="text-xs text-emerald-400/70 hover:text-emerald-400 flex items-center gap-1 transition mt-1">
         Open in Course <ChevronRight className="w-3 h-3" />
       </button>
     </div>
   );
 }
 
-// Values display from workbook data (Module 2, step 02 or 03)
-function ValuesDisplay({ workbookData }) {
-  const mod2 = workbookData?.moduleData?.['2'] || {};
-
-  // Try step 03 (Build the Compass) first, then 02 (Values Extraction)
-  const valuesData = mod2['03'] || mod2['02'] || null;
-  const mirrorData = mod2['00'] || null;
-  const compassData = mod2['01'] || null;
-  const coherenceData = mod2['04'] || null;
-
-  const hasAnyData = valuesData || mirrorData || compassData || coherenceData;
-
-  if (!hasAnyData) {
-    return (
-      <div className="text-center py-6">
-        <p className="text-sm text-white/30">No values data yet.</p>
-        <p className="text-xs text-white/20 mt-1">Complete Module 2 exercises to see your values here.</p>
-      </div>
-    );
-  }
-
-  // Extract values list if it exists
-  const valuesField = valuesData?.values;
-  const valuesList = Array.isArray(valuesField)
-    ? valuesField
-    : typeof valuesField === 'string'
-      ? valuesField.split('\n').filter(Boolean)
-      : null;
-
-  return (
-    <div className="space-y-4">
-      {/* Values list */}
-      {valuesList && valuesList.length > 0 && (
-        <div>
-          <span className="text-[10px] uppercase tracking-wider text-emerald-400/60 block mb-2">Your Core Values</span>
-          <div className="flex flex-wrap gap-2">
-            {valuesList.map((v, i) => {
-              const label = typeof v === 'object' ? (v.value || v.label || v.name || JSON.stringify(v)) : v;
-              return (
-                <span key={i} className="px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs text-emerald-300 font-medium">
-                  {label}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Workview & Lifeview */}
-      {mirrorData && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <FieldPreview label="Workview" value={mirrorData.workview} />
-          <FieldPreview label="Lifeview" value={mirrorData.lifeview} />
-        </div>
-      )}
-
-      {/* Compass check */}
-      {compassData && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <FieldPreview label="Where They Align" value={compassData.alignment} />
-          <FieldPreview label="Where They Clash" value={compassData.tension} />
-        </div>
-      )}
-
-      {/* Coherence scores */}
-      {coherenceData?.scores && (
-        <FieldPreview label="Value Coherence Scores" value={coherenceData.scores} />
-      )}
-    </div>
-  );
-}
-
-// Time Study / Energy Audit display from Module 3 workbook data
-function TimeStudyDisplay({ workbookData }) {
-  const mod3 = workbookData?.moduleData?.['3'] || {};
-
-  // Step 00 = activity log, 01 = energy ratings, 02 = AEIOU, 03 = patterns, 04 = action plan
-  const activityLog = mod3['00'] || null;
-  const energyRatings = mod3['01'] || null;
-  const aeiouAnalysis = mod3['02'] || null;
-  const patterns = mod3['03'] || null;
-  const actionPlan = mod3['04'] || null;
-
-  const hasAnyData = activityLog || energyRatings || aeiouAnalysis || patterns || actionPlan;
-
-  if (!hasAnyData) {
-    return (
-      <div className="text-center py-6">
-        <p className="text-sm text-white/30">No time study data yet.</p>
-        <p className="text-xs text-white/20 mt-1">Complete Module 3 (Energy Audit) exercises to see your analysis here.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-4">
-      {/* Energy boosters & drains */}
-      {energyRatings && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <FieldPreview label="Energy Boosters (+)" value={energyRatings.energizers} />
-          <FieldPreview label="Energy Drains (-)" value={energyRatings.drains} />
-        </div>
-      )}
-
-      {/* Pattern synthesis */}
-      {patterns && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <FieldPreview label="What Energizes Me" value={patterns.energizers} />
-          <FieldPreview label="What Drains Me" value={patterns.drains} />
-        </div>
-      )}
-
-      {/* AEIOU breakdown */}
-      {aeiouAnalysis && (
-        <div className="space-y-2">
-          <span className="text-[10px] uppercase tracking-wider text-yellow-400/60 block">AEIOU Analysis</span>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <FieldPreview label="High-Energy Breakdown" value={aeiouAnalysis.highEnergy} />
-            <FieldPreview label="Low-Energy Breakdown" value={aeiouAnalysis.lowEnergy} />
-          </div>
-        </div>
-      )}
-
-      {/* Activity log */}
-      {activityLog && (
-        <FieldPreview label="Activity Log" value={activityLog.activities || activityLog.log} />
-      )}
-
-      {/* Action plan */}
-      {actionPlan && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <FieldPreview label="Energizer to Add" value={actionPlan.addActivity} />
-          <FieldPreview label="Drain to Change" value={actionPlan.changeActivity} />
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Workbook results summary — shows which modules have data
+// Workbook results summary
 function WorkbookSummary({ workbookData, onNavigate }) {
   const moduleData = workbookData?.moduleData || {};
-  const modulesWithData = Object.keys(moduleData).filter(
-    (k) => Object.keys(moduleData[k] || {}).length > 0
-  );
+  const modulesWithData = Object.keys(moduleData).filter((k) => Object.keys(moduleData[k] || {}).length > 0);
 
   if (modulesWithData.length === 0) {
     return (
       <div className="text-center py-6">
-        <p className="text-sm text-white/30">No workbook responses yet.</p>
+        <p className="text-sm text-white/30">No exercise responses yet.</p>
         <p className="text-xs text-white/20 mt-1">Complete course exercises to see your results here.</p>
       </div>
     );
@@ -261,13 +93,8 @@ function WorkbookSummary({ workbookData, onNavigate }) {
         const modStepData = moduleData[modId] || {};
         const completedSteps = Object.keys(modStepData).length;
         const totalExercises = steps.filter((s) => s.exercise).length;
-
         return (
-          <button
-            key={modId}
-            onClick={() => onNavigate?.('workbook')}
-            className="w-full flex items-center gap-3 px-3 py-2.5 bg-white/[0.03] rounded-xl hover:bg-white/[0.06] transition text-left"
-          >
+          <button key={modId} onClick={() => onNavigate?.('course')} className="w-full flex items-center gap-3 px-3 py-2.5 bg-white/[0.03] rounded-xl hover:bg-white/[0.06] transition text-left">
             <span className="text-lg">{mod.icon}</span>
             <div className="flex-1 min-w-0">
               <span className="text-sm text-white/80 block truncate">{mod.title}</span>
@@ -301,15 +128,15 @@ export default function Training({ user, onNavigate }) {
           <h1 className="text-2xl font-bold text-white">Training Hub</h1>
         </div>
         <p className="text-sm text-white/50">
-          Your values, time study, vibe coding projects, workbook results, and live ideas — all in one place.
+          Survey, scheduling, project tracking, and live ideas — your training home base.
         </p>
       </div>
 
-      {/* 0. Training Survey */}
+      {/* Training Survey */}
       <Section
         icon={ClipboardList}
         title="Training Feedback Survey"
-        subtitle="Help us improve — rate your experience from the past 2 days"
+        subtitle="Share your experience from the in-person sessions"
         color="rose"
         gradient="from-rose-500/10 to-pink-500/10"
         border="border-rose-500/20"
@@ -318,7 +145,7 @@ export default function Training({ user, onNavigate }) {
         <TrainingSurvey user={user} />
       </Section>
 
-      {/* 0b. Survey Results — admin only */}
+      {/* Survey Results — admin only */}
       {allowedEmails.includes(user?.email?.toLowerCase()) && (
         <Section
           icon={BarChart3}
@@ -333,55 +160,101 @@ export default function Training({ user, onNavigate }) {
         </Section>
       )}
 
-      {/* 1. Values & Life Compass */}
+      {/* Developing From Within — Kate's training recap */}
       <Section
-        icon={Compass}
-        title="Values & Life Compass"
-        subtitle="Workview, Lifeview, ranked values, and energy audit"
+        icon={Heart}
+        title="Developing From Within"
+        subtitle="Recap from Kate's in-person training — your foundation"
+        color="purple"
+        gradient="from-purple-500/10 to-violet-500/10"
+        border="border-purple-500/20"
+        defaultOpen={true}
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-white/60 leading-relaxed">
+            The in-person training with Kate Cerulli introduced the <span className="text-purple-300 font-medium">Developing From Within</span> framework — understanding yourself as the foundation for leading change. Key themes:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-4">
+              <span className="text-lg block mb-1">🪞</span>
+              <span className="text-xs font-semibold text-white/70 block mb-1">Self-Awareness</span>
+              <p className="text-xs text-white/40">Understanding your values, strengths, and patterns as a leader</p>
+            </div>
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-4">
+              <span className="text-lg block mb-1">🤝</span>
+              <span className="text-xs font-semibold text-white/70 block mb-1">Authentic Connection</span>
+              <p className="text-xs text-white/40">Building trust through genuine presence and vulnerability</p>
+            </div>
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-4">
+              <span className="text-lg block mb-1">🌱</span>
+              <span className="text-xs font-semibold text-white/70 block mb-1">Growth Mindset</span>
+              <p className="text-xs text-white/40">Treating challenges as opportunities to learn and evolve</p>
+            </div>
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-4">
+              <span className="text-lg block mb-1">🧭</span>
+              <span className="text-xs font-semibold text-white/70 block mb-1">Purpose & Direction</span>
+              <p className="text-xs text-white/40">Connecting your inner compass to the work you do in the world</p>
+            </div>
+          </div>
+          <p className="text-xs text-white/30 italic">This foundation feeds into everything that follows — your values work, energy audit, and life design exercises all build on what you discovered with Kate.</p>
+        </div>
+      </Section>
+
+      {/* DYL Book Club */}
+      <Section
+        icon={BookMarked}
+        title="Designing Your Life — Book Club"
+        subtitle="Biweekly reading and discussion group"
         color="emerald"
         gradient="from-emerald-500/10 to-teal-500/10"
         border="border-emerald-500/20"
         defaultOpen={true}
       >
-        {/* Values subsection */}
-        <div>
-          <h3 className="text-xs font-semibold text-emerald-400/80 uppercase tracking-wider mb-3">My Values & Life Compass</h3>
-          <ValuesDisplay workbookData={workbookData} />
-          <div className="mt-3">
-            <ModuleProgress moduleId={2} moduleInfo={courseModules[1]} workbookData={workbookData} onNavigate={onNavigate} />
+        <div className="space-y-4">
+          <p className="text-sm text-white/60 leading-relaxed">
+            Over the coming months, we'll read <span className="text-emerald-300 font-medium">Designing Your Life</span> by Bill Burnett & Dave Evans together. We meet every two weeks to discuss a chapter and do the exercises.
+          </p>
+          <div className="space-y-2">
+            <span className="text-[10px] uppercase tracking-wider text-emerald-400/60 block">What You'll Work On</span>
+            <div className="space-y-1.5">
+              {[
+                { icon: '🧭', title: 'Values & Life Compass', desc: 'Define what matters to you and check if your life reflects it' },
+                { icon: '⚡', title: 'Energy Mapping', desc: 'Track what activities fuel you vs. drain you' },
+                { icon: '🗺️', title: 'Life Path Planning', desc: 'Sketch three possible 5-year versions of your life' },
+                { icon: '📊', title: 'Life Balance Check', desc: 'Rate yourself across health, work, play, and love' },
+                { icon: '🧪', title: 'Small Experiments', desc: 'Test your ideas before making big commitments' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 px-3 py-2.5 bg-white/[0.02] rounded-lg">
+                  <span className="text-base shrink-0">{item.icon}</span>
+                  <div>
+                    <span className="text-sm text-white/80 block">{item.title}</span>
+                    <span className="text-xs text-white/35">{item.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/5" />
-
-        {/* Time Study subsection */}
-        <div>
-          <h3 className="text-xs font-semibold text-yellow-400/80 uppercase tracking-wider mb-3">Time Study & Energy Audit</h3>
-          <TimeStudyDisplay workbookData={workbookData} />
-          <div className="mt-3">
-            <ModuleProgress moduleId={3} moduleInfo={courseModules[2]} workbookData={workbookData} onNavigate={onNavigate} />
-          </div>
+          <p className="text-xs text-white/30">Your book club work will appear in <button onClick={() => onNavigate?.('myplan')} className="text-emerald-400/70 hover:text-emerald-400 transition underline">My Plan</button> as you complete exercises.</p>
         </div>
       </Section>
 
-      {/* 2. Vibe Code a Project */}
+      {/* Vibe Code a Project */}
       <Section
         icon={Code}
-        title="Vibe Code a Project"
-        subtitle="Build your personal website with AI — Module 1"
+        title="Build a Project with AI"
+        subtitle="Create your personal website step by step"
         color="blue"
         gradient="from-blue-500/10 to-cyan-500/10"
         border="border-blue-500/20"
       >
-        <ModuleProgress moduleId={1} moduleInfo={courseModules[0]} workbookData={workbookData} onNavigate={onNavigate} />
+        <ModuleProgress moduleId={1} workbookData={workbookData} onNavigate={onNavigate} />
       </Section>
 
-      {/* 3. Meeting Schedule */}
+      {/* Meeting Schedule */}
       <Section
         icon={CalendarDays}
         title="Meeting Schedule"
-        subtitle="Find overlapping availability for biweekly 1-hour sessions"
+        subtitle="Find times that work for biweekly 1-hour sessions"
         color="sky"
         gradient="from-sky-500/10 to-blue-500/10"
         border="border-sky-500/20"
@@ -390,10 +263,10 @@ export default function Training({ user, onNavigate }) {
         <MeetingScheduler user={user} />
       </Section>
 
-      {/* 4. Workbook Results */}
+      {/* Exercise Results */}
       <Section
         icon={BookOpen}
-        title="My Workbook Results"
+        title="My Exercise Results"
         subtitle="All your completed exercises across every module"
         color="purple"
         gradient="from-purple-500/10 to-violet-500/10"
@@ -402,11 +275,11 @@ export default function Training({ user, onNavigate }) {
         <WorkbookSummary workbookData={workbookData} onNavigate={onNavigate} />
       </Section>
 
-      {/* 4. Vibe Board */}
+      {/* Vibe Board */}
       <Section
         icon={Lightbulb}
         title="Vibe Board"
-        subtitle="Live coding ideas from class"
+        subtitle="Ideas and links from our sessions"
         color="amber"
         gradient="from-amber-500/10 to-yellow-500/10"
         border="border-amber-500/20"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, GraduationCap, ChevronRight, BookOpen, Sparkles, Compass, Lightbulb } from 'lucide-react';
+import { Users, GraduationCap, ChevronRight, BookOpen, Target, Compass, PenLine, Lightbulb } from 'lucide-react';
 import { courseModules, moduleProjects } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 
@@ -38,7 +38,7 @@ export default function Dashboard({ user, onNavigate }) {
       {/* Welcome */}
       <div>
         <h1 className="text-2xl font-bold text-white">{greeting}, {firstName}</h1>
-        <p className="text-white/40 text-sm mt-1">Welcome to the Life Design Course</p>
+        <p className="text-white/40 text-sm mt-1">Welcome to the AI Life Design Course</p>
       </div>
 
       {/* Course Progress */}
@@ -71,48 +71,21 @@ export default function Dashboard({ user, onNavigate }) {
             />
           </div>
         </div>
-
-        {/* Module breakdown */}
-        <div className="mt-4 space-y-1.5">
-          {courseModules.slice(0, 3).map((mod) => {
-            const steps = moduleProjects[mod.id] || [];
-            const exerciseSteps = steps.filter(s => s.exercise);
-            const done = exerciseSteps.filter(s => moduleData[String(mod.id)]?.[s.number]).length;
-            const pct = exerciseSteps.length > 0 ? Math.round((done / exerciseSteps.length) * 100) : 0;
-
-            return (
-              <button
-                key={mod.id}
-                onClick={() => onNavigate?.('course')}
-                className="w-full flex items-center gap-3 px-3 py-2 bg-white/[0.03] rounded-xl hover:bg-white/[0.06] transition text-left"
-              >
-                <span className="text-lg">{mod.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <span className="text-xs text-white/70 truncate block">{mod.title}</span>
-                  <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mt-1">
-                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${pct}%` }} />
-                  </div>
-                </div>
-                <span className="text-[10px] text-white/30 shrink-0">{done}/{exerciseSteps.length}</span>
-              </button>
-            );
-          })}
-        </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions — updated for new 6-tab structure */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {/* Training Hub — featured card */}
+        {/* My Plan — featured card */}
         <button
-          onClick={() => onNavigate?.('training')}
+          onClick={() => onNavigate?.('myplan')}
           className="sm:col-span-2 flex items-center gap-3 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl p-4 hover:from-emerald-500/15 hover:to-teal-500/15 transition text-left"
         >
           <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
-            <Compass className="w-5 h-5 text-emerald-400" />
+            <Target className="w-5 h-5 text-emerald-400" />
           </div>
           <div className="flex-1">
-            <span className="text-sm font-semibold text-white">Training Hub</span>
-            <p className="text-xs text-white/40 mt-0.5">Values, website build, workbook results & vibe board</p>
+            <span className="text-sm font-semibold text-white">My Plan</span>
+            <p className="text-xs text-white/40 mt-0.5">Your values, energy map, and life paths</p>
           </div>
           <ChevronRight className="w-4 h-4 text-white/20" />
         </button>
@@ -125,8 +98,36 @@ export default function Dashboard({ user, onNavigate }) {
             <BookOpen className="w-5 h-5 text-emerald-400" />
           </div>
           <div className="flex-1">
-            <span className="text-sm font-semibold text-white">Continue Course</span>
-            <p className="text-xs text-white/30 mt-0.5">Pick up where you left off</p>
+            <span className="text-sm font-semibold text-white">Course</span>
+            <p className="text-xs text-white/30 mt-0.5">Continue your exercises</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-white/20" />
+        </button>
+
+        <button
+          onClick={() => onNavigate?.('training')}
+          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
+        >
+          <div className="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center shrink-0">
+            <Compass className="w-5 h-5 text-sky-400" />
+          </div>
+          <div className="flex-1">
+            <span className="text-sm font-semibold text-white">Training Hub</span>
+            <p className="text-xs text-white/30 mt-0.5">Survey, book club, meetings</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-white/20" />
+        </button>
+
+        <button
+          onClick={() => onNavigate?.('journal')}
+          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
+        >
+          <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
+            <PenLine className="w-5 h-5 text-amber-400" />
+          </div>
+          <div className="flex-1">
+            <span className="text-sm font-semibold text-white">Journal</span>
+            <p className="text-xs text-white/30 mt-0.5">Reflect and check in weekly</p>
           </div>
           <ChevronRight className="w-4 h-4 text-white/20" />
         </button>
@@ -141,34 +142,6 @@ export default function Dashboard({ user, onNavigate }) {
           <div className="flex-1">
             <span className="text-sm font-semibold text-white">My Team</span>
             <p className="text-xs text-white/30 mt-0.5">Connect with your cohort</p>
-          </div>
-          <ChevronRight className="w-4 h-4 text-white/20" />
-        </button>
-
-        <button
-          onClick={() => onNavigate?.('vibeboard')}
-          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
-        >
-          <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
-            <Lightbulb className="w-5 h-5 text-amber-400" />
-          </div>
-          <div className="flex-1">
-            <span className="text-sm font-semibold text-white">Vibe Board</span>
-            <p className="text-xs text-white/30 mt-0.5">Live coding ideas from class</p>
-          </div>
-          <ChevronRight className="w-4 h-4 text-white/20" />
-        </button>
-
-        <button
-          onClick={() => onNavigate?.('journal')}
-          className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
-        >
-          <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center shrink-0">
-            <BookOpen className="w-5 h-5 text-purple-400" />
-          </div>
-          <div className="flex-1">
-            <span className="text-sm font-semibold text-white">Journal</span>
-            <p className="text-xs text-white/30 mt-0.5">Reflect on your progress</p>
           </div>
           <ChevronRight className="w-4 h-4 text-white/20" />
         </button>

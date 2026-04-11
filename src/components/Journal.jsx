@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { PenLine, Plus, ChevronDown, ChevronUp, Clock, Trash2, Flame, Star, BookOpen, Sparkles, Heart, Quote } from 'lucide-react';
+import { PenLine, Plus, ChevronDown, ChevronUp, Clock, Trash2, Flame, Star, BookOpen, Sparkles, Heart, Quote, Send, CheckCircle, Check } from 'lucide-react';
 import { doc, setDoc, onSnapshot, collection, query, orderBy, limit, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
@@ -36,6 +36,24 @@ const MILESTONES = [
   { count: 100, icon: '🏆', label: 'Centurion', desc: '100 entries — legendary' },
 ];
 
+// Weekly Check-in questions
+const checkInQuestions = [
+  { id: 'energy', label: 'Energy', prompt: 'How\'s your energy this week?', type: 'scale', labels: ['Drained', 'Low', 'Okay', 'Good', 'On fire'] },
+  { id: 'momentum', label: 'Momentum', prompt: 'How engaged are you with the course?', type: 'scale', labels: ['Stuck', 'Slow', 'Steady', 'Rolling', 'Flying'] },
+  { id: 'clarity', label: 'Clarity', prompt: 'How clear are you on your direction?', type: 'scale', labels: ['Foggy', 'Hazy', 'Getting there', 'Clear', 'Crystal'] },
+  { id: 'highlight', label: 'Highlight', prompt: 'One thing that went well this week?', type: 'text' },
+  { id: 'challenge', label: 'Challenge', prompt: 'One thing you\'re working through?', type: 'text' },
+  { id: 'intention', label: 'Next Focus', prompt: 'Your one focus for next week?', type: 'text' },
+];
+
+const scaleColors = [
+  { bg: 'bg-red-500/20', border: 'border-red-500/40', text: 'text-red-300' },
+  { bg: 'bg-orange-500/20', border: 'border-orange-500/40', text: 'text-orange-300' },
+  { bg: 'bg-yellow-500/20', border: 'border-yellow-500/40', text: 'text-yellow-300' },
+  { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-300' },
+  { bg: 'bg-cyan-500/20', border: 'border-cyan-500/40', text: 'text-cyan-300' },
+];
+
 export default function Journal({ user }) {
   const [entries, setEntries] = useState([]);
   const [newEntry, setNewEntry] = useState('');
@@ -47,6 +65,13 @@ export default function Journal({ user }) {
   const [currentPrompt, setCurrentPrompt] = useState('');
   const [justSaved, setJustSaved] = useState(false);
   const [showMilestone, setShowMilestone] = useState(null);
+
+  // Check-in state
+  const [showCheckIn, setShowCheckIn] = useState(false);
+  const [checkInResponses, setCheckInResponses] = useState({});
+  const [checkInSubmitting, setCheckInSubmitting] = useState(false);
+  const [pastCheckIns, setPastCheckIns] = useState([]);
+  const [checkInExpanded, setCheckInExpanded] = useState(null);
 
   // Load entries from Firestore
   useEffect(() => {
@@ -65,6 +90,45 @@ export default function Journal({ user }) {
 
     return unsub;
   }, [user?.uid]);
+
+  // Load check-ins
+  useEffect(() => {
+    if (!user?.uid) return;
+    const q2 = query(collection(db, 'checkins', user.uid, 'entries'), orderBy('createdAt', 'desc'), limit(10));
+    const unsub = onSnapshot(q2, (snap) => {
+      setPastCheckIns(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+    return unsub;
+  }, [user?.uid]);
+
+  const now = new Date();
+  const weekStart = new Date(now);
+  weekStart.setDate(now.getDate() - now.getDay());
+  weekStart.setHours(0, 0, 0, 0);
+  const alreadyCheckedIn = pastCheckIns.some(c => {
+    const d = c.createdAt ? new Date(c.createdAt) : null;
+    return d && d >= weekStart;
+  });
+
+  const handleCheckInSubmit = async () => {
+    if (!user?.uid) return;
+    setCheckInSubmitting(true);
+    try {
+      const weekId = weekStart.toISOString().split('T')[0];
+      await setDoc(doc(db, 'checkins', user.uid, 'entries', weekId), {
+        ...checkInResponses,
+        createdAt: new Date().toISOString(),
+        userEmail: user.email,
+        userName: user.displayName,
+      });
+      setCheckInResponses({});
+      setShowCheckIn(false);
+    } catch (err) {
+      console.error('[checkIn] save error:', err);
+    } finally {
+      setCheckInSubmitting(false);
+    }
+  };
 
   // Rotate prompts
   const shufflePrompt = useCallback(() => {
@@ -237,6 +301,103 @@ export default function Journal({ user }) {
             <span className="text-sm text-white/40">{entries.length}</span>
           </div>
         </div>
+      </div>
+
+      {/* Weekly Check-in — compact inline */}
+      <div className="border border-sky-500/15 rounded-2xl overflow-hidden">
+        <button
+          onClick={() => setShowCheckIn(!showCheckIn)}
+          className="w-full flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-sky-500/[0.06] to-blue-500/[0.04] text-left transition hover:brightness-110"
+        >
+          <CheckCircle className={`w-4 h-4 ${alreadyCheckedIn ? 'text-emerald-400' : 'text-sky-400'} shrink-0`} />
+          <span className="text-sm font-medium text-white">Weekly Check-in</span>
+          {alreadyCheckedIn && <span className="text-[10px] text-emerald-400/60 ml-1">Done this week</span>}
+          <span className="ml-auto">
+            {showCheckIn ? <ChevronUp className="w-4 h-4 text-white/30" /> : <ChevronDown className="w-4 h-4 text-white/30" />}
+          </span>
+        </button>
+        {showCheckIn && (
+          <div className="px-4 py-4 space-y-3">
+            {alreadyCheckedIn ? (
+              <p className="text-sm text-white/40 text-center py-2">You've already checked in this week. Come back next week!</p>
+            ) : (
+              <>
+                {checkInQuestions.map((q) => (
+                  <div key={q.id}>
+                    <label className="text-xs text-white/50 block mb-1.5">{q.prompt}</label>
+                    {q.type === 'scale' ? (
+                      <div className="flex gap-1.5">
+                        {q.labels.map((label, i) => {
+                          const val = i + 1;
+                          const selected = checkInResponses[q.id] === val;
+                          const colors = scaleColors[i];
+                          return (
+                            <button
+                              key={val}
+                              onClick={() => setCheckInResponses(prev => ({ ...prev, [q.id]: val }))}
+                              className={`flex-1 py-2 rounded-lg text-xs font-medium transition border ${
+                                selected ? `${colors.bg} ${colors.border} ${colors.text}` : 'bg-white/[0.02] border-white/5 text-white/30 hover:bg-white/[0.05]'
+                              }`}
+                            >
+                              <div className="text-sm mb-0.5">{val}</div>
+                              <div className="text-[8px] leading-tight">{label}</div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <input
+                        type="text"
+                        value={checkInResponses[q.id] || ''}
+                        onChange={(e) => setCheckInResponses(prev => ({ ...prev, [q.id]: e.target.value }))}
+                        className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/20 focus:outline-none focus:border-sky-500/30"
+                        placeholder="Your answer..."
+                      />
+                    )}
+                  </div>
+                ))}
+                <button
+                  onClick={handleCheckInSubmit}
+                  disabled={checkInSubmitting || !checkInQuestions.every(q => q.type === 'scale' ? checkInResponses[q.id] : checkInResponses[q.id]?.trim())}
+                  className="w-full py-2.5 rounded-xl text-sm font-medium bg-sky-500 hover:bg-sky-400 text-white transition disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  {checkInSubmitting ? 'Saving...' : 'Submit Check-in'}
+                </button>
+              </>
+            )}
+
+            {/* Past check-ins */}
+            {pastCheckIns.length > 0 && (
+              <div className="pt-2 border-t border-white/5 space-y-1">
+                <span className="text-[10px] text-white/20 uppercase tracking-wider">Past Check-ins</span>
+                {pastCheckIns.slice(0, 4).map((ci) => (
+                  <button
+                    key={ci.id}
+                    onClick={() => setCheckInExpanded(checkInExpanded === ci.id ? null : ci.id)}
+                    className="w-full text-left px-3 py-2 bg-white/[0.02] rounded-lg hover:bg-white/[0.04] transition"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-white/40">{ci.createdAt ? new Date(ci.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}</span>
+                      <div className="flex gap-1 ml-auto">
+                        {['energy', 'momentum', 'clarity'].map(k => ci[k] ? (
+                          <span key={k} className={`text-[9px] px-1 py-0.5 rounded ${scaleColors[(ci[k] || 1) - 1].bg} ${scaleColors[(ci[k] || 1) - 1].text}`}>{ci[k]}/5</span>
+                        ) : null)}
+                      </div>
+                    </div>
+                    {checkInExpanded === ci.id && (
+                      <div className="mt-2 space-y-1 text-xs text-white/40">
+                        {ci.highlight && <p><span className="text-white/50">Highlight:</span> {ci.highlight}</p>}
+                        {ci.challenge && <p><span className="text-white/50">Challenge:</span> {ci.challenge}</p>}
+                        {ci.intention && <p><span className="text-white/50">Next focus:</span> {ci.intention}</p>}
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Milestone progress bar */}
