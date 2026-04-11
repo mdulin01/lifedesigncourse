@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import {
   Compass, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap,
-  Code, CalendarDays, ClipboardList, BarChart3, Heart, BookMarked,
+  Code, Heart, BookMarked,
 } from 'lucide-react';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
 import VibeBoard from './VibeBoard';
-import MeetingScheduler from './MeetingScheduler';
-import TrainingSurvey from './TrainingSurvey';
-import TrainingSurveyResults from './TrainingSurveyResults';
-import { allowedEmails } from '../constants';
 
 // Collapsible section wrapper
 function Section({ icon: Icon, title, subtitle, color, gradient, border, children, defaultOpen = false }) {
@@ -128,43 +124,15 @@ export default function Training({ user, onNavigate }) {
           <h1 className="text-2xl font-bold text-white">Training Hub</h1>
         </div>
         <p className="text-sm text-white/50">
-          Survey, scheduling, project tracking, and live ideas — your training home base.
+          Your training foundation, book club, projects, and shared ideas.
         </p>
       </div>
-
-      {/* Training Survey */}
-      <Section
-        icon={ClipboardList}
-        title="Training Feedback Survey"
-        subtitle="Share your experience from the in-person sessions"
-        color="rose"
-        gradient="from-rose-500/10 to-pink-500/10"
-        border="border-rose-500/20"
-        defaultOpen={true}
-      >
-        <TrainingSurvey user={user} />
-      </Section>
-
-      {/* Survey Results — admin only */}
-      {allowedEmails.includes(user?.email?.toLowerCase()) && (
-        <Section
-          icon={BarChart3}
-          title="Survey Results"
-          subtitle="Aggregated feedback from all participants (admin only)"
-          color="rose"
-          gradient="from-rose-500/10 to-orange-500/10"
-          border="border-rose-500/20"
-          defaultOpen={false}
-        >
-          <TrainingSurveyResults user={user} />
-        </Section>
-      )}
 
       {/* Developing From Within — Kate's training recap */}
       <Section
         icon={Heart}
         title="Developing From Within"
-        subtitle="Recap from Kate's in-person training — your foundation"
+        subtitle="Recap from the in-person training with Kate — your foundation"
         color="purple"
         gradient="from-purple-500/10 to-violet-500/10"
         border="border-purple-500/20"
@@ -238,7 +206,7 @@ export default function Training({ user, onNavigate }) {
         </div>
       </Section>
 
-      {/* Vibe Code a Project */}
+      {/* Build a Project with AI */}
       <Section
         icon={Code}
         title="Build a Project with AI"
@@ -248,19 +216,6 @@ export default function Training({ user, onNavigate }) {
         border="border-blue-500/20"
       >
         <ModuleProgress moduleId={1} workbookData={workbookData} onNavigate={onNavigate} />
-      </Section>
-
-      {/* Meeting Schedule */}
-      <Section
-        icon={CalendarDays}
-        title="Meeting Schedule"
-        subtitle="Find times that work for biweekly 1-hour sessions"
-        color="sky"
-        gradient="from-sky-500/10 to-blue-500/10"
-        border="border-sky-500/20"
-        defaultOpen={true}
-      >
-        <MeetingScheduler user={user} />
       </Section>
 
       {/* Exercise Results */}
