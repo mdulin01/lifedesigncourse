@@ -261,8 +261,8 @@ export default function MyPlan({ user, onNavigate }) {
           <div className="space-y-4">
             {[
               { data: plan1, label: 'Path 1: Current Direction', desc: 'Where your current path leads' },
-              { data: plan2, label: 'Path 2: Alternative', desc: 'What if your current path wasn't an option?' },
-              { data: plan3, label: 'Path 3: Wild Card', desc: 'What if money and reputation didn't matter?' },
+              { data: plan2, label: 'Path 2: Alternative', desc: 'What if your current path wasn\'t an option?' },
+              { data: plan3, label: 'Path 3: Wild Card', desc: 'What if money and reputation didn\'t matter?' },
             ].map(({ data, label, desc }, idx) => {
               if (!data) return null;
               // Flatten all fields into preview
