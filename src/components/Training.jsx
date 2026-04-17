@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import {
   Compass, Lightbulb, ChevronRight, ChevronDown, ChevronUp,
   BookOpen, CheckCircle2, Circle, Loader2, GraduationCap,
-  Code, Heart, BookMarked,
+  Code, Heart, BookMarked, BarChart3,
 } from 'lucide-react';
+import { allowedEmails } from '../constants';
 import { useWorkbook } from '../hooks/useWorkbook';
 import { courseModules, moduleProjects } from '../constants';
 import VibeBoard from './VibeBoard';
+import TrainingSurveyResults from './TrainingSurveyResults';
 
 // Collapsible section wrapper
 function Section({ icon: Icon, title, subtitle, color, gradient, border, children, defaultOpen = false }) {
@@ -127,6 +129,21 @@ export default function Training({ user, onNavigate }) {
           Your training foundation, book club, projects, and shared ideas.
         </p>
       </div>
+
+      {/* Survey Results — admin only */}
+      {allowedEmails.includes(user?.email?.toLowerCase()) && (
+        <Section
+          icon={BarChart3}
+          title="Survey Results"
+          subtitle="Aggregated feedback from post-event surveys"
+          color="emerald"
+          gradient="from-emerald-500/10 to-teal-500/10"
+          border="border-emerald-500/20"
+          defaultOpen={false}
+        >
+          <TrainingSurveyResults user={user} />
+        </Section>
+      )}
 
       {/* Developing From Within — Kate's training recap */}
       <Section
