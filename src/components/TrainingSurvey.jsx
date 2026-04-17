@@ -230,10 +230,11 @@ export default function TrainingSurvey({ user }) {
       ))}
 
       {/* Submit */}
+      <div className="pb-8">
       <button
         onClick={handleSubmit}
         disabled={!allLikertAnswered || saving}
-        className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {saving ? (
           <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
@@ -242,8 +243,9 @@ export default function TrainingSurvey({ user }) {
         )}
       </button>
       {!allLikertAnswered && (
-        <p className="text-[10px] text-white/25 text-center">Please answer all rated questions to submit ({totalLikert - answeredCount} remaining)</p>
+        <p className="text-xs text-white/50 text-center mt-2">Please answer all rated questions to submit ({totalLikert - answeredCount} remaining)</p>
       )}
+      </div>
     </div>
   );
 }
