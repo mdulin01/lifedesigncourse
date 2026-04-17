@@ -233,7 +233,7 @@ export default function TrainingSurvey({ user }) {
       <div className="pb-8">
         <button
           onClick={handleSubmit}
-          disabled={!allLikertAnswered || saving}
+          disabled={saving}
           className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {saving ? (
@@ -243,7 +243,7 @@ export default function TrainingSurvey({ user }) {
           )}
         </button>
         {!allLikertAnswered && (
-          <p className="text-xs text-white/50 text-center mt-2">Please answer all rated questions to submit ({totalLikert - answeredCount} remaining)</p>
+          <p className="text-xs text-white/50 text-center mt-2">{answeredCount}/{totalLikert} rated questions answered</p>
         )}
       </div>
     </div>
