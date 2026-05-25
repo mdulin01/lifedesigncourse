@@ -1,9 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { db } from '../firebase-config';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { CheckCircle2, Send, Loader2 } from 'lucide-react';
 
 const COLLECTION = 'trainingSurveys';
+
+// Read the participant email from the URL (?email=...) for no-login access.
+function getEmailFromUrl() {
+  try {
+    const raw = new URLSearchParams(window.location.search).get('email');
+    return raw ? raw.trim().toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+
+// Build a safe, deterministic Firestore doc id from an email address.
+function emailToDocId(email) {
+  return `email_${email.replace(/[^a-z0-9]/g, '_')}`;
+}
 
 // Likert scale options
 const SCALE = [
@@ -102,12 +117,35 @@ export default function TrainingSurvey({ user }) {
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Identity comes from either a logged-in user OR an ?email= URL param (no-login).
+  const identity = useMemo(() => {
+    if (user) {
+      return {
+        docId: user.uid,
+        email: user.email || null,
+        name: user.displayName || user.email?.split('@')[0] || 'Anonymous',
+      };
+    }
+    const urlEmail = getEmailFromUrl();
+    if (urlEmail) {
+      return {
+        docId: emailToDocId(urlEmail),
+        email: urlEmail,
+        name: urlEmail.split('@')[0],
+      };
+    }
+    return null;
+  }, [user]);
+
   // Load existing response
   useEffect(() => {
-    if (!user) return;
+    if (!identity) {
+      setLoading(false);
+      return;
+    }
     const load = async () => {
       try {
-        const snap = await getDoc(doc(db, COLLECTION, user.uid));
+        const snap = await getDoc(doc(db, COLLECTION, identity.docId));
         if (snap.exists()) {
           const data = snap.data();
           setResponses(data.responses || {});
@@ -119,7 +157,7 @@ export default function TrainingSurvey({ user }) {
       setLoading(false);
     };
     load();
-  }, [user]);
+  }, [identity]);
 
   const updateResponse = (questionId, value) => {
     if (submitted) return;
@@ -128,13 +166,13 @@ export default function TrainingSurvey({ user }) {
 
   // Auto-save draft every time responses change
   useEffect(() => {
-    if (!user || loading || submitted) return;
+    if (!identity || loading || submitted) return;
     const timeout = setTimeout(async () => {
       try {
-        await setDoc(doc(db, COLLECTION, user.uid), {
-          uid: user.uid,
-          name: user.displayName || user.email?.split('@')[0] || 'Anonymous',
-          email: user.email,
+        await setDoc(doc(db, COLLECTION, identity.docId), {
+          uid: identity.docId,
+          name: identity.name,
+          email: identity.email,
           responses,
           submitted: false,
           updatedAt: new Date().toISOString(),
@@ -144,16 +182,16 @@ export default function TrainingSurvey({ user }) {
       }
     }, 1000);
     return () => clearTimeout(timeout);
-  }, [responses, user, loading, submitted]);
+  }, [responses, identity, loading, submitted]);
 
   const handleSubmit = async () => {
-    if (!user || saving) return;
+    if (!identity || saving) return;
     setSaving(true);
     try {
-      await setDoc(doc(db, COLLECTION, user.uid), {
-        uid: user.uid,
-        name: user.displayName || user.email?.split('@')[0] || 'Anonymous',
-        email: user.email,
+      await setDoc(doc(db, COLLECTION, identity.docId), {
+        uid: identity.docId,
+        name: identity.name,
+        email: identity.email,
         responses,
         submitted: true,
         submittedAt: new Date().toISOString(),
@@ -176,6 +214,18 @@ export default function TrainingSurvey({ user }) {
     return (
       <div className="flex items-center justify-center py-10">
         <Loader2 className="w-5 h-5 text-emerald-400 animate-spin" />
+      </div>
+    );
+  }
+
+  if (!identity) {
+    return (
+      <div className="text-center py-10 space-y-3">
+        <div className="text-3xl">🔗</div>
+        <h3 className="text-lg font-semibold text-white">Use your personal link</h3>
+        <p className="text-sm text-white/50">
+          Please open the survey using the personalized link from your email so we can match your responses. If you can't find it, just sign in instead.
+        </p>
       </div>
     );
   }

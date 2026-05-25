@@ -72,10 +72,17 @@ service cloud.firestore {
             || request.auth.token.email in ['mdulin@gmail.com', 'Catherine_Cerulli@urmc.rochester.edu']);
     }
 
-    // Training Surveys — users read/write their own, admins can read all
-    match /trainingSurveys/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    // Training Surveys — users read/write their own, admins can read all.
+    // Post-course survey is open (no-login): anyone with the personalized link
+    // can create/update a survey doc that carries email + responses. Reads stay
+    // restricted to the participant (when signed in) and the two admins, so the
+    // open writes never expose data. Lock this back down after responses are in.
+    match /trainingSurveys/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == docId;
       allow read: if request.auth != null && request.auth.token.email in ['mdulin@gmail.com', 'catherine_cerulli@urmc.rochester.edu'];
+      allow create, update: if request.resource.data.keys().hasAll(['email', 'responses'])
+                            && request.resource.data.email is string
+                            && request.resource.data.responses is map;
     }
 
     // Default deny

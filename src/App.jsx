@@ -136,34 +136,23 @@ export default function App() {
     <BTSProvider>
       <Routes>
         <Route path="/survey" element={
-          user ? (
-            <div className="min-h-screen bg-slate-950 px-4 py-8">
-              <div className="max-w-lg mx-auto">
-                <div className="mb-6">
-                  <div className="text-3xl mb-2">📋</div>
-                  <h1 className="text-xl font-bold text-white">Training Feedback Survey</h1>
-                  <p className="text-sm text-white/40 mt-1">Help us improve future sessions</p>
-                </div>
-                <TrainingSurvey user={user} />
+          <div className="min-h-screen bg-slate-950 px-4 py-8">
+            <div className="max-w-lg mx-auto">
+              <div className="mb-6">
+                <div className="text-3xl mb-2">📋</div>
+                <h1 className="text-xl font-bold text-white">Training Feedback Survey</h1>
+                <p className="text-sm text-white/40 mt-1">Help us improve future sessions</p>
+              </div>
+              <TrainingSurvey user={user} />
+              {user && (
                 <div className="mt-8 text-center">
                   <a href="/portal" className="text-emerald-400/60 hover:text-emerald-400 text-sm transition">
                     Go to Portal →
                   </a>
                 </div>
-              </div>
+              )}
             </div>
-          ) : (
-            <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-              <div className="w-full max-w-sm text-center">
-                <div className="mb-8">
-                  <div className="text-5xl mb-4">📋</div>
-                  <h1 className="text-2xl font-bold text-white mb-1">Training Feedback Survey</h1>
-                  <p className="text-white/50 text-sm">Sign in to submit your feedback</p>
-                </div>
-                <SignInBlock />
-              </div>
-            </div>
-          )
+          </div>
         } />
         <Route path="/portal/*" element={
           user ? (
