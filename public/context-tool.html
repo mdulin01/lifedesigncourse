@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Context Builder</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1e2932;
+      --muted: #5c6876;
+      --line: #d7dee7;
+      --paper: #f7f7f2;
+      --panel: #ffffff;
+      --panel-soft: #f1f7f8;
+      --accent: #126b76;
+      --accent-dark: #0f4f58;
+      --accent-soft: #dff2f4;
+      --amber: #8a5a00;
+      --amber-soft: #fff3d0;
+      --green: #1f7a55;
+      --green-soft: #e4f4ed;
+      --shadow: 0 18px 45px rgba(31, 41, 51, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    main { width: min(1120px, calc(100% - 32px)); margin: 28px auto 48px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.85fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    header, section, aside {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    header { padding: clamp(22px, 4vw, 40px); }
+    h1, h2, h3 { margin: 0; line-height: 1.18; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 1.35rem; }
+    h3 { margin-bottom: 8px; font-size: 1rem; }
+    p { margin: 0 0 12px; }
+    code { padding: 2px 5px; border-radius: 4px; background: #eef2f6; font-size: 0.95em; }
+    label { color: var(--ink); font-weight: 650; }
+    .name-input {
+      width: 100%;
+      border: 0;
+      border-bottom: 2px dashed var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      padding: 4px 0;
+      margin-top: 6px;
+    }
+    .name-input:focus { outline: none; border-bottom-color: var(--accent); }
+    .headline-input {
+      width: 100%;
+      max-width: 760px;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      color: var(--muted);
+      font-size: 1.05rem;
+      padding: 10px;
+      min-height: 64px;
+      resize: vertical;
+    }
+    .tags-input {
+      width: 100%;
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      padding: 9px 10px;
+    }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill {
+      display: inline-flex; align-items: center; min-height: 30px;
+      padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px;
+      background: #f7f9fb; color: var(--muted); font-size: 0.9rem;
+    }
+    .notice {
+      margin-top: 22px; padding: 12px 14px; border-left: 4px solid var(--amber);
+      border-radius: 6px; background: var(--amber-soft); color: #4d3900; font-size: 0.95rem;
+    }
+    .quick-card {
+      display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+      padding: 24px; background: var(--accent-dark); color: white;
+    }
+    .quick-card p { color: #d9eef1; }
+    .quick-card strong { display: block; margin-bottom: 3px; font-size: 1.55rem; }
+    .steps { margin: 0; padding-left: 20px; color: #d9eef1; font-size: 0.95rem; }
+    .steps li + li { margin-top: 6px; }
+    .content {
+      display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px;
+      margin-top: 18px; align-items: start;
+    }
+    .section-stack { display: grid; gap: 18px; }
+    section, aside { padding: 24px; }
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .mini-panel { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfd; }
+    .field-text {
+      width: 100%; border: 1px solid var(--line); border-radius: 6px; background: white;
+      color: var(--ink); padding: 9px 10px; min-height: 92px; resize: vertical;
+    }
+    .field-text.short { min-height: 70px; }
+    .agent-sidebar { position: sticky; top: 18px; display: grid; gap: 16px; }
+    .control { display: grid; gap: 8px; padding: 14px 0; border-top: 1px solid var(--line); }
+    .control:first-of-type { border-top: 0; padding-top: 0; }
+    .control-row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .value { min-width: 80px; color: var(--accent); font-weight: 750; text-align: right; }
+    .hint { color: var(--muted); font-size: 0.92rem; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+    select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--ink); }
+    select { min-height: 42px; padding: 8px 10px; }
+    .toggle-grid { display: grid; gap: 8px; }
+    .toggle {
+      display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; align-items: start;
+      padding: 9px; border: 1px solid var(--line); border-radius: 6px; background: #fbfcfd;
+    }
+    .toggle input { margin-top: 4px; accent-color: var(--accent); }
+    .button-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 40px;
+      padding: 8px 12px; border: 1px solid var(--accent); border-radius: 6px;
+      background: var(--accent); color: white; font-weight: 700;
+    }
+    .btn.secondary { background: white; color: var(--accent); }
+    .btn:focus-visible { outline: 3px solid rgba(18, 107, 118, 0.24); outline-offset: 2px; }
+    .output {
+      min-height: 220px; max-height: 460px; overflow: auto; padding: 14px;
+      border: 1px solid #bdd7dc; border-radius: 6px; background: var(--panel-soft);
+      color: #173f46; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem; white-space: pre-wrap;
+    }
+    .label {
+      display: inline-block; margin-bottom: 7px; color: var(--accent); font-weight: 800;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .status { min-height: 20px; margin-top: 8px; color: var(--green); font-size: 0.9rem; font-weight: 700; }
+    @media (max-width: 900px) {
+      .hero, .content, .two-col { grid-template-columns: 1fr; }
+      .agent-sidebar { position: static; }
+    }
+    @media (max-width: 620px) {
+      main { width: min(100% - 20px, 1120px); margin-top: 18px; }
+      header, section, aside, .quick-card { padding: 18px; }
+      .control-row { display: grid; }
+      .value { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="hero">
+      <header>
+        <span class="label">AI context builder</span>
+        <input id="name" class="name-input" type="text" placeholder="Your name" aria-label="Your name">
+        <textarea id="headline" class="headline-input" placeholder="One or two sentences: who you are and what you do (e.g. 'A physician and educator who builds practical tools and teaches teams to use AI well.')" aria-label="Headline"></textarea>
+        <input id="tags" class="tags-input" type="text" placeholder="Comma-separated tags, e.g. educator, builder, student-centered" aria-label="Tags">
+        <div class="meta" id="pillBox" aria-label="Tags preview"></div>
+        <div class="notice">
+          <strong>How this works:</strong> Fill in the fields below and tune the controls. The
+          panel on the right builds a clean, copy-paste context summary for any AI assistant.
+          Your work is saved automatically in this browser. Keep private details out unless the
+          assistant truly needs them.
+        </div>
+      </header>
+
+      <aside class="quick-card" aria-label="Steps">
+        <div>
+          <strong>Give your AI the same context a good colleague would have.</strong>
+          <p>A context file tells an assistant how to collaborate with you, what to optimize for, and where your boundaries are — so you stop re-explaining yourself every chat.</p>
+        </div>
+        <ol class="steps">
+          <li>Fill in your profile and tune the preference controls.</li>
+          <li>Copy the summary, or download it as Markdown.</li>
+          <li>Paste it at the start of a chat, or save it as your assistant's custom instructions.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content">
+      <div class="section-stack">
+        <section id="profile">
+          <h2>Your Profile</h2>
+          <div class="two-col">
+            <div class="mini-panel">
+              <h3>Who I am</h3>
+              <textarea id="whoIAm" class="field-text" placeholder="A short paragraph about your role, background, and what you care about."></textarea>
+            </div>
+            <div class="mini-panel">
+              <h3>How I work <span class="hint">(one per line)</span></h3>
+              <textarea id="howIWork" class="field-text" placeholder="Start with the real goal.&#10;Prefer concrete examples.&#10;Build things I can reuse."></textarea>
+            </div>
+            <div class="mini-panel">
+              <h3>Communication style <span class="hint">(one per line)</span></h3>
+              <textarea id="commStyle" class="field-text" placeholder="Clear and direct.&#10;Comfortable with iteration.&#10;Lead with a strong first draft."></textarea>
+            </div>
+            <div class="mini-panel">
+              <h3>Current goals <span class="hint">(one per line)</span></h3>
+              <textarea id="goals" class="field-text" placeholder="What you're trying to get done right now."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section id="preferences">
+          <h2>Collaboration Preferences</h2>
+          <p>These controls make tacit preferences explicit, so an AI agent knows how much to explain, how independently to act, and what kind of support to give.</p>
+
+          <div class="control">
+            <div class="control-row">
+              <label for="detailLevel">Response detail</label>
+              <span class="value" id="detailValue">Balanced</span>
+            </div>
+            <input id="detailLevel" type="range" min="1" max="5" value="3">
+            <p class="hint">1 is brief. 5 is deeply explanatory.</p>
+          </div>
+
+          <div class="control">
+            <div class="control-row">
+              <label for="autonomyLevel">Agent autonomy</label>
+              <span class="value" id="autonomyValue">Balanced</span>
+            </div>
+            <input id="autonomyLevel" type="range" min="1" max="5" value="3">
+            <p class="hint">1 asks before acting. 5 makes reasonable decisions and moves.</p>
+          </div>
+
+          <div class="control">
+            <div class="control-row">
+              <label for="teachingLevel">Teaching mode</label>
+              <span class="value" id="teachingValue">Guide</span>
+            </div>
+            <input id="teachingLevel" type="range" min="1" max="5" value="3">
+            <p class="hint">1 just gives answers. 5 coaches you through the thinking.</p>
+          </div>
+
+          <div class="control">
+            <div class="control-row">
+              <label for="confidenceLevel">Uncertainty threshold</label>
+              <span class="value" id="confidenceValue">70%</span>
+            </div>
+            <input id="confidenceLevel" type="range" min="50" max="95" step="5" value="70">
+            <p class="hint">Below this confidence, the assistant should ask, verify, or label assumptions.</p>
+          </div>
+
+          <div class="control">
+            <label for="feedbackStyle">Preferred feedback style</label>
+            <select id="feedbackStyle">
+              <option>Direct and kind</option>
+              <option>Quick executive summary first</option>
+              <option>Step-by-step coaching</option>
+              <option>Questions before recommendations</option>
+              <option>Detailed critique with examples</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label for="projectMode">Current project mode</label>
+            <select id="projectMode">
+              <option>Brainstorming</option>
+              <option>Teaching material</option>
+              <option>Writing and editing</option>
+              <option>Coding and implementation</option>
+              <option>Debugging</option>
+              <option>Research and synthesis</option>
+              <option>Review and critique</option>
+              <option>Presentation prep</option>
+            </select>
+            <p class="hint">Helps the assistant pick the right posture for the current task.</p>
+          </div>
+
+          <div class="control">
+            <label>Helpful AI behaviors</label>
+            <div class="toggle-grid">
+              <label class="toggle">
+                <input type="checkbox" data-behavior="Create a useful first draft before asking too many setup questions." checked>
+                <span>Create a useful first draft before asking too many setup questions.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-behavior="Label assumptions when personal or project details are inferred." checked>
+                <span>Label assumptions when personal or project details are inferred.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-behavior="Explain the why behind technical and strategic choices." checked>
+                <span>Explain the why behind technical and strategic choices.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-behavior="Turn abstract ideas into artifacts, examples, or templates." checked>
+                <span>Turn abstract ideas into artifacts, examples, or templates.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="control">
+            <label>Privacy boundaries</label>
+            <div class="toggle-grid">
+              <label class="toggle">
+                <input type="checkbox" data-boundary="Do not infer sensitive personal details such as demographics, health, finances, or family information." checked>
+                <span>Do not infer sensitive personal details.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-boundary="Ask before using private or person-specific information in examples, prompts, or generated files." checked>
+                <span>Ask before using private information in outputs.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-boundary="Keep examples anonymized unless a real name or identifying detail is explicitly needed." checked>
+                <span>Keep examples anonymized by default.</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-boundary="Do not retain or rely on temporary project notes beyond the active task unless asked." checked>
+                <span>Treat temporary notes as task-scoped.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="control">
+            <label for="workingNotes">Extra context to add before sharing</label>
+            <textarea id="workingNotes" placeholder="Temporary context for the current project, class, or task."></textarea>
+          </div>
+        </section>
+
+        <section>
+          <h2>HTML vs. Markdown</h2>
+          <p>Markdown is simpler and better for low-friction editing. This HTML version is better when you want a polished, interactive builder that generates a clean summary. For an AI agent, the clearest content wins — the format is just the container. Use <strong>Copy Summary</strong> to paste into a chat, or <strong>Download .md</strong> to save a reusable file.</p>
+        </section>
+      </div>
+
+      <aside class="agent-sidebar" id="agent-summary">
+        <section>
+          <h2>Agent-Ready Summary</h2>
+          <p class="hint">This updates as you edit. Copy it into an AI chat, or save it as your assistant's custom instructions.</p>
+          <pre class="output" id="summaryOutput" aria-live="polite"></pre>
+          <div class="button-row">
+            <button class="btn" id="copySummary" type="button">Copy Summary</button>
+            <button class="btn secondary" id="downloadSummary" type="button">Download .md</button>
+            <button class="btn secondary" id="resetControls" type="button">Reset</button>
+          </div>
+          <div class="status" id="copyStatus" role="status"></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'aiContextBuilder.template.v1';
+
+    const rangeLabels = {
+      detailLevel: ["Very brief", "Concise", "Balanced", "Detailed", "Deep dive"],
+      autonomyLevel: ["Ask first", "Low", "Balanced", "Proactive", "High autonomy"],
+      teachingLevel: ["Answer", "Explain", "Guide", "Coach", "Socratic"]
+    };
+
+    const textIds = ["name", "headline", "tags", "whoIAm", "howIWork", "commStyle", "goals", "workingNotes"];
+    const rangeIds = ["detailLevel", "autonomyLevel", "teachingLevel", "confidenceLevel"];
+    const selectIds = ["feedbackStyle", "projectMode"];
+
+    const $ = (id) => document.getElementById(id);
+    const summaryOutput = $("summaryOutput");
+    const copyStatus = $("copyStatus");
+
+    function rangeLabel(id) {
+      const v = Number($(id).value);
+      return rangeLabels[id][v - 1];
+    }
+
+    function bullets(text) {
+      return String(text || "")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => "- " + line.replace(/^[-*]\s*/, ""))
+        .join("\n");
+    }
+
+    function checkedValues(attr) {
+      return Array.from(document.querySelectorAll("[" + attr + "]:checked")).map((el) => el.getAttribute(attr));
+    }
+
+    function renderPills() {
+      const box = $("pillBox");
+      box.innerHTML = "";
+      String($("tags").value || "")
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean)
+        .forEach((t) => {
+          const span = document.createElement("span");
+          span.className = "pill";
+          span.textContent = t;
+          box.appendChild(span);
+        });
+    }
+
+    function updateLabels() {
+      $("detailValue").textContent = rangeLabel("detailLevel");
+      $("autonomyValue").textContent = rangeLabel("autonomyLevel");
+      $("teachingValue").textContent = rangeLabel("teachingLevel");
+      $("confidenceValue").textContent = $("confidenceLevel").value + "%";
+    }
+
+    function buildSummary() {
+      const name = ($("name").value || "").trim() || "[Your name]";
+      const headline = ($("headline").value || "").trim();
+      const tags = String($("tags").value || "").split(",").map((t) => t.trim()).filter(Boolean);
+      const whoIAm = ($("whoIAm").value || "").trim();
+      const howIWork = bullets($("howIWork").value);
+      const commStyle = bullets($("commStyle").value);
+      const goals = bullets($("goals").value);
+      const behaviors = checkedValues("data-behavior").map((b) => "- " + b).join("\n");
+      const boundaries = checkedValues("data-boundary").map((b) => "- " + b).join("\n");
+      const notes = ($("workingNotes").value || "").trim();
+
+      const lines = [];
+      lines.push("# AI Context for " + name);
+      lines.push("");
+      if (headline) { lines.push(headline); lines.push(""); }
+      if (tags.length) { lines.push("Tags: " + tags.join(", ")); lines.push(""); }
+      if (whoIAm) { lines.push("## Who I am"); lines.push(whoIAm); lines.push(""); }
+      if (howIWork) { lines.push("## How I work"); lines.push(howIWork); lines.push(""); }
+      if (commStyle) { lines.push("## Communication style"); lines.push(commStyle); lines.push(""); }
+      if (goals) { lines.push("## Current goals"); lines.push(goals); lines.push(""); }
+
+      lines.push("## Collaboration preferences");
+      lines.push("- Response detail: " + rangeLabel("detailLevel"));
+      lines.push("- Agent autonomy: " + rangeLabel("autonomyLevel"));
+      lines.push("- Teaching mode: " + rangeLabel("teachingLevel"));
+      lines.push("- Feedback style: " + $("feedbackStyle").value);
+      lines.push("- Project mode: " + $("projectMode").value);
+      lines.push("- Uncertainty threshold: If confidence is below " + $("confidenceLevel").value + "%, ask a clarifying question, verify, or clearly label assumptions.");
+      lines.push("");
+
+      if (behaviors) { lines.push("## Helpful behaviors"); lines.push(behaviors); lines.push(""); }
+      if (boundaries) { lines.push("## Boundaries"); lines.push(boundaries); lines.push(""); }
+
+      lines.push("## Extra context");
+      lines.push(notes || "- None added.");
+      lines.push("");
+
+      lines.push("## How to use this context");
+      lines.push("Treat this as preference guidance, not a replacement for the specific task. If details are missing, make a reasonable assumption and label it. Prioritize practical artifacts, clear next steps, and the goals above.");
+
+      return lines.join("\n");
+    }
+
+    function save() {
+      const data = { behaviors: checkedValues("data-behavior"), boundaries: checkedValues("data-boundary") };
+      textIds.concat(rangeIds, selectIds).forEach((id) => { data[id] = $(id).value; });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function load() {
+      let data = null;
+      try { data = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+      if (!data) return;
+      textIds.concat(rangeIds, selectIds).forEach((id) => {
+        if (typeof data[id] === "string") $(id).value = data[id];
+      });
+      if (Array.isArray(data.behaviors)) {
+        document.querySelectorAll("[data-behavior]").forEach((el) => {
+          el.checked = data.behaviors.includes(el.getAttribute("data-behavior"));
+        });
+      }
+      if (Array.isArray(data.boundaries)) {
+        document.querySelectorAll("[data-boundary]").forEach((el) => {
+          el.checked = data.boundaries.includes(el.getAttribute("data-boundary"));
+        });
+      }
+    }
+
+    function refresh() {
+      updateLabels();
+      renderPills();
+      summaryOutput.textContent = buildSummary();
+      copyStatus.textContent = "";
+      save();
+    }
+
+    async function copySummary() {
+      try {
+        await navigator.clipboard.writeText(summaryOutput.textContent);
+        copyStatus.textContent = "Copied to clipboard.";
+      } catch (e) {
+        copyStatus.textContent = "Couldn't auto-copy — select the text and copy manually.";
+      }
+    }
+
+    function downloadMarkdown() {
+      const name = ($("name").value || "context").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "context";
+      const blob = new Blob([summaryOutput.textContent], { type: "text/markdown" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ai-context-" + name + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      copyStatus.textContent = "Downloaded ai-context-" + name + ".md";
+    }
+
+    function reset() {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      textIds.forEach((id) => { $(id).value = ""; });
+      $("detailLevel").value = "3";
+      $("autonomyLevel").value = "3";
+      $("teachingLevel").value = "3";
+      $("confidenceLevel").value = "70";
+      $("feedbackStyle").selectedIndex = 0;
+      $("projectMode").selectedIndex = 0;
+      document.querySelectorAll("[data-behavior], [data-boundary]").forEach((el) => { el.checked = true; });
+      refresh();
+    }
+
+    textIds.concat(rangeIds, selectIds).forEach((id) => {
+      $(id).addEventListener("input", refresh);
+      $(id).addEventListener("change", refresh);
+    });
+    document.querySelectorAll("[data-behavior], [data-boundary]").forEach((el) => {
+      el.addEventListener("change", refresh);
+    });
+    $("copySummary").addEventListener("click", copySummary);
+    $("downloadSummary").addEventListener("click", downloadMarkdown);
+    $("resetControls").addEventListener("click", reset);
+
+    load();
+    refresh();
+  </script>
+</body>
+</html>

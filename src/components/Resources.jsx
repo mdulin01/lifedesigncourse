@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, AlertCircle, Sparkles, Zap, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronRight, AlertCircle, Sparkles, Zap, ExternalLink, ChevronDown, ChevronUp, Bot, FileText } from 'lucide-react';
 import ErrorRecoveryGuide from './ErrorRecoveryGuide';
 import PromptRecipeLibrary from './PromptRecipeLibrary';
 import StackStarterKit from './StackStarterKit';
@@ -8,6 +8,11 @@ const samplePages = [
   { id: 'stack', label: 'Stack Starter Kit', description: 'The exact tech stack used to build this site', icon: Zap, color: 'amber' },
   { id: 'prompts', label: 'Prompt Recipe Library', description: 'Copy-paste prompts for common tasks', icon: Sparkles, color: 'emerald' },
   { id: 'errors', label: 'Error Recovery Guide', description: 'Common errors and how to fix them with AI', icon: AlertCircle, color: 'red' },
+];
+
+const externalTools = [
+  { id: 'context-builder', label: 'AI Context Builder', description: 'Build a reusable context file to guide your AI agents — editable, saves in your browser, exports to Markdown', icon: Bot, color: 'emerald', url: '/context-tool.html' },
+  { id: 'context-example', label: 'Context Builder — Worked Example', description: 'A completed context file to see what a finished one looks like', icon: FileText, color: 'blue', url: '/context-example.html' },
 ];
 
 const references = [
@@ -74,6 +79,7 @@ const refColorMap = {
 
 const colorMap = {
   emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', iconBg: 'bg-emerald-500/15' },
+  blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', iconBg: 'bg-blue-500/15' },
   amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', iconBg: 'bg-amber-500/15' },
   red: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400', iconBg: 'bg-red-500/15' },
 };
@@ -128,6 +134,36 @@ export default function Resources() {
               </div>
               <ChevronRight className="w-4 h-4 text-white/20 shrink-0" />
             </button>
+          );
+        })}
+      </div>
+
+      {/* AI Tools */}
+      <div className="pt-1">
+        <h2 className="text-lg font-bold text-white">AI Tools</h2>
+        <p className="text-white/40 text-sm mt-1">Build a context file to guide your AI agents (opens in a new tab)</p>
+      </div>
+      <div className="space-y-3">
+        {externalTools.map((tool) => {
+          const Icon = tool.icon;
+          const colors = colorMap[tool.color];
+          return (
+            <a
+              key={tool.id}
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center gap-4 bg-white/[0.03] border border-white/10 rounded-2xl p-4 hover:bg-white/[0.06] transition text-left"
+            >
+              <div className={`w-10 h-10 rounded-xl ${colors.iconBg} flex items-center justify-center shrink-0`}>
+                <Icon className={`w-5 h-5 ${colors.text}`} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-sm font-semibold text-white">{tool.label}</span>
+                <p className="text-xs text-white/30 mt-0.5">{tool.description}</p>
+              </div>
+              <ExternalLink className="w-4 h-4 text-white/20 shrink-0" />
+            </a>
           );
         })}
       </div>
