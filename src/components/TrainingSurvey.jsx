@@ -116,8 +116,10 @@ export default function TrainingSurvey({ user }) {
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [manualEmail, setManualEmail] = useState(null); // email typed on the page (no link/login)
+  const [emailInput, setEmailInput] = useState('');
 
-  // Identity comes from either a logged-in user OR an ?email= URL param (no-login).
+  // Identity comes from a logged-in user, an ?email= URL param, or an email typed on the page.
   const identity = useMemo(() => {
     if (user) {
       return {
@@ -126,16 +128,16 @@ export default function TrainingSurvey({ user }) {
         name: user.displayName || user.email?.split('@')[0] || 'Anonymous',
       };
     }
-    const urlEmail = getEmailFromUrl();
-    if (urlEmail) {
+    const email = getEmailFromUrl() || manualEmail;
+    if (email) {
       return {
-        docId: emailToDocId(urlEmail),
-        email: urlEmail,
-        name: urlEmail.split('@')[0],
+        docId: emailToDocId(email),
+        email: email,
+        name: email.split('@')[0],
       };
     }
     return null;
-  }, [user]);
+  }, [user, manualEmail]);
 
   // Load existing response
   useEffect(() => {
@@ -219,13 +221,37 @@ export default function TrainingSurvey({ user }) {
   }
 
   if (!identity) {
+    const trimmed = emailInput.trim();
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+    const start = () => { if (emailValid) setManualEmail(trimmed.toLowerCase()); };
     return (
-      <div className="text-center py-10 space-y-3">
-        <div className="text-3xl">🔗</div>
-        <h3 className="text-lg font-semibold text-white">Use your personal link</h3>
-        <p className="text-sm text-white/50">
-          Please open the survey using the personalized link from your email so we can match your responses. If you can't find it, just sign in instead.
-        </p>
+      <div className="py-8 space-y-4">
+        <div className="text-center space-y-2">
+          <div className="text-3xl">📋</div>
+          <h3 className="text-lg font-semibold text-white">Enter your email to begin</h3>
+          <p className="text-sm text-white/50">
+            We use it only to match your responses — no account or password needed.
+          </p>
+        </div>
+        <div className="max-w-xs mx-auto space-y-3">
+          <input
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            value={emailInput}
+            onChange={(e) => setEmailInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') start(); }}
+            placeholder="you@example.com"
+            className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/20 transition"
+          />
+          <button
+            onClick={start}
+            disabled={!emailValid}
+            className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Start survey
+          </button>
+        </div>
       </div>
     );
   }
